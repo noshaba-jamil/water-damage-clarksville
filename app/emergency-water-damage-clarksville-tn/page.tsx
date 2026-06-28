@@ -15,25 +15,47 @@ export const metadata: Metadata = {
 };
 
 const SITE_URL = "https://waterdamageclarksville.com";
-
-const serviceSchema = {
+  const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "Emergency Water Damage Restoration — Clarksville TN",
   serviceType: "Emergency Water Damage Restoration",
-  description: "24/7 emergency water damage restoration in Clarksville TN and Montgomery County. IICRC-certified team responds within 60 minutes to burst pipes, flooding, sewage backup, and storm damage.",
+  description:
+    "24/7 emergency water damage restoration in Clarksville TN and Montgomery County. IICRC-certified team responds within 60 minutes to burst pipes, flooding, sewage backup, and storm damage.",
+
   provider: {
     "@type": "LocalBusiness",
     name: "Clarksville Water Damage Restoration",
     telephone: "(931) 271-2350",
-    215 Legion Street, Clarksville, TN 37040", postalCode: "37040" },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "215 Legion Street",
+      addressLocality: "Clarksville",
+      addressRegion: "TN",
+      postalCode: "37040",
+      addressCountry: "US",
+    },
     url: SITE_URL,
   },
-  areaServed: { "@type": "AdministrativeArea", name: "Montgomery County, Tennessee" },
-  availableChannel: { "@type": "ServiceChannel", serviceUrl: SITE_URL, servicePhone: "(931) 271-2350", availableLanguage: "English" },
-  offers: { "@type": "Offer", description: "Free emergency inspection. Direct insurance billing. You pay only your deductible." },
-};
 
+  areaServed: {
+    "@type": "AdministrativeArea",
+    name: "Montgomery County, Tennessee",
+  },
+
+  availableChannel: {
+    "@type": "ServiceChannel",
+    serviceUrl: SITE_URL,
+    servicePhone: "(931) 271-2350",
+    availableLanguage: "English",
+  },
+
+  offers: {
+    "@type": "Offer",
+    description:
+      "Free emergency inspection. Direct insurance billing. You pay only your deductible.",
+  },
+};
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
