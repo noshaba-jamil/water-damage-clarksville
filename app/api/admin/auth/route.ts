@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+                 import { NextRequest, NextResponse } from "next/server";
 import { validatePassword, generateSessionToken } from "@/lib/auth";
 
 const attempts = new Map<string, { count: number; first: number }>();
@@ -27,7 +27,6 @@ export async function POST(req: NextRequest) {
     }
 
     attempts.delete(ip);
-    // Generate deterministic token from password — works across serverless instances
     const token = generateSessionToken(password);
 
     const res = NextResponse.json({ success: true });

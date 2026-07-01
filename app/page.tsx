@@ -18,16 +18,16 @@ const faqSchema = {
   ],
 };
 
-const HERO = "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=85";
+const HERO = "https://morris-and-passaic-counties.pauldavis.com/wp-content/uploads/sites/165/2024/12/Water-Damage-Picture.jpg";
 const IMGS = {
-  svc1:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80",
-  svc2:"https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=600&q=80",
-  svc3:"https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=600&q=80",
-  svc4:"https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80",
-  svc5:"https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=600&q=80",
-  svc6:"https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=600&q=80",
-  why:"https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80",
-  cta:"https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80",
+  svc1:"https://qrrestore.com/wp-content/uploads/2026/04/water-damage-qrr-2.png",
+  svc2:"https://killeentxwaterdamage.com/wp-content/uploads/2026/06/Professional-Water-Damage-Restoration-Technicians-Extracting-Floodwater-from-Residential-Living-Room-1-1024x576.png",
+  svc3:"https://ik.imagekit.io/4wu305uo4/image_0tNfShL-R.jpg",
+  svc4:"https://dlczb9lfz9r73.cloudfront.net/wp-content/uploads/2023/01/13160310/AdobeStock_1049719901.jpeg",
+  svc5:" https://kmrdpartners.com/wp-content/uploads/2017/10/KMRD-Claims-Management.jpg",
+  svc6:"https://www.bmscat.com/wp-content/uploads/2021/06/Commercial-Water-Damage.png",
+  why:"https://lamunyon.com/wp-content/uploads/2021/04/Cat-3-Sewer-Water-Damage-Restoration.jpg",
+  cta:"https://upperrestoration.com/wp-content/uploads/2026/03/ur-1617-diy-water-damage-restoration-pros-cons-and-best-pr-1024x559.webp",
 };
 
 const services = [

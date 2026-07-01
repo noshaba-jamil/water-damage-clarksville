@@ -1,93 +1,67 @@
-"use client";
+ "use client";
 import { useState } from "react";
 
 export default function AdminLoginPage() {
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [pw, setPw] = useState("");
+  const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function handleLogin() {
-    if (!password.trim()) return;
+  async function login() {
+    if (!pw) return;
     setLoading(true);
-    setError("");
+    setMsg("");
     try {
-      const res = await fetch("/api/admin/auth", {
+      const r = await fetch("/api/admin/auth", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
-        credentials: "include", // ensures cookie is stored
+        body: JSON.stringify({ password: pw }),
+        credentials: "include",
       });
-      const data = await res.json();
-      if (data.success) {
-        // Hard redirect — not router.push — so middleware re-evaluates with new cookie
-        window.location.href = "/admin/dashboard";
+      const d = await r.json();
+      if (d.success) {
+        window.location.replace("/admin/dashboard");
       } else {
-        setError(data.message || "Invalid password.");
-        setPassword("");
+        setMsg(d.message || "Invalid password.");
+        setPw("");
       }
-    } catch {
-      setError("Connection error. Please try again.");
-    } finally {
-      setLoading(false);
+    } catch (e) {
+      setMsg("Error: " + String(e));
     }
+    setLoading(false);
   }
 
   return (
-    <>
-      <style>{`
-        *{box-sizing:border-box;margin:0;padding:0}
-        body{font-family:var(--font-inter);background:#0F0F11;color:#fff;min-height:100vh}
-        .page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0F0F11;padding:20px}
-        .card{background:#09090B;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:44px 40px;width:100%;max-width:400px;box-shadow:0 24px 64px rgba(0,0,0,.5)}
-        .logo{display:flex;align-items:center;gap:12px;margin-bottom:32px;justify-content:center}
-        .logo-mark{width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,#22C55E,#16A34A);display:flex;align-items:center;justify-content:center;font-size:18px}
-        .logo-name{font-size:15px;font-weight:700;color:#fff}
-        .logo-site{font-size:11px;color:rgba(255,255,255,.3)}
-        .heading{font-size:22px;font-weight:700;color:#fff;text-align:center;margin-bottom:6px}
-        .subhead{font-size:13px;color:rgba(255,255,255,.35);text-align:center;margin-bottom:28px}
-        label{display:block;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px}
-        .input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;font-size:15px;padding:13px 14px;outline:none;transition:border-color .2s;margin-bottom:14px;font-family:inherit}
-        .input:focus{border-color:#22C55E}
-        .input::placeholder{color:rgba(255,255,255,.2)}
-        .error{background:rgba(252,165,165,.07);border:1px solid rgba(252,165,165,.15);border-radius:6px;padding:10px 14px;font-size:13px;color:#FCA5A5;margin-bottom:14px}
-        .btn{width:100%;background:#22C55E;color:#09090B;border:none;border-radius:8px;padding:14px;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;font-family:inherit}
-        .btn:hover:not(:disabled){background:#16A34A}
-        .btn:disabled{opacity:.6;cursor:not-allowed}
-        .hint{text-align:center;font-size:11px;color:rgba(255,255,255,.2);margin-top:20px;line-height:1.6}
-        @media(max-width:440px){.card{padding:32px 24px}}
-      `}</style>
-      <div className="page">
-        <div className="card">
-          <div className="logo">
-            <div className="logo-mark">💧</div>
-            <div>
-              <div className="logo-name">WDR Admin</div>
-              <div className="logo-site">waterdamageclarksville.com</div>
-            </div>
-          </div>
-          <div className="heading">Sign In</div>
-          <div className="subhead">Enter your admin password to continue</div>
-          <label htmlFor="pw">Password</label>
+    <div style={{minHeight:"100vh",background:"#0F0F11",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"system-ui,sans-serif"}}>
+      <div style={{background:"#18181B",border:"1px solid rgba(255,255,255,.1)",borderRadius:12,padding:40,width:360,maxWidth:"90vw"}}>
+        <div style={{textAlign:"center",marginBottom:28}}>
+          <div style={{fontSize:32,marginBottom:8}}>💧</div>
+          <div style={{fontSize:18,fontWeight:700,color:"#fff"}}>WDR Admin</div>
+          <div style={{fontSize:12,color:"rgba(255,255,255,.4)",marginTop:4}}>waterdamageclarksville.com</div>
+        </div>
+        <div style={{marginBottom:14}}>
+          <label style={{display:"block",fontSize:11,color:"rgba(255,255,255,.4)",marginBottom:6,textTransform:"uppercase",letterSpacing:1}}>Password</label>
           <input
-            id="pw"
-            className="input"
             type="password"
+            value={pw}
+            onChange={e => setPw(e.target.value)}
+            onKeyDown={e => e.key === "Enter" && login()}
             placeholder="Enter admin password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            onKeyDown={e => e.key === "Enter" && handleLogin()}
             autoFocus
+            style={{width:"100%",background:"rgba(255,255,255,.05)",border:"1px solid rgba(255,255,255,.1)",borderRadius:6,color:"#fff",fontSize:14,padding:"11px 12px",outline:"none",boxSizing:"border-box"}}
           />
-          {error && <div className="error">⚠️ {error}</div>}
-          <button className="btn" onClick={handleLogin} disabled={loading || !password.trim()}>
-            {loading ? "Signing in…" : "Sign In →"}
-          </button>
-          <div className="hint">
-            Set your password via <strong style={{color:"rgba(255,255,255,.4)"}}>ADMIN_PASSWORD</strong> env var.<br/>
-            5 failed attempts = 15 min lockout.
-          </div>
+        </div>
+        {msg && <div style={{background:"rgba(239,68,68,.1)",border:"1px solid rgba(239,68,68,.2)",borderRadius:6,padding:"10px 12px",fontSize:13,color:"#FCA5A5",marginBottom:14}}>{msg}</div>}
+        <button
+          onClick={login}
+          disabled={loading || !pw}
+          style={{width:"100%",background:"#22C55E",color:"#09090B",border:"none",borderRadius:6,padding:"12px",fontSize:14,fontWeight:700,cursor:loading||!pw?"not-allowed":"pointer",opacity:loading||!pw?.trim()?0.6:1}}
+        >
+          {loading ? "Signing in..." : "Sign In →"}
+        </button>
+        <div style={{fontSize:11,color:"rgba(255,255,255,.2)",textAlign:"center",marginTop:16,lineHeight:1.6}}>
+          Set password via ADMIN_PASSWORD env var.<br/>5 failed attempts = 15 min lockout.
         </div>
       </div>
-    </>
+    </div>
   );
 }
