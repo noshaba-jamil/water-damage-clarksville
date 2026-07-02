@@ -1,5 +1,5 @@
-import { requireAdminAuth } from "@/lib/auth";
-import { getAllBlogPosts } from "@/lib/blogStorage";
+ import { requireAdminAuth } from "@/lib/auth";
+import { getAllBlogPostsAsync } from "@/lib/blogStorage";
 import Link from "next/link";
 import SignOutButton from "./SignOutButton";
 
@@ -7,7 +7,7 @@ export const metadata = { title: "Dashboard | Admin", robots: { index: false } }
 
 export default async function DashboardPage() {
   await requireAdminAuth();
-  const posts = getAllBlogPosts();
+  const posts = await getAllBlogPostsAsync();
   const published = posts.filter(p => p.published).length;
   const drafts = posts.filter(p => !p.published).length;
   return (

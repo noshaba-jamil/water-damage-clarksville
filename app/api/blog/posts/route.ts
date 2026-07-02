@@ -1,11 +1,13 @@
-import { NextRequest, NextResponse } from "next/server";
-import { saveBlogPost, getAllBlogPosts, generateSlug, calculateReadTime } from "@/lib/blogStorage";
+ import { NextRequest, NextResponse } from "next/server";
+import { getAllBlogPostsAsync, savePostAsync, generateSlug, calculateReadTime } from "@/lib/blogStorage";
 import { verifyAdminAuth } from "@/lib/auth";
 import crypto from "crypto";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
-    const posts = getAllBlogPosts();
+    const posts = await getAllBlogPostsAsync();
     return NextResponse.json({ success: true, posts });
   } catch {
     return NextResponse.json({ success: false, message: "Failed to load posts." }, { status: 500 });
@@ -44,9 +46,10 @@ export async function POST(req: NextRequest) {
       updatedAt: now,
     };
 
-    saveBlogPost(post);
+    await savePostAsync(post);
     return NextResponse.json({ success: true, post });
-  } catch {
+  } catch (e) {
+    console.error("Blog save error:", e);
     return NextResponse.json({ success: false, message: "Failed to save post." }, { status: 500 });
   }
 }
