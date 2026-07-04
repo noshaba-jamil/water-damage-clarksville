@@ -1,14 +1,15 @@
-import { requireAdminAuth } from "@/lib/auth";
-import { getBlogPostById } from "@/lib/blogStorage";
+ import { requireAdminAuth } from "@/lib/auth";
+import { getPostByIdAsync } from "@/lib/blogStorage";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import PostActions from "../PostActions";
 
+export const dynamic = "force-dynamic";
 export const metadata = { title: "Edit Post | Admin", robots: { index: false } };
 
 export default async function EditPostPage({ params }: { params: { id: string } }) {
   await requireAdminAuth();
-  const post = getBlogPostById(params.id);
+  const post = await getPostByIdAsync(params.id);
   if (!post) notFound();
   const wc = post.content.reduce((a, s) => a + s.body.split(/\s+/).filter(Boolean).length, 0);
   return (
