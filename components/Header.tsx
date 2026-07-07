@@ -1,4 +1,4 @@
-"use client";
+  "use client";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
@@ -54,18 +54,21 @@ export default function Header() {
 
   return (<>
     <style>{`
-      .hdr-wrap{position:sticky;top:37px;z-index:99}
-      .hdr{background:rgba(9,9,11,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;border-bottom:1px solid rgba(255,255,255,.06);transition:box-shadow .3s}
+      .hdr-wrap{position:sticky;top:0;z-index:99}
+      .hdr{background:rgba(9,9,11,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;border-bottom:1px solid rgba(255,255,255,.06);transition:box-shadow .3s;gap:12px}
       .hdr.sc{box-shadow:0 8px 32px rgba(0,0,0,.5)}
-      .hdr-logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
-      .hdr-mark{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#22C55E,#16A34A);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-      .hdr-name{font-size:14px;font-weight:600;color:#fff;letter-spacing:-.2px;line-height:1.2}
-      .hdr-sub{font-size:10px;color:rgba(255,255,255,.35);letter-spacing:.8px;text-transform:uppercase}
-      .hdr-nav{display:flex;align-items:center;gap:2px;flex:1;justify-content:center;padding:0 24px}
+
+      .hdr-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;min-width:0}
+      .hdr-mark{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#22C55E,#16A34A);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+      .hdr-name{font-size:13px;font-weight:600;color:#fff;letter-spacing:-.2px;line-height:1.2;white-space:nowrap}
+      .hdr-sub{font-size:9px;color:rgba(255,255,255,.35);letter-spacing:.8px;text-transform:uppercase}
+
+      .hdr-nav{display:flex;align-items:center;gap:2px;flex:1;justify-content:center;padding:0 16px}
       .nl{font-size:13px;font-weight:500;color:rgba(255,255,255,.6);padding:6px 12px;border-radius:6px;text-decoration:none;transition:all .15s;background:none;border:none;display:flex;align-items:center;gap:4px;cursor:pointer;white-space:nowrap;font-family:inherit}
       .nl:hover{color:#fff;background:rgba(255,255,255,.07)}
       .nl svg{width:10px;height:10px;opacity:.6;transition:transform .2s}
       .nl.dd-open svg{transform:rotate(180deg)}
+
       .dd-wrap{position:relative}
       .dd{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#18181B;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:8px;box-shadow:0 24px 64px rgba(0,0,0,.6);z-index:200;animation:ddIn .15s ease}
       .dd.wide{display:grid;grid-template-columns:1fr 1fr;min-width:480px}
@@ -75,22 +78,40 @@ export default function Header() {
       .di::before{content:'';width:3px;height:3px;border-radius:50%;background:rgba(74,222,128,.5);flex-shrink:0}
       .di:hover{background:rgba(74,222,128,.08);color:#fff}
       .di.sp{color:#4ADE80;font-weight:600}
-      .hdr-cta{display:inline-flex;align-items:center;gap:8px;background:#22C55E;color:#09090B;padding:9px 18px;border-radius:6px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:all .2s}
+
+      .hdr-cta{display:inline-flex;align-items:center;gap:6px;background:#22C55E;color:#09090B;padding:9px 16px;border-radius:6px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:all .2s}
       .hdr-cta:hover{background:#16A34A;box-shadow:0 4px 16px rgba(34,197,94,.3)}
-      .mob-btn{display:none;background:none;border:none;padding:8px;flex-direction:column;gap:5px;cursor:pointer;margin-left:8px}
-      .mob-line{display:block;width:22px;height:1.5px;background:rgba(255,255,255,.75);border-radius:2px;transition:all .25s;transform-origin:center}
-      .mob-drawer{display:none;position:fixed;inset:0;top:105px;background:#09090B;z-index:98;overflow-y:auto;padding:24px 20px 40px}
+
+      /* HAMBURGER - hidden on desktop, flex on mobile */
+      .mob-btn{display:none;background:none;border:none;padding:8px;flex-direction:column;gap:5px;cursor:pointer;flex-shrink:0}
+      .mob-line{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .25s;transform-origin:center}
+
+      .mob-drawer{display:none;position:fixed;inset:0;top:68px;background:#09090B;z-index:98;overflow-y:auto;padding:24px 20px 120px}
       .mob-drawer.open{display:block}
       .mob-call{display:block;background:#22C55E;color:#09090B;padding:16px;border-radius:8px;text-align:center;font-weight:700;font-size:16px;text-decoration:none;margin-bottom:20px}
       .mob-sec{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.25);padding:16px 0 8px}
       .mob-link{display:block;font-size:14px;font-weight:500;color:rgba(255,255,255,.6);padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05);text-decoration:none}
       .mob-link:hover,.mob-link:active{color:#fff}
-      @media(max-width:1100px){.hdr{padding:0 20px}.hdr-nav{display:none}.mob-btn{display:flex}}
-      @media(max-width:480px){.hdr-sub{display:none}}
+
+      /* MOBILE BREAKPOINT */
+      @media(max-width:1100px){
+        .hdr{padding:0 16px}
+        .hdr-nav{display:none}
+        .hdr-cta{display:none}
+        .mob-btn{display:flex}
+        .hdr-wrap{top:0}
+      }
+
+      @media(max-width:400px){
+        .hdr-sub{display:none}
+        .hdr-name{font-size:12px}
+        .hdr-mark{width:30px;height:30px;font-size:13px}
+      }
     `}</style>
 
     <div className="hdr-wrap">
       <header className={`hdr${scrolled ? " sc" : ""}`} role="banner" suppressHydrationWarning>
+
         <Link href="/" className="hdr-logo" aria-label="Clarksville Water Damage Restoration — Home">
           <div className="hdr-mark" aria-hidden="true">💧</div>
           <div>
@@ -136,15 +157,18 @@ export default function Header() {
           <Link href="/contact" className="nl">Contact</Link>
         </nav>
 
+        {/* Desktop CTA - hidden on mobile */}
         <a href={PHONE_HREF} className="hdr-cta" aria-label={`Call ${PHONE} for emergency water damage restoration`}>
           📞 {PHONE}
         </a>
 
+        {/* Hamburger - only on mobile */}
         <button className="mob-btn" onClick={() => setMob(m => !m)} aria-label="Toggle menu" aria-expanded={mob} type="button">
-          <span className="mob-line" style={mob ? { transform: "rotate(45deg) translate(4.5px,4.5px)" } : {}} />
+          <span className="mob-line" style={mob ? { transform: "rotate(45deg) translate(0, 7px)" } : {}} />
           <span className="mob-line" style={mob ? { opacity: 0 } : {}} />
-          <span className="mob-line" style={mob ? { transform: "rotate(-45deg) translate(4.5px,-4.5px)" } : {}} />
+          <span className="mob-line" style={mob ? { transform: "rotate(-45deg) translate(0, -7px)" } : {}} />
         </button>
+
       </header>
     </div>
 

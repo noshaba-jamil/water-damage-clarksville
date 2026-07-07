@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
+import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = { title:"Contact Us | Free Water Damage Assessment | Clarksville TN | (931) 271-2350", description:"Contact Clarksville Water Damage Restoration for a free emergency assessment. Call (931) 271-2350 anytime — 24/7. 60-min arrival guaranteed. Serving Clarksville TN & Fort Campbell.", alternates:{canonical:"/contact"} };
 export default function ContactPage() {
   return (<>
@@ -12,35 +13,7 @@ export default function ContactPage() {
           <span className="cf-ey">Free Assessment</span>
           <h2 className="cf-h" id="form-heading">Request Help Now</h2>
           <div className="cf-s">We call back within 15 minutes. Emergencies answered immediately.</div>
-          <form action="/api/lead" method="POST" aria-label="Contact form" noValidate>
-            <div className="cf-row">
-              <div className="cf-f"><label htmlFor="fn">First Name</label><input id="fn" name="firstName" type="text" placeholder="John" autoComplete="given-name" required/></div>
-              <div className="cf-f"><label htmlFor="ln">Last Name</label><input id="ln" name="lastName" type="text" placeholder="Smith" autoComplete="family-name"/></div>
-            </div>
-            <div className="cf-f"><label htmlFor="ph">Phone Number *</label><input id="ph" name="phone" type="tel" placeholder="(931) 271-2350" autoComplete="tel" required/></div>
-            <div className="cf-f"><label htmlFor="em">Email Address</label><input id="em" name="email" type="email" placeholder="john@example.com" autoComplete="email"/></div>
-            <div className="cf-row">
-              <div className="cf-f">
-                <label htmlFor="dt">Type of Damage</label>
-                <select id="dt" name="damageType" aria-label="Type of water damage">
-                  <option value="">Select...</option>
-                  <option value="water">Water Damage</option><option value="flood">Flood</option>
-                  <option value="mold">Mold</option><option value="sewage">Sewage Backup</option>
-                  <option value="storm">Storm Damage</option>
-                </select>
-              </div>
-              <div className="cf-f">
-                <label htmlFor="urg">Urgency</label>
-                <select id="urg" name="urgency" aria-label="Urgency level">
-                  <option value="emergency">🚨 Emergency NOW</option>
-                  <option value="24h">Within 24 Hours</option><option value="sched">Scheduling</option>
-                </select>
-              </div>
-            </div>
-            <div className="cf-f"><label htmlFor="desc">Description (optional)</label><textarea id="desc" name="description" placeholder="Describe what happened..." aria-label="Description"/></div>
-            <button className="cf-btn" type="submit">Request Assessment →</button>
-            <div className="cf-note">✓ We respect your privacy. No spam, ever.</div>
-          </form>
+           
         </section>
         <aside className="ci" aria-label="Contact information">
           <div className="ci-emg">

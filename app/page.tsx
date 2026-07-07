@@ -1,85 +1,238 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import HeroForm from "@/components/HeroForm";
 
 export const metadata: Metadata = {
   title: "Water Damage Restoration Clarksville TN | 24/7 Emergency Response",
-  description: "Clarksville TN water damage restoration. 60-min guaranteed arrival, 24/7. Expert flood cleanup, mold remediation & structural drying. All insurance accepted. Free assessment — call (931) 271-2350.",
+  description:
+    "Clarksville TN water damage restoration. 60-min guaranteed arrival, 24/7. Expert flood cleanup, mold remediation & structural drying. All insurance accepted. Free assessment — call (931) 271-2350.",
   alternates: { canonical: "/" },
 };
 
 const faqSchema = {
-  "@context": "https://schema.org", "@type": "FAQPage",
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
   mainEntity: [
-    { "@type": "Question", name: "How fast can you respond to water damage in Clarksville TN?", acceptedAnswer: { "@type": "Answer", text: "We guarantee 60-minute on-site arrival anywhere in Clarksville TN and Montgomery County, 24/7/365. A real expert answers your call in under 60 seconds." } },
-    { "@type": "Question", name: "Do you work with homeowners insurance for water damage in Tennessee?", acceptedAnswer: { "@type": "Answer", text: "Yes. We work directly with USAA, State Farm, Allstate, Farmers, Liberty Mutual, Nationwide, and all major carriers. We handle full documentation, adjuster coordination, and direct billing." } },
-    { "@type": "Question", name: "How much does water damage restoration cost in Clarksville TN?", acceptedAnswer: { "@type": "Answer", text: "Costs range from $1,300–$5,400 for minor events to $15,000–$40,000+ for major structural damage. The average Tennessee insurance claim is $12,473. Free inspection — call (931) 271-2350." } },
-    { "@type": "Question", name: "Will mold grow after water damage in Clarksville?", acceptedAnswer: { "@type": "Answer", text: "Yes — in Clarksville's humid subtropical climate, mold can begin growing within 24–48 hours of any water event. Immediate professional extraction and structural drying is critical." } },
-    { "@type": "Question", name: "Do you serve Fort Campbell military families?", acceptedAnswer: { "@type": "Answer", text: "Yes. Fort Campbell is within our primary service area. We are experienced USAA preferred vendors and serve military families daily with deployment-aware scheduling." } },
+    {
+      "@type": "Question",
+      name: "How fast can you respond to water damage in Clarksville TN?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "We guarantee 60-minute on-site arrival anywhere in Clarksville TN and Montgomery County, 24/7/365. A real expert answers your call in under 60 seconds.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do you work with homeowners insurance for water damage in Tennessee?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. We work directly with USAA, State Farm, Allstate, Farmers, Liberty Mutual, Nationwide, and all major carriers. We handle full documentation, adjuster coordination, and direct billing.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How much does water damage restoration cost in Clarksville TN?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Costs range from $1,300–$5,400 for minor events to $15,000–$40,000+ for major structural damage. The average Tennessee insurance claim is $12,473. Free inspection — call (931) 271-2350.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Will mold grow after water damage in Clarksville?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes — in Clarksville's humid subtropical climate, mold can begin growing within 24–48 hours of any water event. Immediate professional extraction and structural drying is critical.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do you serve Fort Campbell military families?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Fort Campbell is within our primary service area. We are experienced USAA preferred vendors and serve military families daily with deployment-aware scheduling.",
+      },
+    },
   ],
 };
 
-const HERO = "https://morris-and-passaic-counties.pauldavis.com/wp-content/uploads/sites/165/2024/12/Water-Damage-Picture.jpg";
+const HERO =
+  "https://morris-and-passaic-counties.pauldavis.com/wp-content/uploads/sites/165/2024/12/Water-Damage-Picture.jpg";
 const IMGS = {
-  svc1:"https://qrrestore.com/wp-content/uploads/2026/04/water-damage-qrr-2.png",
-  svc2:"https://killeentxwaterdamage.com/wp-content/uploads/2026/06/Professional-Water-Damage-Restoration-Technicians-Extracting-Floodwater-from-Residential-Living-Room-1-1024x576.png",
-  svc3:"https://ik.imagekit.io/4wu305uo4/image_0tNfShL-R.jpg",
-  svc4:"https://dlczb9lfz9r73.cloudfront.net/wp-content/uploads/2023/01/13160310/AdobeStock_1049719901.jpeg",
-  svc5:" https://kmrdpartners.com/wp-content/uploads/2017/10/KMRD-Claims-Management.jpg",
-  svc6:"https://www.bmscat.com/wp-content/uploads/2021/06/Commercial-Water-Damage.png",
-  why:"https://lamunyon.com/wp-content/uploads/2021/04/Cat-3-Sewer-Water-Damage-Restoration.jpg",
-  cta:"https://upperrestoration.com/wp-content/uploads/2026/03/ur-1617-diy-water-damage-restoration-pros-cons-and-best-pr-1024x559.webp",
+  svc1: "https://qrrestore.com/wp-content/uploads/2026/04/water-damage-qrr-2.png",
+  svc2: "https://killeentxwaterdamage.com/wp-content/uploads/2026/06/Professional-Water-Damage-Restoration-Technicians-Extracting-Floodwater-from-Residential-Living-Room-1-1024x576.png",
+  svc3: "https://ik.imagekit.io/4wu305uo4/image_0tNfShL-R.jpg",
+  svc4: "https://dlczb9lfz9r73.cloudfront.net/wp-content/uploads/2023/01/13160310/AdobeStock_1049719901.jpeg",
+  svc5: " https://kmrdpartners.com/wp-content/uploads/2017/10/KMRD-Claims-Management.jpg",
+  svc6: "https://www.bmscat.com/wp-content/uploads/2021/06/Commercial-Water-Damage.png",
+  why: "https://lamunyon.com/wp-content/uploads/2021/04/Cat-3-Sewer-Water-Damage-Restoration.jpg",
+  cta: "https://upperrestoration.com/wp-content/uploads/2026/03/ur-1617-diy-water-damage-restoration-pros-cons-and-best-pr-1024x559.webp",
 };
 
 const services = [
-  { img:IMGS.svc1, tag:"EMERGENCY", title:"Emergency Water Damage Restoration", desc:"24/7 rapid response to any water emergency. IICRC-certified team on-site within 60 minutes of your call anywhere in Montgomery County.", href:"/emergency-water-damage-clarksville-tn", alt:"Emergency water damage restoration team responding to flooded property in Clarksville TN" },
-  { img:IMGS.svc2, tag:"EXTRACTION", title:"Flood Cleanup & Water Extraction", desc:"Industrial truck-mounted extraction removes thousands of gallons fast, stopping secondary damage and mold growth before they start.", href:"/flood-cleanup-clarksville-tn", alt:"Professional flood cleanup and water extraction equipment in Clarksville TN home" },
-  { img:IMGS.svc3, tag:"DRYING", title:"Structural Drying & Dehumidification", desc:"IICRC S500-compliant structural drying with daily moisture monitoring until every wall, floor, and subfloor reaches certified safe levels.", href:"/structural-drying-clarksville-tn", alt:"Industrial structural drying equipment in water-damaged Clarksville home" },
-  { img:IMGS.svc4, tag:"REMEDIATION", title:"Mold Remediation & Removal", desc:"Safe, thorough mold removal with containment barriers and HEPA air filtration. IICRC AMRT-certified to protect your family's health.", href:"/mold-remediation-clarksville-tn", alt:"IICRC-certified mold remediation professional in Clarksville TN home" },
-  { img:IMGS.svc5, tag:"INSURANCE", title:"Insurance Claim Management", desc:"Complete insurance claim handling — documentation, adjuster coordination, and direct billing. You pay only your deductible.", href:"/water-damage-insurance-claim-clarksville-tn", alt:"Water damage insurance claim documentation in Tennessee" },
-  { img:IMGS.svc6, tag:"COMMERCIAL", title:"Commercial Water Damage Restoration", desc:"Minimizing business downtime with fast, professional-grade commercial restoration for offices, retail, and industrial properties.", href:"/services/commercial-water-damage-clarksville-tn", alt:"Commercial water damage restoration for Clarksville TN business property" },
+  {
+    img: IMGS.svc1,
+    tag: "EMERGENCY",
+    title: "Emergency Water Damage Restoration",
+    desc: "24/7 rapid response to any water emergency. IICRC-certified team on-site within 60 minutes of your call anywhere in Montgomery County.",
+    href: "/emergency-water-damage-clarksville-tn",
+    alt: "Emergency water damage restoration team responding to flooded property in Clarksville TN",
+  },
+  {
+    img: IMGS.svc2,
+    tag: "EXTRACTION",
+    title: "Flood Cleanup & Water Extraction",
+    desc: "Industrial truck-mounted extraction removes thousands of gallons fast, stopping secondary damage and mold growth before they start.",
+    href: "/flood-cleanup-clarksville-tn",
+    alt: "Professional flood cleanup and water extraction equipment in Clarksville TN home",
+  },
+  {
+    img: IMGS.svc3,
+    tag: "DRYING",
+    title: "Structural Drying & Dehumidification",
+    desc: "IICRC S500-compliant structural drying with daily moisture monitoring until every wall, floor, and subfloor reaches certified safe levels.",
+    href: "/structural-drying-clarksville-tn",
+    alt: "Industrial structural drying equipment in water-damaged Clarksville home",
+  },
+  {
+    img: IMGS.svc4,
+    tag: "REMEDIATION",
+    title: "Mold Remediation & Removal",
+    desc: "Safe, thorough mold removal with containment barriers and HEPA air filtration. IICRC AMRT-certified to protect your family's health.",
+    href: "/mold-remediation-clarksville-tn",
+    alt: "IICRC-certified mold remediation professional in Clarksville TN home",
+  },
+  {
+    img: IMGS.svc5,
+    tag: "INSURANCE",
+    title: "Insurance Claim Management",
+    desc: "Complete insurance claim handling — documentation, adjuster coordination, and direct billing. You pay only your deductible.",
+    href: "/water-damage-insurance-claim-clarksville-tn",
+    alt: "Water damage insurance claim documentation in Tennessee",
+  },
+  {
+    img: IMGS.svc6,
+    tag: "COMMERCIAL",
+    title: "Commercial Water Damage Restoration",
+    desc: "Minimizing business downtime with fast, professional-grade commercial restoration for offices, retail, and industrial properties.",
+    href: "/services/commercial-water-damage-clarksville-tn",
+    alt: "Commercial water damage restoration for Clarksville TN business property",
+  },
 ];
 
 const whyItems = [
-  { n:"01", t:"Locally Based — Not a National Franchise", b:"Our team is stationed in Clarksville, not dispatched from a distant call center. We know Montgomery County's infrastructure, climate, and neighborhoods intimately." },
-  { n:"02", t:"60-Minute Guaranteed Arrival — Any Time", b:"We guarantee on-site arrival within 60 minutes to any property in our service area, 24 hours a day. This is a commitment, not an estimate." },
-  { n:"03", t:"Complete Insurance Claim Management", b:"We handle every aspect of your claim — moisture documentation, adjuster coordination, and direct billing for USAA, State Farm, Allstate, and all major carriers." },
-  { n:"04", t:"Fort Campbell Military Family Specialists", b:"We serve Fort Campbell military families daily, with deep expertise in USAA claims processing, deployment-aware scheduling, and on-base property protocols." },
+  {
+    n: "01",
+    t: "Locally Based — Not a National Franchise",
+    b: "Our team is stationed in Clarksville, not dispatched from a distant call center. We know Montgomery County's infrastructure, climate, and neighborhoods intimately.",
+  },
+  {
+    n: "02",
+    t: "60-Minute Guaranteed Arrival — Any Time",
+    b: "We guarantee on-site arrival within 60 minutes to any property in our service area, 24 hours a day. This is a commitment, not an estimate.",
+  },
+  {
+    n: "03",
+    t: "Complete Insurance Claim Management",
+    b: "We handle every aspect of your claim — moisture documentation, adjuster coordination, and direct billing for USAA, State Farm, Allstate, and all major carriers.",
+  },
+  {
+    n: "04",
+    t: "Fort Campbell Military Family Specialists",
+    b: "We serve Fort Campbell military families daily, with deep expertise in USAA claims processing, deployment-aware scheduling, and on-base property protocols.",
+  },
 ];
 
 const steps = [
-  { n:"01", t:"You Call — Expert Answers Immediately", b:"A real certified expert answers in under 60 seconds, any time of day or night. No voicemail. No call center. We dispatch your team immediately." },
-  { n:"02", t:"We Arrive Within 60 Minutes", b:"Fully equipped team on-site within 60 minutes — industrial pumps, extractors, moisture meters, and drying equipment ready to deploy immediately." },
-  { n:"03", t:"Assessment, Documentation & Claim Opening", b:"Complete thermal imaging moisture mapping. Your insurance claim documentation begins the moment we arrive on-site." },
-  { n:"04", t:"Full Restoration — Pre-Damage Condition", b:"Extraction, structural drying, antimicrobial treatment, and final restoration. Your home returned to verified pre-damage condition." },
+  {
+    n: "01",
+    t: "You Call — Expert Answers Immediately",
+    b: "A real certified expert answers in under 60 seconds, any time of day or night. No voicemail. No call center. We dispatch your team immediately.",
+  },
+  {
+    n: "02",
+    t: "We Arrive Within 60 Minutes",
+    b: "Fully equipped team on-site within 60 minutes — industrial pumps, extractors, moisture meters, and drying equipment ready to deploy immediately.",
+  },
+  {
+    n: "03",
+    t: "Assessment, Documentation & Claim Opening",
+    b: "Complete thermal imaging moisture mapping. Your insurance claim documentation begins the moment we arrive on-site.",
+  },
+  {
+    n: "04",
+    t: "Full Restoration — Pre-Damage Condition",
+    b: "Extraction, structural drying, antimicrobial treatment, and final restoration. Your home returned to verified pre-damage condition.",
+  },
 ];
 
 const reviews = [
-  { q:"When our basement flooded at 2am, they were on-site in 40 minutes. Handled everything with State Farm directly. Could not have asked for a better team.", n:"Jennifer M.", l:"Sango, TN", init:"J" },
-  { q:"The most professional restoration service I've encountered. Meticulous USAA documentation, fast claim settlement. Highest possible recommendation.", n:"Staff Sgt. Robert K.", l:"Fort Campbell, KY", init:"R" },
-  { q:"Used thermal imaging cameras to find moisture hidden in our walls. Completely dried and verified. Zero mold issues eight months later. Outstanding work.", n:"Marcus T.", l:"St. Bethlehem, TN", init:"M" },
+  {
+    q: "When our basement flooded at 2am, they were on-site in 40 minutes. Handled everything with State Farm directly. Could not have asked for a better team.",
+    n: "Jennifer M.",
+    l: "Sango, TN",
+    init: "J",
+  },
+  {
+    q: "The most professional restoration service I've encountered. Meticulous USAA documentation, fast claim settlement. Highest possible recommendation.",
+    n: "Staff Sgt. Robert K.",
+    l: "Fort Campbell, KY",
+    init: "R",
+  },
+  {
+    q: "Used thermal imaging cameras to find moisture hidden in our walls. Completely dried and verified. Zero mold issues eight months later. Outstanding work.",
+    n: "Marcus T.",
+    l: "St. Bethlehem, TN",
+    init: "M",
+  },
 ];
 
 const locs = [
-  {l:"Fort Campbell, TN",h:"/locations/fort-campbell-tn"},{l:"Sango, TN",h:"/locations/sango-tn"},
-  {l:"St. Bethlehem, TN",h:"/locations/st-bethlehem-tn"},{l:"Oak Grove, KY",h:"/locations/oak-grove-ky"},
-  {l:"Hopkinsville, KY",h:"/locations/hopkinsville-ky"},{l:"Springfield, TN",h:"/locations/springfield-tn"},
-  {l:"Ashland City, TN",h:"/locations/ashland-city-tn"},{l:"Dover, TN",h:"/locations/dover-tn"},
-  {l:"Dickson, TN",h:"/locations/dickson-tn"},{l:"Woodlawn, TN",h:"/locations/woodlawn-tn"},
-  {l:"Palmyra, TN",h:"/locations/palmyra-tn"},{l:"Pembroke, KY",h:"/locations/pembroke-ky"},
+  { l: "Fort Campbell, TN", h: "/locations/fort-campbell-tn" },
+  { l: "Sango, TN", h: "/locations/sango-tn" },
+  { l: "St. Bethlehem, TN", h: "/locations/st-bethlehem-tn" },
+  { l: "Oak Grove, KY", h: "/locations/oak-grove-ky" },
+  { l: "Hopkinsville, KY", h: "/locations/hopkinsville-ky" },
+  { l: "Springfield, TN", h: "/locations/springfield-tn" },
+  { l: "Ashland City, TN", h: "/locations/ashland-city-tn" },
+  { l: "Dover, TN", h: "/locations/dover-tn" },
+  { l: "Dickson, TN", h: "/locations/dickson-tn" },
+  { l: "Woodlawn, TN", h: "/locations/woodlawn-tn" },
+  { l: "Palmyra, TN", h: "/locations/palmyra-tn" },
+  { l: "Pembroke, KY", h: "/locations/pembroke-ky" },
 ];
 
 const faqs = [
-  { q:"How fast can you respond to water damage emergencies in Clarksville TN?", a:"We guarantee 60-minute on-site arrival anywhere in Clarksville TN and Montgomery County, 24/7/365 — including holidays. A real expert answers your call in under 60 seconds." },
-  { q:"Do you work with homeowners insurance for water damage claims?", a:"Yes. We work directly with USAA, State Farm, Allstate, Farmers, Liberty Mutual, Nationwide, and all major carriers. We handle full documentation, adjuster coordination, and direct billing." },
-  { q:"How much does water damage restoration cost in Clarksville TN?", a:"Costs range from $1,300–$5,400 for minor events to $15,000–$40,000+ for major structural damage. We provide a free inspection and detailed estimate before any work begins." },
-  { q:"Will mold grow after water damage in my Clarksville home?", a:"In Clarksville's humid subtropical climate, mold can begin growing within 24–48 hours. Our team applies antimicrobial treatments on every job from Day 1 to prevent growth." },
-  { q:"Do you offer 24/7 water damage restoration services?", a:"Yes. Our Clarksville team is available 24/7/365 — including nights, weekends, and all holidays. Call (931) 271-2350 anytime and a real restoration professional answers immediately." },
+  {
+    q: "How fast can you respond to water damage emergencies in Clarksville TN?",
+    a: "We guarantee 60-minute on-site arrival anywhere in Clarksville TN and Montgomery County, 24/7/365 — including holidays. A real expert answers your call in under 60 seconds.",
+  },
+  {
+    q: "Do you work with homeowners insurance for water damage claims?",
+    a: "Yes. We work directly with USAA, State Farm, Allstate, Farmers, Liberty Mutual, Nationwide, and all major carriers. We handle full documentation, adjuster coordination, and direct billing.",
+  },
+  {
+    q: "How much does water damage restoration cost in Clarksville TN?",
+    a: "Costs range from $1,300–$5,400 for minor events to $15,000–$40,000+ for major structural damage. We provide a free inspection and detailed estimate before any work begins.",
+  },
+  {
+    q: "Will mold grow after water damage in my Clarksville home?",
+    a: "In Clarksville's humid subtropical climate, mold can begin growing within 24–48 hours. Our team applies antimicrobial treatments on every job from Day 1 to prevent growth.",
+  },
+  {
+    q: "Do you offer 24/7 water damage restoration services?",
+    a: "Yes. Our Clarksville team is available 24/7/365 — including nights, weekends, and all holidays. Call (931) 271-2350 anytime and a real restoration professional answers immediately.",
+  },
 ];
 
 export default function HomePage() {
-  return (<>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}/>
-    <style>{`
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <style>{`
       .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
       .hero-img{position:absolute;inset:0;background-image:url('${HERO}');background-size:cover;background-position:center 35%;background-color:#09090B;will-change:auto}
       .hero-ov{position:absolute;inset:0;background:linear-gradient(110deg,rgba(9,9,11,.96) 38%,rgba(9,9,11,.6) 65%,rgba(9,9,11,.25) 100%)}
@@ -234,200 +387,551 @@ export default function HomePage() {
       }
     `}</style>
 
-    {/* HERO */}
-    <section className="hero" aria-label="Water damage restoration emergency service Clarksville TN">
-      <div className="hero-img" role="img" aria-label="Water damage restoration professionals in Clarksville TN"/>
-      <div className="hero-ov"/>
-      <div className="hero-in">
-        <div>
-          <div className="h-badge"><span className="h-dot" aria-hidden="true"/><span className="h-badge-t">Emergency Response Active — Clarksville TN</span></div>
-          <h1 className="h1">Water Damage<span className="h1-sub">Restoration Clarksville TN</span></h1>
-          <p className="h-desc">Clarksville&apos;s most trusted restoration team. <strong>60-minute guaranteed arrival</strong> anywhere in Montgomery County — 24 hours a day, every day of the year. All insurance accepted.</p>
-          <div className="h-btns">
-            <a href="tel:+19312712350" className="btn-g" aria-label="Call now for emergency water damage restoration">📞 (931) 271-2350 — Call Now</a>
-            <a href="/contact" className="btn-w" aria-label="Request free water damage assessment">Free Assessment →</a>
+      {/* HERO */}
+      <section
+        className="hero"
+        aria-label="Water damage restoration emergency service Clarksville TN"
+      >
+        <div
+          className="hero-img"
+          role="img"
+          aria-label="Water damage restoration professionals in Clarksville TN"
+        />
+        <div className="hero-ov" />
+        <div className="hero-in">
+          <div>
+            <div className="h-badge">
+              <span className="h-dot" aria-hidden="true" />
+              <span className="h-badge-t">
+                Emergency Response Active — Clarksville TN
+              </span>
+            </div>
+            <h1 className="h1">
+              Water Damage
+              <span className="h1-sub">Restoration Clarksville TN</span>
+            </h1>
+            <p className="h-desc">
+              Clarksville&apos;s most trusted restoration team.{" "}
+              <strong>60-minute guaranteed arrival</strong> anywhere in
+              Montgomery County — 24 hours a day, every day of the year. All
+              insurance accepted.
+            </p>
+            <div className="h-btns">
+              <a
+                href="tel:+19312712350"
+                className="btn-g"
+                aria-label="Call now for emergency water damage restoration"
+              >
+                📞 (931) 271-2350 — Call Now
+              </a>
+              <a
+                href="/contact"
+                className="btn-w"
+                aria-label="Request free water damage assessment"
+              >
+                Free Assessment →
+              </a>
+            </div>
+            <div className="h-stats" aria-label="Service statistics">
+              <div className="hs">
+                <div className="hs-n">
+                  60
+                  <span
+                    style={{
+                      fontSize: "clamp(18px,2vw,22px)",
+                      fontFamily: "var(--font-inter)",
+                      fontWeight: 400,
+                    }}
+                  >
+                    min
+                  </span>
+                </div>
+                <div className="hs-l">Guaranteed Arrival</div>
+              </div>
+              <div className="hs">
+                <div className="hs-n">24/7</div>
+                <div className="hs-l">Always Available</div>
+              </div>
+              <div className="hs">
+                <div className="hs-n">500+</div>
+                <div className="hs-l">Homes Restored</div>
+              </div>
+            </div>
           </div>
-          <div className="h-stats" aria-label="Service statistics">
-            <div className="hs"><div className="hs-n">60<span style={{fontSize:"clamp(18px,2vw,22px)",fontFamily:"var(--font-inter)",fontWeight:400}}>min</span></div><div className="hs-l">Guaranteed Arrival</div></div>
-            <div className="hs"><div className="hs-n">24/7</div><div className="hs-l">Always Available</div></div>
-            <div className="hs"><div className="hs-n">500+</div><div className="hs-l">Homes Restored</div></div>
+          <HeroForm />
+        </div>
+      </section>
+
+      {/* TICKER */}
+      <div className="ticker" aria-hidden="true">
+        <div className="ticker-track">
+          {[...Array(2)].map((_, ri) =>
+            [
+              "24/7 Emergency Response",
+              "60-Min Guaranteed Arrival",
+              "Water Extraction Clarksville TN",
+              "Structural Drying",
+              "Mold Remediation",
+              "Sewage Cleanup",
+              "Storm Damage Restoration",
+              "Insurance Claim Assistance",
+              "Fort Campbell Military Specialists",
+              "Montgomery County TN",
+            ].map((item, i) => (
+              <span key={`${ri}-${i}`} className="ticker-item">
+                {item}
+                <span className="ticker-dot" />
+              </span>
+            )),
+          )}
+        </div>
+      </div>
+
+      {/* SERVICES */}
+      <section className="sec" aria-labelledby="services-heading">
+        <div className="sec-head">
+          <div>
+            <div className="eyebrow">
+              <span className="eyebrow-dot" aria-hidden="true" />
+              Our Services
+            </div>
+            <h2 className="display-h" id="services-heading">
+              Water Damage Restoration Services in Clarksville TN
+            </h2>
+          </div>
+          <div>
+            <p className="body-t" style={{ marginBottom: 24 }}>
+              From the first call to the final walk-through, our IICRC-certified
+              team handles every aspect of your water damage restoration with
+              precision and care throughout Clarksville and Montgomery County.
+            </p>
+            <a
+              href="tel:+19312712350"
+              className="btn-g"
+              aria-label="Call for water damage service"
+            >
+              📞 Call Now — 24/7
+            </a>
           </div>
         </div>
-        <div className="hp-form" role="complementary" aria-label="Emergency assessment request form">
-          <span className="hf-ey">Free Assessment</span>
-          <div className="hf-t">Get Emergency Help</div>
-          <div className="hf-s">We respond within 15 minutes. Emergencies answered immediately.</div>
-          <div className="hf-f"><input type="text" placeholder="Your full name" aria-label="Your full name" autoComplete="name"/></div>
-          <div className="hf-f"><input type="tel" placeholder="Phone number" aria-label="Your phone number" autoComplete="tel"/></div>
-          <div className="hf-f"><select aria-label="Type of water damage"><option value="">Type of damage</option><option value="water-damage">Water Damage</option><option value="flood">Flood</option><option value="mold">Mold</option><option value="sewage">Sewage Backup</option><option value="storm">Storm Damage</option></select></div>
-          <div className="hf-f"><select aria-label="Urgency"><option value="emergency">🚨 Emergency — Happening Now</option><option value="24hours">Within 24 Hours</option><option value="scheduling">Scheduling Future Work</option></select></div>
-          <div className="hf-f"><textarea placeholder="Brief description..." aria-label="Brief description of water damage"/></div>
-          <button className="hf-sub" type="submit">Request Emergency Help →</button>
-          <div className="hf-note">Or call: <a href="tel:+19312712350">(931) 271-2350</a></div>
-        </div>
-      </div>
-    </section>
-
-    {/* TICKER */}
-    <div className="ticker" aria-hidden="true">
-      <div className="ticker-track">
-        {[...Array(2)].map((_,ri)=>["24/7 Emergency Response","60-Min Guaranteed Arrival","Water Extraction Clarksville TN","Structural Drying","Mold Remediation","Sewage Cleanup","Storm Damage Restoration","Insurance Claim Assistance","Fort Campbell Military Specialists","Montgomery County TN"].map((item,i)=>(
-          <span key={`${ri}-${i}`} className="ticker-item">{item}<span className="ticker-dot"/></span>
-        )))}
-      </div>
-    </div>
-
-    {/* SERVICES */}
-    <section className="sec" aria-labelledby="services-heading">
-      <div className="sec-head">
-        <div><div className="eyebrow"><span className="eyebrow-dot" aria-hidden="true"/>Our Services</div><h2 className="display-h" id="services-heading">Water Damage Restoration Services in Clarksville TN</h2></div>
-        <div><p className="body-t" style={{marginBottom:24}}>From the first call to the final walk-through, our IICRC-certified team handles every aspect of your water damage restoration with precision and care throughout Clarksville and Montgomery County.</p><a href="tel:+19312712350" className="btn-g" aria-label="Call for water damage service">📞 Call Now — 24/7</a></div>
-      </div>
-      <div className="svc-grid" role="list" aria-label="Water damage restoration services">
-        {services.map(s=>(
-          <Link key={s.href} href={s.href} className="svc-card" role="listitem" aria-label={`${s.title} service`}>
-            <div className="svc-img"><img src={s.img} alt={s.alt} loading="lazy" decoding="async" width={600} height={200}/></div>
-            <div className="svc-body"><div className="svc-tag">{s.tag}</div><h3 className="svc-title">{s.title}</h3><p className="svc-desc">{s.desc}</p><div className="svc-arr">Learn more</div></div>
-          </Link>
-        ))}
-      </div>
-    </section>
-
-    {/* EMERGENCY TIMELINE */}
-    <section className="emg" aria-labelledby="timeline-heading">
-      <div className="emg-in">
-        <div>
-          <div className="eyebrow" style={{color:"#4ADE80"}}><span className="eyebrow-dot" style={{background:"#4ADE80"}} aria-hidden="true"/>Time Is Critical</div>
-          <h2 className="display-h light" id="timeline-heading" style={{marginBottom:18}}>Water Damage Timeline: Why Every Hour Matters in Clarksville TN</h2>
-          <p className="body-t light" style={{marginBottom:32}}>Clarksville&apos;s humid subtropical climate accelerates water damage faster than most of the US. The window for preventing secondary damage is critically narrow. Call (931) 271-2350 the moment you discover water damage.</p>
-          <a href="tel:+19312712350" className="btn-g" aria-label="Call for immediate emergency response">📞 Call for Immediate Response</a>
-        </div>
-        <div role="list" aria-label="Water damage progression timeline">
-          {[{time:"0 – 1 hr",risk:"Water penetrates drywall, flooring, and insulation. Structural absorption begins. Immediate extraction critical."},{time:"1 – 24 hrs",risk:"Mold spore activation in Clarksville's humid climate. Wood and drywall begin to swell and warp."},{time:"24 – 48 hrs",risk:"Mold colonies become visible. Structural compromise accelerates. Persistent odors develop throughout property."},{time:"48 hrs +",risk:"Severe structural damage. Black mold spreading. Significant health risks escalate for all occupants."}].map(r=>(
-            <div key={r.time} className="emg-row" role="listitem"><div className="emg-time">{r.time}</div><div className="emg-risk">{r.risk}</div></div>
+        <div
+          className="svc-grid"
+          role="list"
+          aria-label="Water damage restoration services"
+        >
+          {services.map((s) => (
+            <Link
+              key={s.href}
+              href={s.href}
+              className="svc-card"
+              role="listitem"
+              aria-label={`${s.title} service`}
+            >
+              <div className="svc-img">
+                <img
+                  src={s.img}
+                  alt={s.alt}
+                  loading="lazy"
+                  decoding="async"
+                  width={600}
+                  height={200}
+                />
+              </div>
+              <div className="svc-body">
+                <div className="svc-tag">{s.tag}</div>
+                <h3 className="svc-title">{s.title}</h3>
+                <p className="svc-desc">{s.desc}</p>
+                <div className="svc-arr">Learn more</div>
+              </div>
+            </Link>
           ))}
         </div>
-      </div>
-    </section>
+      </section>
 
-    {/* WHY */}
-    <section className="sec sec-surf" aria-labelledby="why-heading">
-      <div className="why-in">
-        <div className="why-img-wrap">
-          <img src={IMGS.why} alt="Professional water damage restoration technician assessing moisture damage in Clarksville TN home" className="why-img" loading="lazy" decoding="async" width={900} height={520}/>
-          <div className="why-badge"><div className="why-badge-n">10+</div><div className="why-badge-l">Years in Clarksville</div></div>
-        </div>
-        <div>
-          <div className="eyebrow"><span className="eyebrow-dot" aria-hidden="true"/>Why Choose Us</div>
-          <h2 className="display-h" id="why-heading" style={{marginBottom:36}}>Clarksville&apos;s Most Experienced Water Damage Restoration Company</h2>
-          <div className="why-list" role="list">
-            {whyItems.map(w=>(
-              <div key={w.n} className="why-item" role="listitem">
-                <div className="why-n" aria-hidden="true">{w.n}</div>
-                <div><h3 className="why-tit">{w.t}</h3><p className="why-bod">{w.b}</p></div>
+      {/* EMERGENCY TIMELINE */}
+      <section className="emg" aria-labelledby="timeline-heading">
+        <div className="emg-in">
+          <div>
+            <div className="eyebrow" style={{ color: "#4ADE80" }}>
+              <span
+                className="eyebrow-dot"
+                style={{ background: "#4ADE80" }}
+                aria-hidden="true"
+              />
+              Time Is Critical
+            </div>
+            <h2
+              className="display-h light"
+              id="timeline-heading"
+              style={{ marginBottom: 18 }}
+            >
+              Water Damage Timeline: Why Every Hour Matters in Clarksville TN
+            </h2>
+            <p className="body-t light" style={{ marginBottom: 32 }}>
+              Clarksville&apos;s humid subtropical climate accelerates water
+              damage faster than most of the US. The window for preventing
+              secondary damage is critically narrow. Call (931) 271-2350 the
+              moment you discover water damage.
+            </p>
+            <a
+              href="tel:+19312712350"
+              className="btn-g"
+              aria-label="Call for immediate emergency response"
+            >
+              📞 Call for Immediate Response
+            </a>
+          </div>
+          <div role="list" aria-label="Water damage progression timeline">
+            {[
+              {
+                time: "0 – 1 hr",
+                risk: "Water penetrates drywall, flooring, and insulation. Structural absorption begins. Immediate extraction critical.",
+              },
+              {
+                time: "1 – 24 hrs",
+                risk: "Mold spore activation in Clarksville's humid climate. Wood and drywall begin to swell and warp.",
+              },
+              {
+                time: "24 – 48 hrs",
+                risk: "Mold colonies become visible. Structural compromise accelerates. Persistent odors develop throughout property.",
+              },
+              {
+                time: "48 hrs +",
+                risk: "Severe structural damage. Black mold spreading. Significant health risks escalate for all occupants.",
+              },
+            ].map((r) => (
+              <div key={r.time} className="emg-row" role="listitem">
+                <div className="emg-time">{r.time}</div>
+                <div className="emg-risk">{r.risk}</div>
               </div>
             ))}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    {/* PROCESS */}
-    <section className="sec" aria-labelledby="process-heading">
-      <div style={{maxWidth:1240,margin:"0 auto",padding:"0 40px",marginBottom:48}}>
-        <div className="eyebrow"><span className="eyebrow-dot" aria-hidden="true"/>Our Process</div>
-        <h2 className="display-h" id="process-heading">Our 4-Step Water Damage Restoration Process</h2>
-      </div>
-      <div className="proc-grid" role="list" aria-label="Restoration process steps">
-        {steps.map(p=>(
-          <div key={p.n} className="proc-card" role="listitem">
-            <div className="proc-card-bg-n" aria-hidden="true">{p.n}</div>
-            <div className="proc-step-tag">Step {p.n}</div>
-            <h3 className="proc-title">{p.t}</h3>
-            <p className="proc-body">{p.b}</p>
+      {/* WHY */}
+      <section className="sec sec-surf" aria-labelledby="why-heading">
+        <div className="why-in">
+          <div className="why-img-wrap">
+            <img
+              src={IMGS.why}
+              alt="Professional water damage restoration technician assessing moisture damage in Clarksville TN home"
+              className="why-img"
+              loading="lazy"
+              decoding="async"
+              width={900}
+              height={520}
+            />
+            <div className="why-badge">
+              <div className="why-badge-n">10+</div>
+              <div className="why-badge-l">Years in Clarksville</div>
+            </div>
           </div>
-        ))}
-      </div>
-    </section>
-
-    {/* REVIEWS */}
-    <section className="sec sec-dark" aria-labelledby="reviews-heading">
-      <div className="rev-in">
-        <div className="rev-top">
-          <div><div className="eyebrow" style={{color:"#4ADE80"}}><span className="eyebrow-dot" style={{background:"#4ADE80"}} aria-hidden="true"/>Client Testimonials</div><h2 className="display-h light" id="reviews-heading">What Our Clients Say</h2></div>
-          <div style={{textAlign:"right"}}><div style={{fontFamily:"var(--font-cormorant)",fontSize:44,fontWeight:700,color:"#fff",lineHeight:1}} aria-label="5 star rating">★★★★★</div><div style={{fontFamily:"var(--font-inter)",fontSize:12,color:"rgba(255,255,255,.35)",marginTop:6}}>5.0 — 47 verified reviews</div></div>
+          <div>
+            <div className="eyebrow">
+              <span className="eyebrow-dot" aria-hidden="true" />
+              Why Choose Us
+            </div>
+            <h2
+              className="display-h"
+              id="why-heading"
+              style={{ marginBottom: 36 }}
+            >
+              Clarksville&apos;s Most Experienced Water Damage Restoration
+              Company
+            </h2>
+            <div className="why-list" role="list">
+              {whyItems.map((w) => (
+                <div key={w.n} className="why-item" role="listitem">
+                  <div className="why-n" aria-hidden="true">
+                    {w.n}
+                  </div>
+                  <div>
+                    <h3 className="why-tit">{w.t}</h3>
+                    <p className="why-bod">{w.b}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="rev-grid" role="list">
-          {reviews.map((r,i)=>(
-            <article key={i} className="rev-card" role="listitem" itemScope itemType="https://schema.org/Review">
-              <div className="rev-stars" aria-label="5 stars">{[1,2,3,4,5].map(s=><span key={s} className="rev-star" aria-hidden="true">★</span>)}</div>
-              <meta itemProp="reviewRating" content="5"/>
-              <blockquote className="rev-q" itemProp="reviewBody">{r.q}</blockquote>
-              <div className="rev-auth"><div className="rev-av" aria-hidden="true">{r.init}</div><div><div className="rev-name" itemProp="author">{r.n}</div><div className="rev-loc">{r.l}</div></div></div>
-            </article>
+      </section>
+
+      {/* PROCESS */}
+      <section className="sec" aria-labelledby="process-heading">
+        <div
+          style={{
+            maxWidth: 1240,
+            margin: "0 auto",
+            padding: "0 40px",
+            marginBottom: 48,
+          }}
+        >
+          <div className="eyebrow">
+            <span className="eyebrow-dot" aria-hidden="true" />
+            Our Process
+          </div>
+          <h2 className="display-h" id="process-heading">
+            Our 4-Step Water Damage Restoration Process
+          </h2>
+        </div>
+        <div
+          className="proc-grid"
+          role="list"
+          aria-label="Restoration process steps"
+        >
+          {steps.map((p) => (
+            <div key={p.n} className="proc-card" role="listitem">
+              <div className="proc-card-bg-n" aria-hidden="true">
+                {p.n}
+              </div>
+              <div className="proc-step-tag">Step {p.n}</div>
+              <h3 className="proc-title">{p.t}</h3>
+              <p className="proc-body">{p.b}</p>
+            </div>
           ))}
         </div>
-      </div>
-    </section>
+      </section>
 
-    {/* LOCATIONS */}
-    <section className="sec sec-surf" aria-labelledby="locations-heading">
-      <div className="loc-top">
-        <div><div className="eyebrow"><span className="eyebrow-dot" aria-hidden="true"/>Service Coverage</div><h2 className="display-h" id="locations-heading">Water Damage Restoration Near You in Clarksville &amp; Surrounding Areas</h2></div>
-        <div><p className="body-t" style={{marginBottom:24}}>We provide 60-minute guaranteed emergency response throughout Montgomery County and all surrounding communities.</p><Link href="/service-areas" style={{display:"inline-flex",alignItems:"center",gap:8,fontFamily:"var(--font-inter)",fontSize:14,fontWeight:600,color:"#16A34A",textDecoration:"none"}} aria-label="View all service area locations">View All Locations →</Link></div>
-      </div>
-      <nav className="loc-grid" aria-label="Service area locations">
-        {locs.map(l=>(
-          <Link key={l.h} href={l.h} className="loc-card" aria-label={`Water damage restoration in ${l.l}`}>
-            <span>📍 {l.l}</span><span className="loc-arr" aria-hidden="true">→</span>
-          </Link>
-        ))}
-      </nav>
-    </section>
-
-    {/* FAQ */}
-    <section className="faq-sec" aria-labelledby="faq-heading">
-      <div className="faq-inner">
-        <div className="faq-head">
-          <div className="eyebrow" style={{justifyContent:"center"}}><span className="eyebrow-dot" aria-hidden="true"/>Common Questions</div>
-          <h2 className="display-h" id="faq-heading" style={{textAlign:"center"}}>Frequently Asked Questions About Water Damage Restoration in Clarksville TN</h2>
-        </div>
-        <div role="list">
-          {faqs.map((faq,i)=>(
-            <details key={i} className="faq-item" role="listitem">
-              <summary className="faq-q">{faq.q}</summary>
-              <p className="faq-a">{faq.a}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* FINAL CTA */}
-    <section className="sec" aria-labelledby="cta-heading">
-      <div className="fcta-in">
-        <div className="fcta-img-wrap">
-          <img src={IMGS.cta} alt="Water damage restoration professional team ready to respond in Clarksville TN" className="fcta-img" loading="lazy" decoding="async" width={900} height={540}/>
-          <div className="fcta-img-ov" aria-hidden="true"/>
-          <div className="fcta-badge"><div className="fcta-badge-n">(931) 271-2350</div><div className="fcta-badge-l">Available 24 hours a day</div></div>
-        </div>
-        <div>
-          <div className="eyebrow"><span className="eyebrow-dot" aria-hidden="true"/>Act Now</div>
-          <h2 className="fcta-h2" id="cta-heading">Don&apos;t wait.<br/><em>Every minute matters.</em></h2>
-          <p className="fcta-p">Water damage in Clarksville TN escalates exponentially over time. Our team is locally stationed and ready to respond immediately. A certified expert answers your call in under 60 seconds.</p>
-          <div className="fcta-btns">
-            <a href="tel:+19312712350" className="fcta-btn1" aria-label="Call now for emergency water damage restoration">📞 Call (931) 271-2350 Now</a>
-            <a href="/contact" className="fcta-btn2" aria-label="Request free assessment">Request Free Assessment</a>
+      {/* REVIEWS */}
+      <section className="sec sec-dark" aria-labelledby="reviews-heading">
+        <div className="rev-in">
+          <div className="rev-top">
+            <div>
+              <div className="eyebrow" style={{ color: "#4ADE80" }}>
+                <span
+                  className="eyebrow-dot"
+                  style={{ background: "#4ADE80" }}
+                  aria-hidden="true"
+                />
+                Client Testimonials
+              </div>
+              <h2 className="display-h light" id="reviews-heading">
+                What Our Clients Say
+              </h2>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <div
+                style={{
+                  fontFamily: "var(--font-cormorant)",
+                  fontSize: 44,
+                  fontWeight: 700,
+                  color: "#fff",
+                  lineHeight: 1,
+                }}
+                aria-label="5 star rating"
+              >
+                ★★★★★
+              </div>
+              <div
+                style={{
+                  fontFamily: "var(--font-inter)",
+                  fontSize: 12,
+                  color: "rgba(255,255,255,.35)",
+                  marginTop: 6,
+                }}
+              >
+                5.0 — 47 verified reviews
+              </div>
+            </div>
           </div>
-          <div className="fcta-note">Free inspection · All insurance accepted · USAA specialists · 24/7/365</div>
+          <div className="rev-grid" role="list">
+            {reviews.map((r, i) => (
+              <article
+                key={i}
+                className="rev-card"
+                role="listitem"
+                itemScope
+                itemType="https://schema.org/Review"
+              >
+                <div className="rev-stars" aria-label="5 stars">
+                  {[1, 2, 3, 4, 5].map((s) => (
+                    <span key={s} className="rev-star" aria-hidden="true">
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <meta itemProp="reviewRating" content="5" />
+                <blockquote className="rev-q" itemProp="reviewBody">
+                  {r.q}
+                </blockquote>
+                <div className="rev-auth">
+                  <div className="rev-av" aria-hidden="true">
+                    {r.init}
+                  </div>
+                  <div>
+                    <div className="rev-name" itemProp="author">
+                      {r.n}
+                    </div>
+                    <div className="rev-loc">{r.l}</div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    {/* Mobile sticky */}
-    <div className="mob-sticky" role="navigation" aria-label="Emergency contact shortcuts">
-      <a href="tel:+19312712350" style={{background:"#22C55E",color:"#09090B"}} aria-label="Call now">📞 Call Now</a>
-      <a href="/contact" style={{background:"#09090B",color:"#fff"}} aria-label="Free assessment">Free Assessment</a>
-    </div>
-  </>);
+      {/* LOCATIONS */}
+      <section className="sec sec-surf" aria-labelledby="locations-heading">
+        <div className="loc-top">
+          <div>
+            <div className="eyebrow">
+              <span className="eyebrow-dot" aria-hidden="true" />
+              Service Coverage
+            </div>
+            <h2 className="display-h" id="locations-heading">
+              Water Damage Restoration Near You in Clarksville &amp; Surrounding
+              Areas
+            </h2>
+          </div>
+          <div>
+            <p className="body-t" style={{ marginBottom: 24 }}>
+              We provide 60-minute guaranteed emergency response throughout
+              Montgomery County and all surrounding communities.
+            </p>
+            <Link
+              href="/service-areas"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                fontFamily: "var(--font-inter)",
+                fontSize: 14,
+                fontWeight: 600,
+                color: "#16A34A",
+                textDecoration: "none",
+              }}
+              aria-label="View all service area locations"
+            >
+              View All Locations →
+            </Link>
+          </div>
+        </div>
+        <nav className="loc-grid" aria-label="Service area locations">
+          {locs.map((l) => (
+            <Link
+              key={l.h}
+              href={l.h}
+              className="loc-card"
+              aria-label={`Water damage restoration in ${l.l}`}
+            >
+              <span>📍 {l.l}</span>
+              <span className="loc-arr" aria-hidden="true">
+                →
+              </span>
+            </Link>
+          ))}
+        </nav>
+      </section>
+
+      {/* FAQ */}
+      <section className="faq-sec" aria-labelledby="faq-heading">
+        <div className="faq-inner">
+          <div className="faq-head">
+            <div className="eyebrow" style={{ justifyContent: "center" }}>
+              <span className="eyebrow-dot" aria-hidden="true" />
+              Common Questions
+            </div>
+            <h2
+              className="display-h"
+              id="faq-heading"
+              style={{ textAlign: "center" }}
+            >
+              Frequently Asked Questions About Water Damage Restoration in
+              Clarksville TN
+            </h2>
+          </div>
+          <div role="list">
+            {faqs.map((faq, i) => (
+              <details key={i} className="faq-item" role="listitem">
+                <summary className="faq-q">{faq.q}</summary>
+                <p className="faq-a">{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="sec" aria-labelledby="cta-heading">
+        <div className="fcta-in">
+          <div className="fcta-img-wrap">
+            <img
+              src={IMGS.cta}
+              alt="Water damage restoration professional team ready to respond in Clarksville TN"
+              className="fcta-img"
+              loading="lazy"
+              decoding="async"
+              width={900}
+              height={540}
+            />
+            <div className="fcta-img-ov" aria-hidden="true" />
+            <div className="fcta-badge">
+              <div className="fcta-badge-n">(931) 271-2350</div>
+              <div className="fcta-badge-l">Available 24 hours a day</div>
+            </div>
+          </div>
+          <div>
+            <div className="eyebrow">
+              <span className="eyebrow-dot" aria-hidden="true" />
+              Act Now
+            </div>
+            <h2 className="fcta-h2" id="cta-heading">
+              Don&apos;t wait.
+              <br />
+              <em>Every minute matters.</em>
+            </h2>
+            <p className="fcta-p">
+              Water damage in Clarksville TN escalates exponentially over time.
+              Our team is locally stationed and ready to respond immediately. A
+              certified expert answers your call in under 60 seconds.
+            </p>
+            <div className="fcta-btns">
+              <a
+                href="tel:+19312712350"
+                className="fcta-btn1"
+                aria-label="Call now for emergency water damage restoration"
+              >
+                📞 Call (931) 271-2350 Now
+              </a>
+              <a
+                href="/contact"
+                className="fcta-btn2"
+                aria-label="Request free assessment"
+              >
+                Request Free Assessment
+              </a>
+            </div>
+            <div className="fcta-note">
+              Free inspection · All insurance accepted · USAA specialists ·
+              24/7/365
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mobile sticky */}
+      <div
+        className="mob-sticky"
+        role="navigation"
+        aria-label="Emergency contact shortcuts"
+      >
+        <a
+          href="tel:+19312712350"
+          style={{ background: "#22C55E", color: "#09090B" }}
+          aria-label="Call now"
+        >
+          📞 Call Now
+        </a>
+        <a
+          href="/contact"
+          style={{ background: "#09090B", color: "#fff" }}
+          aria-label="Free assessment"
+        >
+          Free Assessment
+        </a>
+      </div>
+    </>
+  );
 }
