@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getBlogPostBySlug, getPublishedBlogPosts } from "@/lib/blogStorage";
 import { getBlogPostBySlug as getStaticPostBySlug, blogPosts as staticPosts } from "@/content/blog/blogData";
 
-const SITE_URL = "https://waterdamageclarksville.com";
+const SITE_URL = "https://water-damage-clarksville.com";
 
 export const dynamic = "force-dynamic";
 

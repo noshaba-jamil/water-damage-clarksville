@@ -36,7 +36,7 @@ export default function AdminLoginPage() {
         <div style={{textAlign:"center",marginBottom:28}}>
           <div style={{fontSize:32,marginBottom:8}}>💧</div>
           <div style={{fontSize:18,fontWeight:700,color:"#fff"}}>WDR Admin</div>
-          <div style={{fontSize:12,color:"rgba(255,255,255,.4)",marginTop:4}}>waterdamageclarksville.com</div>
+          <div style={{fontSize:12,color:"rgba(255,255,255,.4)",marginTop:4}}>water-damage-clarksville.com</div>
         </div>
         <div style={{marginBottom:14}}>
           <label style={{display:"block",fontSize:11,color:"rgba(255,255,255,.4)",marginBottom:6,textTransform:"uppercase",letterSpacing:1}}>Password</label>

@@ -154,7 +154,7 @@ export default function NewBlogPostPage() {
     `}</style>
     <div className="layout">
       <div className="sb">
-        <div className="sbl"><div className="sbm">💧</div><div><div className="sbn">WDR Admin</div><div className="sbs">waterdamageclarksville.com</div></div></div>
+        <div className="sbl"><div className="sbm">💧</div><div><div className="sbn">WDR Admin</div><div className="sbs">water-damage-clarksville.com</div></div></div>
         <div className="sbnav">
           <div className="sbsec">Main</div>
           <Link href="/admin/dashboard" className="sblink">📊 Dashboard</Link>

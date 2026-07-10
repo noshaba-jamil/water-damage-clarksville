@@ -16,7 +16,7 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "Claude-Web", disallow: "/" },
       { userAgent: "Omgilibot", disallow: "/" },
     ],
-    sitemap: "https://waterdamageclarksville.com/sitemap.xml",
-    host: "https://waterdamageclarksville.com",
+    sitemap: "https://water-damage-clarksville.com/sitemap.xml",
+    host: "https://water-damage-clarksville.com",
   };
 }

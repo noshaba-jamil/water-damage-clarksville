@@ -11,7 +11,7 @@ const NAP = {
   state: "TN",
   zip: "37040",
   email: "info@waterdamageclarksville.com",
-  website: "https://waterdamageclarksville.com",
+  website: "https://water-damage-clarksville.com",
   hours: "24/7 — 365 days a year",
   geo: "36.5298, -87.3595",
   serviceRadius: "50 miles",
@@ -210,7 +210,7 @@ export default function SeoMonitorPage() {
     <div style={{background:"#09090B",borderRight:"1px solid rgba(255,255,255,.06)",display:"flex",flexDirection:"column",width:240,flexShrink:0,position:"sticky",top:0,height:"100vh"}}>
       <div style={{display:"flex",alignItems:"center",gap:10,padding:20,borderBottom:"1px solid rgba(255,255,255,.06)"}}>
         <div style={{width:32,height:32,borderRadius:6,background:"linear-gradient(135deg,#22C55E,#16A34A)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14}}>💧</div>
-        <div><div style={{fontSize:13,fontWeight:600,color:"#fff"}}>WDR Admin</div><div style={{fontSize:9,color:"rgba(255,255,255,.3)"}}>waterdamageclarksville.com</div></div>
+        <div><div style={{fontSize:13,fontWeight:600,color:"#fff"}}>WDR Admin</div><div style={{fontSize:9,color:"rgba(255,255,255,.3)"}}>water-damage-clarksville.com</div></div>
       </div>
       <div style={{padding:"16px 12px",flex:1,overflowY:"auto"}}>
         {[["Main",""],["📊 Dashboard","/admin/dashboard"],["",""],["Content",""],["✍️ Blog Posts","/admin/blog"],["➕ New Post","/admin/blog/new"],["⭐ Reviews","/admin/reviews"],["",""],["SEO Tools",""],["🔍 SEO Monitor","/admin/seo"],["⚙️ Settings","/admin/settings"],["",""],["Website",""],["🌐 View Site ↗","/"]].map(([l,h],i)=>
@@ -259,7 +259,7 @@ export default function SeoMonitorPage() {
       <div className="main">
         <div style={{marginBottom:20}}>
           <div style={{fontSize:22,fontWeight:700,color:"#fff",marginBottom:4}}>🔍 SEO · GEO · AEO · LLM Monitor</div>
-          <div style={{fontSize:13,color:"rgba(255,255,255,.4)"}}>Your complete ranking intelligence dashboard for waterdamageclarksville.com</div>
+          <div style={{fontSize:13,color:"rgba(255,255,255,.4)"}}>Your complete ranking intelligence dashboard for water-damage-clarksville.com</div>
         </div>
 
         <div className="tabs">

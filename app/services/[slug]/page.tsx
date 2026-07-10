@@ -4,7 +4,7 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import { servicesData, getServiceBySlug, getAllServiceSlugs } from "@/content/services/servicesData";
 
-const SITE_URL = "https://waterdamageclarksville.com";
+const SITE_URL = "https://water-damage-clarksville.com";
 const heroImgs: Record<string,string> = {
   "sewage-backup-cleanup-clarksville-tn":"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1800&q=80",
   "burst-pipe-water-damage-clarksville-tn":"https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=1800&q=80",

@@ -103,7 +103,7 @@ export default function ReviewsManagerPage() {
       `}</style>
       <div className="layout">
         <div className="sidebar">
-          <div className="sb-logo"><div className="sb-mark">💧</div><div><div className="sb-name">WDR Admin</div><div className="sb-site">waterdamageclarksville.com</div></div></div>
+          <div className="sb-logo"><div className="sb-mark">💧</div><div><div className="sb-name">WDR Admin</div><div className="sb-site">water-damage-clarksville.com</div></div></div>
           <div className="sb-nav">
             <div className="sb-sec">Main</div>
             {sidebarLinks.map(l=><Link key={l.href} href={l.href} className={`sb-link${l.active?" active":""}`}>{l.icon} {l.label}</Link>)}

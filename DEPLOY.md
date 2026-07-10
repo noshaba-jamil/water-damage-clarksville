@@ -13,7 +13,7 @@
 cd water-damage-clarksville
 git init
 git add .
-git commit -m "Initial commit — waterdamageclarksville.com"
+git commit -m "Initial commit — https://water-damage-clarksville.com"
 ```
 
 Create a new repo on GitHub (github.com/new), then:
@@ -44,7 +44,7 @@ In Vercel → Project → Settings → Environment Variables, add:
 |---|---|
 | `ADMIN_PASSWORD` | YourStrongPassword123! |
 | `AUTH_SALT` | YourRandomSecretString32CharsLong!! |
-| `NEXT_PUBLIC_SITE_URL` | https://waterdamageclarksville.com |
+| `NEXT_PUBLIC_SITE_URL` | https://water-damage-clarksville.com |
 
 Click **Deploy** after adding all vars.
 
@@ -53,17 +53,17 @@ Click **Deploy** after adding all vars.
 ## Step 4 — Add Your Domain
 
 1. Vercel → Project → Settings → Domains
-2. Add: `waterdamageclarksville.com`
-3. Add: `www.waterdamageclarksville.com`
+2. Add: `water-damage-clarksville.com`
+3. Add: `www.https://water-damage-clarksville.com`
 4. Follow DNS instructions (add CNAME records at your domain registrar)
 
 ---
 
 ## Step 5 — After Deployment
 
-- [ ] Visit https://waterdamageclarksville.com — confirm site loads
-- [ ] Visit https://waterdamageclarksville.com/admin — confirm login works
-- [ ] Visit https://waterdamageclarksville.com/sitemap.xml — confirm sitemap
+- [ ] Visit https://water-damage-clarksville.com — confirm site loads
+- [ ] Visit https://water-damage-clarksville.comadmin — confirm login works
+- [ ] Visit https://water-damage-clarksville.com/sitemap.xml — confirm sitemap
 - [ ] Submit sitemap to Google Search Console
 - [ ] Set up Google Business Profile
 
@@ -71,7 +71,7 @@ Click **Deploy** after adding all vars.
 
 ## Admin Login
 
-URL: `https://waterdamageclarksville.com/admin`  
+URL: `https://water-damage-clarksville.com/admin`  
 Password: whatever you set as `ADMIN_PASSWORD`
 
 ---

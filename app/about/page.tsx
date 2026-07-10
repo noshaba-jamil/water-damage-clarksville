@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About Clarksville Water Damage Restoration | Local IICRC Experts Since 2014",
     description: "Locally owned and operated since 2014. IICRC-certified team, 60-min guaranteed response, USAA preferred vendor. Serving Montgomery County and surrounding areas 24/7.",
-    url: "https://waterdamageclarksville.com/about",
+    url: "https://water-damage-clarksville.com/about",
     type: "website",
   },
 };
 
-const SITE_URL = "https://waterdamageclarksville.com";
+const SITE_URL = "https://water-damage-clarksville.com";
 
 const aboutSchema = {
   "@context": "https://schema.org",
@@ -483,7 +483,7 @@ export default function AboutPage() {
               </div>
               <div className="nap-line">
                 <span>🌐</span>
-                <a href="https://waterdamageclarksville.com" itemProp="url">waterdamageclarksville.com</a>
+                <a href="https://water-damage-clarksville.com" itemProp="url">waterdamageclarksville.com</a>
               </div>
               <meta itemProp="name" content="Clarksville Water Damage Restoration" />
               <meta itemProp="foundingDate" content="2014" />

@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Water Damage FAQ — Clarksville TN | Expert Answers",
     description: "Answers to the most common water damage restoration questions for Clarksville TN homeowners. Costs, insurance, mold, timeline, and more.",
-    url: "https://waterdamageclarksville.com/faq",
+    url: "https://water-damage-clarksville.com/faq",
   },
 };
 
-const SITE_URL = "https://waterdamageclarksville.com";
+const SITE_URL = "https://water-damage-clarksville.com";
 
 const faqSchema = {
   "@context": "https://schema.org",

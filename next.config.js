@@ -18,7 +18,7 @@ const nextConfig = {
   experimental: {
     serverActions: {
       allowedOrigins: [
-        "waterdamageclarksville.com",
+        "water-damage-clarksville.com",
         "www.waterdamageclarksville.com",
         "localhost:3000",
         "localhost:3001",
@@ -61,8 +61,8 @@ const nextConfig = {
       // www → non-www (handled by Vercel domains, but just in case)
       {
         source: "/:path*",
-        has: [{ type: "host", value: "www.waterdamageclarksville.com" }],
-        destination: "https://waterdamageclarksville.com/:path*",
+        has: [{ type: "host", value: "www.water-damage-clarksville.com" }],
+        destination: "https://water-damage-clarksville.com:path*",
         permanent: true,
       },
     ];

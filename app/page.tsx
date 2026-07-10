@@ -693,7 +693,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* REVIEWS */}
+      {/* REVIEWS }
       <section className="sec sec-dark" aria-labelledby="reviews-heading">
         <div className="rev-in">
           <div className="rev-top">

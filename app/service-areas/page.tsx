@@ -3,7 +3,7 @@ import Link from "next/link";
 import { locationsData } from "@/content/locations/locationsData";
 import PageHero from "@/components/PageHero";
 export const metadata: Metadata = { title:"Service Areas | Water Damage Restoration Near Me | Clarksville TN", description:"Water damage restoration serving Clarksville TN, Fort Campbell, Oak Grove, Hopkinsville, Sango, Springfield & more. 60-min guaranteed response. Call (931) 271-2350.", alternates:{canonical:"/service-areas"} };
-const bSchema = { "@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{position:1,name:"Home",item:"https://waterdamageclarksville.com"},{position:2,name:"Service Areas",item:"https://waterdamageclarksville.com/service-areas"}].map(i=>({...i,"@type":"ListItem"})) };
+const bSchema = { "@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{position:1,name:"Home",item:"https://water-damage-clarksville.com"},{position:2,name:"Service Areas",item:"https://water-damage-clarksville.com/service-areas"}].map(i=>({...i,"@type":"ListItem"})) };
 export default function ServiceAreasPage() {
   return (<>
     <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(bSchema)}}/>

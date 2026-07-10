@@ -3,7 +3,7 @@ import { locationsData } from "@/content/locations/locationsData";
 import { servicesData } from "@/content/services/servicesData";
 import { getPublishedBlogPosts } from "@/lib/blogStorage";
 
-const BASE = "https://waterdamageclarksville.com";
+const BASE = "https://water-damage-clarksville.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

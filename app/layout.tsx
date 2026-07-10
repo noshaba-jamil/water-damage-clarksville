@@ -21,7 +21,7 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const SITE_URL = "https://waterdamageclarksville.com";
+const SITE_URL = "https://water-damage-clarksville.com";
 const SITE_NAME = "Clarksville Water Damage Restoration";
 const PHONE_RAW = "+19312712350";
 

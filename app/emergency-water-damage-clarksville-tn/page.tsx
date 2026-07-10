@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Emergency Water Damage Restoration Clarksville TN | 60-Min Response",
     description: "24/7 emergency water damage restoration in Clarksville TN. 60-min guaranteed arrival. IICRC-certified. All insurance including USAA. Call (931) 271-2350.",
-    url: "https://waterdamageclarksville.com/emergency-water-damage-clarksville-tn",
+    url: "https://water-damage-clarksville.com/emergency-water-damage-clarksville-tn",
     type: "website",
   },
 };
 
-const SITE_URL = "https://waterdamageclarksville.com";
+const SITE_URL = "https://water-damage-clarksville.com";
   const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",

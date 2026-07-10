@@ -4,7 +4,7 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import { getLocationBySlug, getAllLocationSlugs, locationsData } from "@/content/locations/locationsData";
 
-const SITE_URL = "https://waterdamageclarksville.com";
+const SITE_URL = "https://water-damage-clarksville.com";
 const locImgs: Record<string,{img:string;focus:string}> = {
   "fort-campbell-tn":{img:"https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1800&q=80",focus:"center 40%"},
   "oak-grove-ky":{img:"https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1800&q=80",focus:"center 45%"},
