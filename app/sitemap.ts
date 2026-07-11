@@ -1,11 +1,11 @@
-import { MetadataRoute } from "next";
+  import { MetadataRoute } from "next";
 import { locationsData } from "@/content/locations/locationsData";
 import { servicesData } from "@/content/services/servicesData";
-import { getPublishedBlogPosts } from "@/lib/blogStorage";
+import { getPublishedPostsAsync } from "@/lib/blogStorage";
 
 const BASE = "https://water-damage-clarksville.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const staticPages = [
@@ -39,7 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   let blogPages: MetadataRoute.Sitemap = [];
   try {
-    const posts = getPublishedBlogPosts();
+    const posts = await getPublishedPostsAsync();
     blogPages = posts.map(post => ({
       url: `${BASE}/blog/${post.slug}`,
       lastModified: new Date(post.date),
