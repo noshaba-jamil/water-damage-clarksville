@@ -62,21 +62,21 @@ const teamMembers = [
     name: "Lead Restoration Technician",
     title: "IICRC WRT · ASD Certified",
     desc: "Over 10 years in water damage restoration throughout Clarksville TN and Montgomery County. Expert in moisture mapping, structural drying, and IICRC S500 compliance.",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+    img: "https://www.ziprecruiter.com/svc/fotomat/public-ziprecruiter/cms/1140348545LeadTechnician.jpg=ws1280x960",
     certs: ["IICRC WRT", "IICRC ASD", "OSHA 10"],
   },
   {
     name: "Mold Remediation Specialist",
     title: "IICRC AMRT Certified",
     desc: "Specialist in mold identification, containment, and safe removal. Trained in HEPA air filtration, antimicrobial treatment, and post-remediation verification for Clarksville homes.",
-    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80",
+    img: "https://iriedu.com/assets/images/mold-woman-remediation-schedule-workspace.png?v=20260623",
     certs: ["IICRC AMRT", "EPA RRP", "IICRC WRT"],
   },
   {
     name: "Insurance Claims Manager",
     title: "Xactimate Certified · USAA Preferred",
     desc: "Manages all insurance documentation and adjuster communication. Deep expertise in USAA claims for Fort Campbell military families and all major Tennessee carriers.",
-    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80",
+    img: "https://cdn.seeklearning.com.au/media/images/career-guide-my/module/claims-manager.png",
     certs: ["Xactimate Certified", "USAA Preferred Vendor", "IICRC WRT"],
   },
 ];
@@ -89,12 +89,11 @@ const credentials = [
   { icon: "🔬", title: "IICRC AMRT Certified", desc: "Applied Microbial Remediation Technician certification for safe, effective mold identification and removal." },
   { icon: "⚡", title: "60-Minute Guaranteed Response", desc: "Backed by 10+ years of serving Clarksville TN — our 60-minute arrival guarantee is a commitment, not a marketing claim." },
 ];
-
-const stats = [
+ const stats = [
   { n: "2014", label: "Founded in Clarksville TN" },
   { n: "500+", label: "Homes & Businesses Restored" },
   { n: "10+", label: "Years Serving Montgomery County" },
-  { n: "5.0★", label: "Average Client Rating (47 Reviews)" },
+  { n: "IICRC", label: "Certified Restoration Team" },
   { n: "24/7", label: "Emergency Response — Every Day" },
   { n: "50mi", label: "Service Radius from Clarksville" },
 ];
@@ -123,7 +122,7 @@ export default function AboutPage() {
         breadcrumbs={[{ label: "About Us" }]}
         stat1="2014" stat1Sub="Founded in Clarksville"
         stat2="500+" stat2Sub="Homes Restored"
-        stat3="5.0★" stat3Sub="47 Verified Reviews"
+        
       />
 
       <style>{`
@@ -356,13 +355,7 @@ export default function AboutPage() {
               ))}
             </div>
 
-            {/* Client testimonial */}
-            <div className="testimonial" itemScope itemType="https://schema.org/Review">
-              <p className="testimonial-text" itemProp="reviewBody">
-                When our basement flooded at 2am on a Sunday, I called and a real person answered immediately. Their team was at our door in 38 minutes. They handled everything — extraction, drying, and the entire State Farm claim. I cannot say enough about their professionalism. Best experience with any contractor I have had in 20 years in Clarksville.
-              </p>
-              <div className="testimonial-author" itemProp="author">— Jennifer M., Sango TN · ★★★★★ · Verified Google Review</div>
-            </div>
+           
           </section>
 
           <hr className="divider" />
