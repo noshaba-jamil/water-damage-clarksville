@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+ import type { Metadata } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -58,6 +58,9 @@ export const metadata: Metadata = {
   other: { "geo.region": "US-TN", "geo.placename": "Clarksville, Tennessee", "geo.position": "36.5298;-87.3595", "ICBM": "36.5298, -87.3595" },
 };
 
+// Single source of truth for the business entity.
+// Other pages should reference this via itemReviewed: { "@id": `${SITE_URL}/#localbusiness` }
+// instead of redeclaring their own aggregateRating.
 const bizSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",

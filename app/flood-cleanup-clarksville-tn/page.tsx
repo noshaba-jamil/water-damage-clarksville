@@ -8,14 +8,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/flood-cleanup-clarksville-tn" },
 };
 
-const schema = {
-  "@context":"https://schema.org","@type":"Service",
-  name:"Flood Cleanup & Water Extraction Clarksville TN",
-  provider:{"@type":"LocalBusiness","name":"Clarksville Water Damage Restoration","telephone":"+19312712350","address":{"@type":"PostalAddress","streetAddress":"215 Legion Street","addressLocality":"Clarksville","addressRegion":"TN","postalCode":"37040"}},
-  areaServed:{"@type":"City","name":"Clarksville"},
-  description:"Professional flood cleanup and water extraction in Clarksville TN. IICRC-certified technicians, industrial equipment, 24/7 emergency response.",
-  offers:{"@type":"Offer","priceCurrency":"USD","availability":"https://schema.org/InStock"},
-  aggregateRating:{"@type":"AggregateRating","ratingValue":"5","reviewCount":"47"},
+ const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Flood Cleanup & Water Extraction Clarksville TN",
+  provider: { "@id": "https://water-damage-clarksville.com/#localbusiness" },
+  areaServed: { "@type": "City", name: "Clarksville" },
+  description: "Professional flood cleanup and water extraction in Clarksville TN. IICRC-certified technicians, industrial equipment, 24/7 emergency response.",
+  offers: { "@type": "Offer", priceCurrency: "USD", availability: "https://schema.org/InStock" },
 };
 
 const steps = [

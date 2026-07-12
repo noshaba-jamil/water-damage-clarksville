@@ -8,7 +8,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/mold-remediation-clarksville-tn" },
 };
 
-const schema = {"@context":"https://schema.org","@type":"Service","name":"Mold Remediation Clarksville TN","provider":{"@type":"LocalBusiness","name":"Clarksville Water Damage Restoration","telephone":"+19312712350","address":{"@type":"PostalAddress","streetAddress":"215 Legion Street","addressLocality":"Clarksville","addressRegion":"TN","postalCode":"37040"}},"areaServed":{"@type":"City","name":"Clarksville"},"description":"IICRC AMRT-certified mold remediation and black mold removal in Clarksville TN. Containment, HEPA filtration, air quality testing, and documentation.","aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"47"}};
+ const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Mold Remediation Clarksville TN",
+  provider: { "@id": "https://water-damage-clarksville.com/#localbusiness" },
+  areaServed: { "@type": "City", name: "Clarksville" },
+  description: "IICRC AMRT-certified mold remediation and black mold removal in Clarksville TN. Containment, HEPA filtration, air quality testing, and documentation.",
+};
 
 const SIDEBAR = `
   .sp-sb{display:flex;flex-direction:column;gap:18px;position:sticky;top:130px}
