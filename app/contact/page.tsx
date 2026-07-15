@@ -28,7 +28,7 @@ export default function ContactPage() {
             <div className="ci-card-t">
               <span itemProp="address">215 Legion Street, Clarksville, TN 37040</span><br/>
               Phone: <a href="tel:+19312712350" itemProp="telephone">(931) 271-2350</a><br/>
-              Email: <a href="mailto:info@waterdamageclarksville.com" itemProp="email">info@waterdamageclarksville.com</a><br/>
+              Email: <a href="mailto:waterdamageclarksville@gmail.com" itemProp="email">waterdamageclarksville@gmail.com</a><br/>
               <span itemProp="openingHours" content="Mo-Su 00:00-24:00">Hours: Open 24 Hours / 7 Days a Week</span>
             </div>
             <meta itemProp="name" content="Clarksville Water Damage Restoration"/>

@@ -22,13 +22,14 @@ const cormorant = Cormorant_Garamond({
 });
 
 const SITE_URL = "https://water-damage-clarksville.com";
+const GA_ID = "G-B2N4YBQFM5"; // replace with your real ID
 const SITE_NAME = "Clarksville Water Damage Restoration";
 const PHONE_RAW = "+19312712350";
 
 export const metadata: Metadata = {
   title: {
     default: "Water Damage Restoration Clarksville TN | 24/7 Emergency | (931) 271-2350",
-    template: `%s | ${SITE_NAME}`,
+    template: `%s`,
   },
   description: "Clarksville TN's #1 water damage restoration. 60-min guaranteed arrival, 24/7/365. Flood cleanup, mold remediation, structural drying & insurance claim help. Free assessment. Call (931) 271-2350.",
   metadataBase: new URL(SITE_URL),
@@ -68,7 +69,7 @@ const bizSchema = {
   name: SITE_NAME,
   url: SITE_URL,
   telephone: PHONE_RAW,
-  email: "info@waterdamageclarksville.com",
+  email: "waterdamageclarksville@gmail.com",
   openingHours: "Mo-Su 00:00-24:00",
   address: {
     "@type": "PostalAddress",
@@ -99,8 +100,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-US" dir="ltr" className={`${inter.variable} ${cormorant.variable}`}>
       <head>
+        <script
+    async
+    src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+  />
+  <script
+    dangerouslySetInnerHTML={{
+      __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${GA_ID}');
+      `,
+    }}
+  />
         <meta name="theme-color" content="#09090B" />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(bizSchema) }} />
+        
+        
       </head>
       <body style={{ fontFamily: "var(--font-inter)", margin: 0, padding: 0 }}>
         <PageLoaderWrapper />

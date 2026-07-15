@@ -35,7 +35,7 @@ export default async function SettingsPage() {
               <div className="field"><label>Business Name</label><input type="text" defaultValue="Clarksville Water Damage Restoration"/></div>
               <div className="field"><label>Phone (Ringba #)</label><input type="tel" defaultValue="(931) 271-2350"/><div className="field-note">Replace with your Ringba number sitewide</div></div>
               <div className="field"><label>Address</label><input type="text" defaultValue="215 Legion Street, Clarksville, TN 37040"/></div>
-              <div className="field"><label>Email</label><input type="email" defaultValue="info@waterdamageclarksville.com"/></div>
+              <div className="field"><label>Email</label><input type="email" defaultValue="waterdamageclarksville@gmail.com"/></div>
             </div>
             <div className="setting-card">
               <div className="setting-title"><span>🔍</span> SEO &amp; Analytics</div>

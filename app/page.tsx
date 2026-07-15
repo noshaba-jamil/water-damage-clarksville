@@ -5,7 +5,7 @@ import HeroForm from "@/components/HeroForm";
 export const metadata: Metadata = {
   title: "Water Damage Restoration Clarksville TN | 24/7 Emergency Response",
   description:
-    "Clarksville TN water damage restoration. 60-min guaranteed arrival, 24/7. Expert flood cleanup, mold remediation & structural drying. All insurance accepted. Free assessment — call (931) 271-2350.",
+    "Clarksville TN water damage restoration. 60-min arrival, 24/7. Flood cleanup, mold remediation & structural drying.All insurance accepted.Call (931) 271-2350.",
   alternates: { canonical: "/" },
 };
 

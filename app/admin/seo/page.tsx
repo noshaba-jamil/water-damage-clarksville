@@ -10,7 +10,7 @@ const NAP = {
   city: "Clarksville",
   state: "TN",
   zip: "37040",
-  email: "info@waterdamageclarksville.com",
+  email: "waterdamageclarksville@gmail.com",
   website: "https://water-damage-clarksville.com",
   hours: "24/7 — 365 days a year",
   geo: "36.5298, -87.3595",

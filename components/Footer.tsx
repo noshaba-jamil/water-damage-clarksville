@@ -15,7 +15,7 @@ export default function Footer(){
             <div className="ft-desc">Clarksville TN&apos;s premier water damage restoration service. Available 24 hours a day for any water emergency across Montgomery County and surrounding region.</div>
             <div className="ft-cl">📍 215 Legion Street, Clarksville, TN 37040</div>
             <div className="ft-cl">📞 <a href="tel:+19312712350">(931) 271-2350</a></div>
-            <div className="ft-cl">✉️ info@waterdamageclarksville.com</div>
+            <div className="ft-cl">✉️ waterdamageclarksville@gmail.com</div>
             <div className="ft-cl">🕐 Open 24 Hours / 7 Days a Week</div>
           </div>
           <div>

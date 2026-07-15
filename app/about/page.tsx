@@ -468,7 +468,7 @@ export default function AboutPage() {
               </div>
               <div className="nap-line">
                 <span>✉️</span>
-                <a href="mailto:info@waterdamageclarksville.com" itemProp="email">info@waterdamageclarksville.com</a>
+                <a href="mailto:waterdamageclarksville@gmail.com" itemProp="email">waterdamageclarksville@gmail.com</a>
               </div>
               <div className="nap-line">
                 <span>🕐</span>
