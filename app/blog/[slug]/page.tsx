@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
+ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getBlogPostBySlug, getPublishedBlogPosts } from "@/lib/blogStorage";
+import { getPostBySlugAsync, getPublishedPostsAsync } from "@/lib/blogStorage";
 import { getBlogPostBySlug as getStaticPostBySlug, blogPosts as staticPosts } from "@/content/blog/blogData";
-
-const SITE_URL = "https://water-damage-clarksville.com";
 
 export const dynamic = "force-dynamic";
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const post = getBlogPostBySlug(params.slug) || getStaticPostBySlug(params.slug);
+const SITE_URL = "https://water-damage-clarksville.com";
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const adminPost = await getPostBySlugAsync(params.slug);
+  const post = adminPost || getStaticPostBySlug(params.slug);
   if (!post) return {};
   return {
     title: post.metaTitle,
@@ -19,17 +20,15 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  // Check admin-created posts first, then fall back to static posts
-  const adminPost = getBlogPostBySlug(params.slug);
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+  const adminPost = await getPostBySlugAsync(params.slug);
   const staticPost = getStaticPostBySlug(params.slug);
   const post = adminPost || staticPost;
 
   if (!post) notFound();
 
-  // Related posts: mix of admin published + static
-  const adminPublished = getPublishedBlogPosts().filter(p => p.slug !== params.slug);
-  const related = [...adminPublished, ...staticPosts.filter(p => p.slug !== params.slug)].slice(0, 3);
+  const adminPublished = await getPublishedPostsAsync();
+  const related = [...adminPublished.filter(p => p.slug !== params.slug), ...staticPosts.filter(p => p.slug !== params.slug)].slice(0, 3);
 
   const articleSchema = { "@context": "https://schema.org", "@type": "Article", headline: post.title, description: post.metaDesc, datePublished: post.date, dateModified: post.date, author: { "@type": "Organization", name: "Clarksville Water Damage Restoration", url: SITE_URL }, publisher: { "@type": "Organization", name: "Clarksville Water Damage Restoration", url: SITE_URL }, mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/blog/${params.slug}` }, articleSection: post.category };
   const breadcrumbSchema = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: SITE_URL }, { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` }, { "@type": "ListItem", position: 3, name: post.title, item: `${SITE_URL}/blog/${params.slug}` }] };
@@ -73,8 +72,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             <div className="art-int-h">Related Services &amp; Resources</div>
             <nav className="art-int-links" aria-label="Internal links">
               <a href="/emergency-water-damage-clarksville-tn">Emergency Water Damage Restoration — Clarksville TN</a>
-              <a href="/flood-cleanup-clarksville-tn">Flood Cleanup & Water Extraction — Clarksville TN</a>
-              <a href="/mold-remediation-clarksville-tn">Mold Remediation & Removal — Clarksville TN</a>
+              <a href="/flood-cleanup-clarksville-tn">Flood Cleanup &amp; Water Extraction — Clarksville TN</a>
+              <a href="/mold-remediation-clarksville-tn">Mold Remediation &amp; Removal — Clarksville TN</a>
               <a href="/water-damage-insurance-claim-clarksville-tn">Insurance Claim Management — Tennessee</a>
               <a href="/service-areas">View All Service Areas →</a>
             </nav>
