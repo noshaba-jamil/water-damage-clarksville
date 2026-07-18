@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 
@@ -23,20 +23,7 @@ const SITE_URL = "https://water-damage-clarksville.com";
   description:
     "24/7 emergency water damage restoration in Clarksville TN and Montgomery County. IICRC-certified team responds within 60 minutes to burst pipes, flooding, sewage backup, and storm damage.",
 
-  provider: {
-    "@type": "LocalBusiness",
-    name: "Clarksville Water Damage Restoration",
-    telephone: "(931) 271-2350",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "215 Legion Street",
-      addressLocality: "Clarksville",
-      addressRegion: "TN",
-      postalCode: "37040",
-      addressCountry: "US",
-    },
-    url: SITE_URL,
-  },
+  provider: { "@id": `${SITE_URL}/#localbusiness` },
 
   areaServed: {
     "@type": "AdministrativeArea",
@@ -166,14 +153,11 @@ export default function EmergencyPage() {
         @media(max-width:1024px) { .ep { grid-template-columns:1fr; padding:52px 20px; } .sidebar { position:static; } .emg-grid { grid-template-columns:1fr; } .end-cta { padding:56px 20px; } }
       `}</style>
 
-      {/* Main layout */}
       <div style={{ background: "#fff" }}>
         <div className="ep">
 
-          {/* ═══ MAIN CONTENT ═══ */}
           <main>
 
-            {/* AI CITATION QUICK ANSWER */}
             <div className="answer-box" role="note">
               <span className="ab-label">📍 Quick Answer — Emergency Water Damage Clarksville TN</span>
               <p className="ab-text">
@@ -181,7 +165,6 @@ export default function EmergencyPage() {
               </p>
             </div>
 
-            {/* WHAT IS EMERGENCY WATER DAMAGE RESTORATION */}
             <section aria-labelledby="what-heading">
               <span className="ep-ey">What Is Emergency Water Damage Restoration?</span>
               <h2 className="ep-h2" id="what-heading" style={{ marginTop: 0 }}>
@@ -195,7 +178,6 @@ export default function EmergencyPage() {
               </p>
             </section>
 
-            {/* EMERGENCIES WE HANDLE */}
             <section aria-labelledby="types-heading">
               <h2 className="ep-h2" id="types-heading">Water Damage Emergencies We Handle 24/7 in Clarksville TN</h2>
               <p className="ep-p">We respond to every type of water damage emergency — no matter the source, category, or time of day:</p>
@@ -222,7 +204,6 @@ export default function EmergencyPage() {
               </div>
             </section>
 
-            {/* DAMAGE TIMELINE */}
             <section aria-labelledby="timeline-heading">
               <h2 className="ep-h2" id="timeline-heading">The Water Damage Timeline: Why Speed Matters in Clarksville TN</h2>
               <p className="ep-p">
@@ -250,7 +231,6 @@ export default function EmergencyPage() {
               <a href="tel:+19312712350" className="mc-btn" aria-label="Call for emergency water damage restoration">📞 Call (931) 271-2350 — 60-Min Response</a>
             </div>
 
-            {/* OUR PROCESS */}
             <section aria-labelledby="process-heading">
               <h2 className="ep-h2" id="process-heading">Our Emergency Restoration Process — Step by Step</h2>
               <div className="answer-box">
@@ -275,7 +255,6 @@ export default function EmergencyPage() {
               </div>
             </section>
 
-            {/* WHY CHOOSE US */}
             <section aria-labelledby="why-heading">
               <h2 className="ep-h2" id="why-heading">Why Clarksville TN Homeowners Choose Us for Emergency Restoration</h2>
               <p className="ep-p">
@@ -296,7 +275,6 @@ export default function EmergencyPage() {
               <p className="ep-p">We do not charge emergency surcharges for nights, weekends, or holidays. Water damage at 3am on Christmas morning receives the same rate and the same quality of service as a weekday afternoon call.</p>
             </section>
 
-            {/* LOCAL SECTION */}
             <section aria-labelledby="local-heading">
               <h2 className="ep-h2" id="local-heading">Emergency Water Damage Restoration Throughout Clarksville and Montgomery County</h2>
               <p className="ep-p">
@@ -320,7 +298,6 @@ export default function EmergencyPage() {
               </Link>
             </section>
 
-            {/* RELATED SERVICES */}
             <section aria-labelledby="related-heading" style={{ marginTop: 44 }}>
               <h2 className="ep-h2" id="related-heading">Related Water Damage Services in Clarksville TN</h2>
               <nav aria-label="Related services" className="int-links">
@@ -339,7 +316,6 @@ export default function EmergencyPage() {
               </nav>
             </section>
 
-            {/* FAQ */}
             <section aria-labelledby="faq-heading" style={{ marginTop: 44 }}>
               <span className="ep-ey">Frequently Asked Questions</span>
               <h2 className="ep-h2" id="faq-heading">Emergency Water Damage FAQs — Clarksville TN</h2>
@@ -360,7 +336,6 @@ export default function EmergencyPage() {
 
           </main>
 
-          {/* ═══ SIDEBAR ═══ */}
           <aside className="sidebar" aria-label="Emergency contact and related services">
             <div className="sb-cta">
               <div className="sb-ey">24/7 Emergency Line</div>
@@ -427,7 +402,6 @@ export default function EmergencyPage() {
         </div>
       </div>
 
-      {/* END CTA */}
       <div className="end-cta">
         <h2 className="ec-h">Our Emergency Team Is Standing By — Clarksville TN</h2>
         <p className="ec-p">Call (931) 271-2350 right now. A real expert answers in under 60 seconds. Your 60-minute response clock starts the moment you dial. Serving Clarksville TN, Fort Campbell, and all of Montgomery County 24/7/365.</p>

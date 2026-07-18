@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 
@@ -22,19 +22,11 @@ const aboutSchema = {
   name: "About Clarksville Water Damage Restoration",
   url: `${SITE_URL}/about`,
   description: "Clarksville Water Damage Restoration is a locally owned, IICRC-certified water damage restoration company serving Clarksville TN and Montgomery County since 2014.",
-  mainEntity: {
+  mainEntity: { "@id": `${SITE_URL}/#localbusiness` },
+  about: {
     "@type": "ProfessionalService",
-    name: "Clarksville Water Damage Restoration",
+    "@id": `${SITE_URL}/#localbusiness`,
     foundingDate: "2014",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Clarksville",
-      addressRegion: "TN",
-      postalCode: "37040",
-      addressCountry: "US",
-    },
-    telephone: "(931) 271-2350",
-    url: SITE_URL,
     employee: [
       { "@type": "Person", name: "Lead Restoration Technician", jobTitle: "IICRC WRT Certified Lead Technician" },
       { "@type": "Person", name: "Mold Remediation Specialist", jobTitle: "IICRC AMRT Certified Mold Specialist" },
@@ -133,28 +125,23 @@ export default function AboutPage() {
         .ab-p { font-family:var(--font-inter); font-size:15px; line-height:1.8; color:#374151; margin-bottom:14px; }
         .ab-p strong { color:#09090B; font-weight:600; }
         .divider { height:1px; background:#E4E4E7; margin:64px 0; }
-        /* Quick answer box — AI citation optimized */
         .answer-box { background:#F0FDF4; border:1px solid #BBF7D0; border-left:4px solid #22C55E; border-radius:8px; padding:22px 26px; margin-bottom:32px; }
         .answer-box-label { font-family:var(--font-inter); font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#16A34A; margin-bottom:8px; display:block; }
         .answer-box-text { font-family:var(--font-inter); font-size:15px; line-height:1.7; color:#1a2e1a; }
-        /* Two-col grid */
         .two-col { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; margin-bottom:64px; }
         .two-col-rev { direction:rtl; }
         .two-col-rev > * { direction:ltr; }
         .about-img { width:100%; height:420px; object-fit:cover; border-radius:10px; display:block; }
-        /* Stats grid */
         .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin:36px 0; }
         .stat-card { background:#09090B; border-radius:8px; padding:24px 20px; text-align:center; }
         .stat-n { font-family:var(--font-cormorant); font-size:clamp(28px,3.5vw,40px); font-weight:700; color:#4ADE80; line-height:1; }
         .stat-l { font-family:var(--font-inter); font-size:12px; color:rgba(255,255,255,.5); margin-top:6px; }
-        /* Credentials */
         .creds-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:24px; }
         .cred-card { background:#FAFAFA; border:1px solid #E4E4E7; border-radius:8px; padding:22px; transition:border-color .2s; }
         .cred-card:hover { border-color:#22C55E; }
         .cred-icon { font-size:26px; margin-bottom:12px; }
         .cred-title { font-family:var(--font-inter); font-size:14px; font-weight:700; color:#09090B; margin-bottom:6px; }
         .cred-desc { font-family:var(--font-inter); font-size:13px; line-height:1.65; color:#52525B; }
-        /* Team */
         .team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:32px; }
         .team-card { background:#fff; border:1px solid #E4E4E7; border-radius:10px; overflow:hidden; transition:border-color .25s; }
         .team-card:hover { border-color:#22C55E; }
@@ -165,14 +152,12 @@ export default function AboutPage() {
         .team-desc { font-family:var(--font-inter); font-size:13px; line-height:1.65; color:#52525B; margin-bottom:12px; }
         .team-certs { display:flex; flex-wrap:wrap; gap:6px; }
         .cert-pill { font-family:var(--font-inter); font-size:10px; font-weight:600; background:#F0FDF4; border:1px solid #BBF7D0; color:#16A34A; padding:3px 10px; border-radius:100px; }
-        /* Process */
         .process-steps { display:flex; flex-direction:column; gap:0; }
         .proc-step { display:flex; gap:24px; padding:24px 0; border-bottom:1px solid #E4E4E7; }
         .proc-step:last-child { border-bottom:none; }
         .proc-num { font-family:var(--font-cormorant); font-size:32px; font-weight:700; color:#22C55E; flex-shrink:0; min-width:52px; line-height:1; padding-top:4px; }
         .proc-title { font-family:var(--font-inter); font-size:15px; font-weight:600; color:#09090B; margin-bottom:6px; }
         .proc-body { font-family:var(--font-inter); font-size:14px; line-height:1.72; color:#52525B; }
-        /* NAP block */
         .nap-block { background:#09090B; border-radius:12px; padding:44px; display:grid; grid-template-columns:1fr 1fr; gap:48px; }
         .nap-h { font-family:var(--font-cormorant); font-size:26px; font-weight:700; color:#fff; margin-bottom:20px; letter-spacing:-0.5px; }
         .nap-line { font-family:var(--font-inter); font-size:14px; color:rgba(255,255,255,.55); margin-bottom:12px; display:flex; align-items:flex-start; gap:10px; }
@@ -182,12 +167,10 @@ export default function AboutPage() {
         .nap-link { font-family:var(--font-inter); font-size:14px; font-weight:500; color:rgba(255,255,255,.55); text-decoration:none; display:flex; align-items:center; gap:7px; transition:color .15s; }
         .nap-link::before { content:'→'; font-size:11px; color:#22C55E; flex-shrink:0; }
         .nap-link:hover { color:#fff; }
-        /* Testimonial */
         .testimonial { background:#F9FAFB; border:1px solid #E4E4E7; border-radius:10px; padding:28px 32px; margin:32px 0; position:relative; }
         .testimonial::before { content:'"'; font-family:var(--font-cormorant); font-size:80px; color:#22C55E; line-height:1; position:absolute; top:-10px; left:20px; opacity:.3; }
         .testimonial-text { font-family:var(--font-cormorant); font-size:18px; line-height:1.7; color:#374151; font-style:italic; margin-bottom:16px; padding-top:16px; }
         .testimonial-author { font-family:var(--font-inter); font-size:13px; font-weight:600; color:#16A34A; }
-        /* Values */
         .values-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px; }
         .val-card { background:#fff; border:1px solid #E4E4E7; border-radius:8px; padding:22px; }
         .val-icon { font-size:22px; margin-bottom:10px; }
@@ -213,7 +196,6 @@ export default function AboutPage() {
       <div style={{ background: "#fff" }}>
         <div className="ab">
 
-          {/* ── AI CITATION OPTIMIZED QUICK ANSWER ── */}
           <div className="answer-box" role="note" aria-label="Quick answer about Clarksville Water Damage Restoration">
             <span className="answer-box-label">📍 Quick Answer — Who We Are</span>
             <p className="answer-box-text">
@@ -221,7 +203,6 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* ── WHO WE ARE ── */}
           <section className="two-col" aria-labelledby="who-heading">
             <div>
               <span className="ab-ey">Locally Owned — Clarksville, Tennessee</span>
@@ -244,15 +225,14 @@ export default function AboutPage() {
             />
           </section>
 
-          {/* ── STATS ── */}
           <section aria-labelledby="stats-heading">
             <span className="ab-ey">By the Numbers</span>
             <h2 className="ab-h2" id="stats-heading">10+ Years of Proven Results in Clarksville TN</h2>
             <div className="stats-grid" role="list" aria-label="Company statistics">
               {stats.map(s => (
-                <div key={s.n} className="stat-card" role="listitem" itemScope itemType="https://schema.org/QuantitativeValue">
-                  <div className="stat-n" itemProp="value">{s.n}</div>
-                  <div className="stat-l" itemProp="name">{s.label}</div>
+                <div key={s.n} className="stat-card" role="listitem">
+                  <div className="stat-n">{s.n}</div>
+                  <div className="stat-l">{s.label}</div>
                 </div>
               ))}
             </div>
@@ -260,7 +240,6 @@ export default function AboutPage() {
 
           <hr className="divider" />
 
-          {/* ── WHAT WE DO (AI CITABLE) ── */}
           <section aria-labelledby="services-heading">
             <span className="ab-ey">Our Services</span>
             <h2 className="ab-h2" id="services-heading">What We Do: Full-Service Water Damage Restoration in Clarksville TN</h2>
@@ -306,7 +285,6 @@ export default function AboutPage() {
 
           <hr className="divider" />
 
-          {/* ── EEAT: CREDENTIALS ── */}
           <section aria-labelledby="creds-heading">
             <span className="ab-ey">Certifications & Credentials — E-E-A-T</span>
             <h2 className="ab-h2" id="creds-heading">Why Clarksville Homeowners Trust Our IICRC-Certified Team</h2>
@@ -326,7 +304,6 @@ export default function AboutPage() {
 
           <hr className="divider" />
 
-          {/* ── TEAM ── */}
           <section aria-labelledby="team-heading">
             <span className="ab-ey">Meet Our Team — Real People, Real Expertise</span>
             <h2 className="ab-h2" id="team-heading">The IICRC-Certified Professionals Behind Every Restoration</h2>
@@ -335,18 +312,17 @@ export default function AboutPage() {
             </p>
             <div className="team-grid" role="list" aria-label="Team members">
               {teamMembers.map(m => (
-                <article key={m.name} className="team-card" role="listitem" itemScope itemType="https://schema.org/Person">
+                <article key={m.name} className="team-card" role="listitem">
                   <img
                     src={m.img}
                     alt={`${m.name} — ${m.title} at Clarksville Water Damage Restoration`}
                     className="team-img"
                     loading="lazy" decoding="async" width={400} height={220}
-                    itemProp="image"
                   />
                   <div className="team-body">
-                    <div className="team-name" itemProp="name">{m.name}</div>
-                    <div className="team-title" itemProp="jobTitle">{m.title}</div>
-                    <p className="team-desc" itemProp="description">{m.desc}</p>
+                    <div className="team-name">{m.name}</div>
+                    <div className="team-title">{m.title}</div>
+                    <p className="team-desc">{m.desc}</p>
                     <div className="team-certs" role="list" aria-label="Certifications">
                       {m.certs.map(c => <span key={c} className="cert-pill" role="listitem">{c}</span>)}
                     </div>
@@ -360,7 +336,6 @@ export default function AboutPage() {
 
           <hr className="divider" />
 
-          {/* ── OUR PROCESS ── */}
           <section aria-labelledby="process-heading">
             <span className="ab-ey">How We Work — Step by Step</span>
             <h2 className="ab-h2" id="process-heading">Our 5-Step Water Damage Restoration Process in Clarksville TN</h2>
@@ -385,7 +360,6 @@ export default function AboutPage() {
 
           <hr className="divider" />
 
-          {/* ── OUR VALUES ── */}
           <section aria-labelledby="values-heading">
             <div className="two-col">
               <div>
@@ -420,7 +394,6 @@ export default function AboutPage() {
 
           <hr className="divider" />
 
-          {/* ── SERVICE AREA ── */}
           <section aria-labelledby="area-heading">
             <span className="ab-ey">Service Area — 50-Mile Radius</span>
             <h2 className="ab-h2" id="area-heading">Where We Serve: Clarksville TN and Surrounding Communities</h2>
@@ -452,34 +425,31 @@ export default function AboutPage() {
 
           <hr className="divider" />
 
-          {/* ── NAP BLOCK (Consistent across site) ── */}
-          <div className="nap-block" itemScope itemType="https://schema.org/LocalBusiness">
+          <div className="nap-block">
             <div>
               <h2 className="nap-h">Contact Information</h2>
               <div className="nap-line">
                 <span>📍</span>
-                <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-                  <span itemProp="streetAddress">215 Legion Street</span>, <span itemProp="addressLocality">Clarksville</span>, <span itemProp="addressRegion">TN</span> <span itemProp="postalCode">37040</span>
+                <span>
+                  215 Legion Street, Clarksville, TN 37040
                 </span>
               </div>
               <div className="nap-line">
                 <span>📞</span>
-                <a href="tel:+19312712350" itemProp="telephone">(931) 271-2350</a>
+                <a href="tel:+19312712350">(931) 271-2350</a>
               </div>
               <div className="nap-line">
                 <span>✉️</span>
-                <a href="mailto:waterdamageclarksville@gmail.com" itemProp="email">waterdamageclarksville@gmail.com</a>
+                <a href="mailto:waterdamageclarksville@gmail.com">waterdamageclarksville@gmail.com</a>
               </div>
               <div className="nap-line">
                 <span>🕐</span>
-                <span itemProp="openingHours" content="Mo-Su 00:00-24:00">Open 24 Hours / 7 Days a Week / 365 Days a Year</span>
+                <span>Open 24 Hours / 7 Days a Week / 365 Days a Year</span>
               </div>
               <div className="nap-line">
                 <span>🌐</span>
-                <a href="https://water-damage-clarksville.com" itemProp="url">waterdamageclarksville.com</a>
+                <a href="https://water-damage-clarksville.com">waterdamageclarksville.com</a>
               </div>
-              <meta itemProp="name" content="Clarksville Water Damage Restoration" />
-              <meta itemProp="foundingDate" content="2014" />
               <div style={{ marginTop: 24 }}>
                 <a href="tel:+19312712350" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#22C55E", color: "#09090B", padding: "13px 24px", borderRadius: 6, textDecoration: "none", fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 15 }} aria-label="Call Clarksville Water Damage Restoration">📞 Call Now — 24/7</a>
               </div>

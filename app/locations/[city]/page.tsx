@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
@@ -33,7 +33,14 @@ export default function LocationPage({params}:{params:{city:string}}) {
   if(!location) notFound();
   const hero = locImgs[params.city] || defaultHero;
 
-  const bizSchema = { "@context":"https://schema.org","@type":"ProfessionalService",name:`Clarksville Water Damage Restoration — ${location.city}, ${location.state}`,description:location.metaDesc,telephone:"(931) 271-2350",address:{"@type":"PostalAddress",addressLocality:location.city,addressRegion:location.state,addressCountry:"US"},openingHours:"Mo-Su 00:00-24:00",areaServed:{"@type":"City",name:location.city} };
+  const bizSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `Water Damage Restoration — ${location.city}, ${location.state}`,
+    description: location.metaDesc,
+    provider: { "@id": `${SITE_URL}/#localbusiness` },
+    areaServed: { "@type": "City", name: location.city },
+  };
   const bSchema = { "@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{position:1,name:"Home",item:SITE_URL},{position:2,name:"Service Areas",item:`${SITE_URL}/service-areas`},{position:3,name:`${location.city}, ${location.state}`,item:`${SITE_URL}/locations/${params.city}`}].map(i=>({...i,"@type":"ListItem"})) };
   const faqSchema = { "@context":"https://schema.org","@type":"FAQPage",mainEntity:[
     {name:`How quickly can you respond to water damage in ${location.city} ${location.state}?`,acceptedAnswer:{text:`We guarantee 60-minute on-site arrival in ${location.city}, ${location.state}. ${location.distanceNote} Our team answers in under 60 seconds, 24/7/365.`}},

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import ContactForm from "@/components/ContactForm";
@@ -22,16 +22,15 @@ export default function ContactPage() {
             <div className="ci-emg-s">Don&apos;t fill out a form. Call now — answered in 60 seconds.</div>
             <a href="tel:+19312712350" className="ci-emg-num" aria-label="Call emergency line">(931) 271-2350</a>
           </div>
-          <div className="ci-card" itemScope itemType="https://schema.org/LocalBusiness">
+          <div className="ci-card">
             <div className="ci-card-i" aria-hidden="true">📍</div>
             <h2 className="ci-card-h">Location &amp; Contact</h2>
             <div className="ci-card-t">
-              <span itemProp="address">215 Legion Street, Clarksville, TN 37040</span><br/>
-              Phone: <a href="tel:+19312712350" itemProp="telephone">(931) 271-2350</a><br/>
-              Email: <a href="mailto:waterdamageclarksville@gmail.com" itemProp="email">waterdamageclarksville@gmail.com</a><br/>
-              <span itemProp="openingHours" content="Mo-Su 00:00-24:00">Hours: Open 24 Hours / 7 Days a Week</span>
+              215 Legion Street, Clarksville, TN 37040<br/>
+              Phone: <a href="tel:+19312712350">(931) 271-2350</a><br/>
+              Email: <a href="mailto:waterdamageclarksville@gmail.com">waterdamageclarksville@gmail.com</a><br/>
+              Hours: Open 24 Hours / 7 Days a Week
             </div>
-            <meta itemProp="name" content="Clarksville Water Damage Restoration"/>
           </div>
           <div className="ci-card">
             <div className="ci-card-i" aria-hidden="true">✅</div>
