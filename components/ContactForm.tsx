@@ -9,6 +9,7 @@ export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [form, setForm] = useState({
     firstName: "",
+    
     lastName: "",
     phone: "",
     email: "",

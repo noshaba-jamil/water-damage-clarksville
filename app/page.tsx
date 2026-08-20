@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+  import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import HeroForm from "@/components/HeroForm";
 
 export const metadata: Metadata = {
@@ -56,22 +57,68 @@ const faqSchema = {
   ],
 };
 
-const HERO =
-  "https://morris-and-passaic-counties.pauldavis.com/wp-content/uploads/sites/165/2024/12/Water-Damage-Picture.jpg";
-const IMGS = {
-  svc1: "https://qrrestore.com/wp-content/uploads/2026/04/water-damage-qrr-2.png",
-  svc2: "https://killeentxwaterdamage.com/wp-content/uploads/2026/06/Professional-Water-Damage-Restoration-Technicians-Extracting-Floodwater-from-Residential-Living-Room-1-1024x576.png",
-  svc3: "https://ik.imagekit.io/4wu305uo4/image_0tNfShL-R.jpg",
-  svc4: "https://dlczb9lfz9r73.cloudfront.net/wp-content/uploads/2023/01/13160310/AdobeStock_1049719901.jpeg",
-  svc5: " https://kmrdpartners.com/wp-content/uploads/2017/10/KMRD-Claims-Management.jpg",
-  svc6: "https://www.bmscat.com/wp-content/uploads/2021/06/Commercial-Water-Damage.png",
-  why: "https://lamunyon.com/wp-content/uploads/2021/04/Cat-3-Sewer-Water-Damage-Restoration.jpg",
-  cta: "https://upperrestoration.com/wp-content/uploads/2026/03/ur-1617-diy-water-damage-restoration-pros-cons-and-best-pr-1024x559.webp",
+/**
+ * All images live in /public/my/
+ * Drop your actual files into that folder using these exact names,
+ * OR keep your own filenames and just update the strings below to match.
+ * Next/Image will auto-serve WebP/AVIF, resize per-breakpoint, and lazy-load
+ * everything except the hero (which is marked priority for fast LCP).
+ *
+ * TWO THINGS CODE CAN'T FIX — handle these on the files/hosting side:
+ * 1. GEO COORDINATES: embed Clarksville TN GPS EXIF data into each photo
+ *    before upload (use ExifTool or a geo-tagging tool). Code can't add this.
+ * 2. ROBOTS.TXT: confirm /images/ isn't disallowed in robots.txt so these
+ *    images stay crawlable by Google Images.
+ */
+// ImageObject structured data — makes these images eligible for Google Image
+// Search rich results. Update contentUrl if your final image dimensions differ.
+const imageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ImageObject",
+      contentUrl:
+        "https://YOURDOMAIN.com/my/water-damage-clarksville-tn-hero.webp",
+      caption:
+        "Water damage restoration professionals responding to a flooded property in Clarksville TN",
+      name: "Water Damage Restoration Clarksville TN",
+      description:
+        "24/7 emergency water damage restoration team on-site in Clarksville, Tennessee.",
+    },
+    {
+      "@type": "ImageObject",
+      contentUrl:
+        "https://YOURDOMAIN.com/my/water-damage-technician-assessment-clarksville.webp",
+      caption:
+        "Restoration technician using moisture-detection equipment during a Clarksville TN water damage assessment",
+      name: "Water Damage Assessment Clarksville TN",
+    },
+    {
+      "@type": "ImageObject",
+      contentUrl:
+        "https://YOURDOMAIN.com/my/water-damage-restoration-team-clarksville.webp",
+      caption:
+        "Clarksville TN water damage restoration team ready for 24/7 emergency dispatch",
+      name: "Water Damage Restoration Team Clarksville TN",
+    },
+  ],
+};
+
+const HERO = "/my/water-damage-clarksville-tn-hero.webp";
+const IMAGES = {
+  svc1: "/my/emergency-water-damage-restoration-clarksville.webp",
+  svc2: "/my/flood-cleanup-water-extraction-clarksville.webp",
+  svc3: "/my/structural-drying-dehumidification-clarksville.webp",
+  svc4: "/my/mold-remediation-removal-clarksville.webp",
+  svc5: "/my/water-damage-insurance-claim-clarksville.webp",
+  svc6: "/my/commercial-water-damage-restoration-clarksville.webp",
+  why: "/my/water-damage-technician-assessment-clarksville.webp",
+  cta: "/my/water-damage-restoration-team-clarksville.webp",
 };
 
 const services = [
   {
-    img: IMGS.svc1,
+    img: IMAGES.svc1,
     tag: "EMERGENCY",
     title: "Emergency Water Damage Restoration",
     desc: "24/7 rapid response to any water emergency. IICRC-certified team on-site within 60 minutes of your call anywhere in Montgomery County.",
@@ -79,7 +126,7 @@ const services = [
     alt: "Emergency water damage restoration team responding to flooded property in Clarksville TN",
   },
   {
-    img: IMGS.svc2,
+    img: IMAGES.svc2,
     tag: "EXTRACTION",
     title: "Flood Cleanup & Water Extraction",
     desc: "Industrial truck-mounted extraction removes thousands of gallons fast, stopping secondary damage and mold growth before they start.",
@@ -87,7 +134,7 @@ const services = [
     alt: "Professional flood cleanup and water extraction equipment in Clarksville TN home",
   },
   {
-    img: IMGS.svc3,
+    img: IMAGES.svc3,
     tag: "DRYING",
     title: "Structural Drying & Dehumidification",
     desc: "IICRC S500-compliant structural drying with daily moisture monitoring until every wall, floor, and subfloor reaches certified safe levels.",
@@ -95,7 +142,7 @@ const services = [
     alt: "Industrial structural drying equipment in water-damaged Clarksville home",
   },
   {
-    img: IMGS.svc4,
+    img: IMAGES.svc4,
     tag: "REMEDIATION",
     title: "Mold Remediation & Removal",
     desc: "Safe, thorough mold removal with containment barriers and HEPA air filtration. IICRC AMRT-certified to protect your family's health.",
@@ -103,7 +150,7 @@ const services = [
     alt: "IICRC-certified mold remediation professional in Clarksville TN home",
   },
   {
-    img: IMGS.svc5,
+    img: IMAGES.svc5,
     tag: "INSURANCE",
     title: "Insurance Claim Management",
     desc: "Complete insurance claim handling — documentation, adjuster coordination, and direct billing. You pay only your deductible.",
@@ -111,7 +158,7 @@ const services = [
     alt: "Water damage insurance claim documentation in Tennessee",
   },
   {
-    img: IMGS.svc6,
+    img: IMAGES.svc6,
     tag: "COMMERCIAL",
     title: "Commercial Water Damage Restoration",
     desc: "Minimizing business downtime with fast, professional-grade commercial restoration for offices, retail, and industrial properties.",
@@ -232,11 +279,15 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(imageSchema) }}
+      />
       <style>{`
       .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
-      .hero-img{position:absolute;inset:0;background-image:url('${HERO}');background-size:cover;background-position:center 35%;background-color:#09090B;will-change:auto}
-      .hero-ov{position:absolute;inset:0;background:linear-gradient(110deg,rgba(9,9,11,.96) 38%,rgba(9,9,11,.6) 65%,rgba(9,9,11,.25) 100%)}
-      .hero-in{position:relative;z-index:1;max-width:1240px;margin:0 auto;width:100%;padding:0 40px;display:grid;grid-template-columns:1fr 400px;gap:56px;align-items:center}
+      .hero-img{position:absolute;inset:0;overflow:hidden;background-color:#09090B}
+      .hero-ov{position:absolute;inset:0;background:linear-gradient(110deg,rgba(9,9,11,.96) 38%,rgba(9,9,11,.6) 65%,rgba(9,9,11,.25) 100%);z-index:1}
+      .hero-in{position:relative;z-index:2;max-width:1240px;margin:0 auto;width:100%;padding:0 40px;display:grid;grid-template-columns:1fr 400px;gap:56px;align-items:center}
       .h-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(74,222,128,.25);background:rgba(74,222,128,.06);border-radius:100px;padding:6px 16px;margin-bottom:28px}
       .h-dot{width:6px;height:6px;border-radius:50%;background:#4ADE80;animation:hbp 1.8s infinite;flex-shrink:0}
       @keyframes hbp{0%,100%{opacity:1}50%{opacity:.3}}
@@ -287,8 +338,8 @@ export default function HomePage() {
       .svc-grid{max-width:1240px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#E4E4E7;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden}
       .svc-card{background:#fff;display:flex;flex-direction:column;text-decoration:none;transition:box-shadow .25s;overflow:hidden}
       .svc-card:hover{box-shadow:inset 0 0 0 2px #22C55E}
-      .svc-img{height:200px;overflow:hidden;flex-shrink:0}
-      .svc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.4,0,.2,1);display:block}
+      .svc-img{height:200px;overflow:hidden;flex-shrink:0;position:relative}
+      .svc-img img{object-fit:cover;transition:transform .5s cubic-bezier(.4,0,.2,1);display:block}
       .svc-card:hover .svc-img img{transform:scale(1.05)}
       .svc-body{padding:24px 24px 28px;display:flex;flex-direction:column;flex:1}
       .svc-tag{font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:2px;color:#16A34A;margin-bottom:8px}
@@ -305,9 +356,11 @@ export default function HomePage() {
       .emg-time{font-family:var(--font-cormorant);font-size:16px;font-weight:700;color:#4ADE80;min-width:100px;flex-shrink:0;line-height:1.5;padding-top:2px}
       .emg-risk{font-family:var(--font-inter);font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.5)}
       .why-in{max-width:1240px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-      .why-img{width:100%;height:520px;object-fit:cover;border-radius:8px;display:block}
-      .why-img-wrap{position:relative}
-      .why-badge{position:absolute;bottom:-20px;right:-20px;background:#18181B;border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:20px 24px}
+      .why-img{border-radius:8px;display:block}
+      .why-img-wrap{position:relative;height:520px;border-radius:8px;overflow:hidden}
+      .img-caption{font-family:var(--font-inter);font-size:12px;color:#9CA3AF;margin-top:10px;line-height:1.5}
+      .img-caption.light{color:rgba(255,255,255,.45)}
+      .why-badge{position:absolute;bottom:-20px;right:-20px;background:#18181B;border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:20px 24px;z-index:2}
       .why-badge-n{font-family:var(--font-cormorant);font-size:40px;font-weight:700;color:#4ADE80;line-height:1}
       .why-badge-l{font-family:var(--font-inter);font-size:11px;color:rgba(255,255,255,.4);margin-top:5px}
       .why-list{display:flex;flex-direction:column}
@@ -352,9 +405,9 @@ export default function HomePage() {
       .faq-a{font-family:var(--font-inter);font-size:14.5px;line-height:1.78;color:#52525B;padding-bottom:22px}
       .fcta-in{max-width:1240px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 480px;gap:72px;align-items:center}
       .fcta-img-wrap{position:relative;height:540px;border-radius:8px;overflow:hidden;flex-shrink:0}
-      .fcta-img{width:100%;height:100%;object-fit:cover;display:block}
-      .fcta-img-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(9,9,11,.7) 0%,transparent 55%)}
-      .fcta-badge{position:absolute;bottom:24px;left:24px;background:rgba(9,9,11,.88);border:1px solid rgba(74,222,128,.2);border-radius:6px;padding:18px 22px;backdrop-filter:blur(8px)}
+      .fcta-img{object-fit:cover;display:block}
+      .fcta-img-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(9,9,11,.7) 0%,transparent 55%);z-index:1}
+      .fcta-badge{position:absolute;bottom:24px;left:24px;background:rgba(9,9,11,.88);border:1px solid rgba(74,222,128,.2);border-radius:6px;padding:18px 22px;backdrop-filter:blur(8px);z-index:2}
       .fcta-badge-n{font-family:var(--font-cormorant);font-size:28px;font-weight:700;color:#4ADE80;line-height:1;letter-spacing:-.5px}
       .fcta-badge-l{font-family:var(--font-inter);font-size:11px;color:rgba(255,255,255,.4);margin-top:4px}
       .fcta-h2{font-family:var(--font-cormorant);font-size:clamp(32px,4vw,52px);font-weight:700;color:#09090B;line-height:1.05;letter-spacing:-1.2px;margin-bottom:18px}
@@ -392,11 +445,16 @@ export default function HomePage() {
         className="hero"
         aria-label="Water damage restoration emergency service Clarksville TN"
       >
-        <div
-          className="hero-img"
-          role="img"
-          aria-label="Water damage restoration professionals in Clarksville TN"
-        />
+        <div className="hero-img">
+          <Image
+            src={HERO}
+            alt="Water damage restoration professionals responding to a flooded property in Clarksville TN"
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: "cover", objectPosition: "center 35%" }}
+          />
+        </div>
         <div className="hero-ov" />
         <div className="hero-in">
           <div>
@@ -528,13 +586,11 @@ export default function HomePage() {
               aria-label={`${s.title} service`}
             >
               <div className="svc-img">
-                <img
+                <Image
                   src={s.img}
                   alt={s.alt}
-                  loading="lazy"
-                  decoding="async"
-                  width={600}
-                  height={200}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, (max-width: 1440px) 33vw, 413px"
                 />
               </div>
               <div className="svc-body">
@@ -612,21 +668,26 @@ export default function HomePage() {
       {/* WHY */}
       <section className="sec sec-surf" aria-labelledby="why-heading">
         <div className="why-in">
-          <div className="why-img-wrap">
-            <img
-              src={IMGS.why}
-              alt="Professional water damage restoration technician assessing moisture damage in Clarksville TN home"
-              className="why-img"
-              loading="lazy"
-              decoding="async"
-              width={900}
-              height={520}
-            />
-            <div className="why-badge">
-              <div className="why-badge-n">10+</div>
-              <div className="why-badge-l">Years in Clarksville</div>
+          <figure style={{ margin: 0 }}>
+            <div className="why-img-wrap">
+              <Image
+                src={IMAGES.why}
+                alt="Professional water damage restoration technician assessing moisture damage in Clarksville TN home"
+                className="why-img"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                style={{ objectFit: "cover" }}
+              />
+              <div className="why-badge">
+                <div className="why-badge-n">10+</div>
+                <div className="why-badge-l">Years in Clarksville</div>
+              </div>
             </div>
-          </div>
+            <figcaption className="img-caption">
+              Our IICRC-certified technician using thermal imaging to map hidden
+              moisture in a Clarksville, TN home.
+            </figcaption>
+          </figure>
           <div>
             <div className="eyebrow">
               <span className="eyebrow-dot" aria-hidden="true" />
@@ -692,85 +753,7 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-
-      {/* REVIEWS }
-      <section className="sec sec-dark" aria-labelledby="reviews-heading">
-        <div className="rev-in">
-          <div className="rev-top">
-            <div>
-              <div className="eyebrow" style={{ color: "#4ADE80" }}>
-                <span
-                  className="eyebrow-dot"
-                  style={{ background: "#4ADE80" }}
-                  aria-hidden="true"
-                />
-                Client Testimonials
-              </div>
-              <h2 className="display-h light" id="reviews-heading">
-                What Our Clients Say
-              </h2>
-            </div>
-            <div style={{ textAlign: "right" }}>
-              <div
-                style={{
-                  fontFamily: "var(--font-cormorant)",
-                  fontSize: 44,
-                  fontWeight: 700,
-                  color: "#fff",
-                  lineHeight: 1,
-                }}
-                aria-label="5 star rating"
-              >
-                ★★★★★
-              </div>
-              <div
-                style={{
-                  fontFamily: "var(--font-inter)",
-                  fontSize: 12,
-                  color: "rgba(255,255,255,.35)",
-                  marginTop: 6,
-                }}
-              >
-                5.0 — 47 verified reviews
-              </div>
-            </div>
-          </div>
-          <div className="rev-grid" role="list">
-            {reviews.map((r, i) => (
-              <article
-                key={i}
-                className="rev-card"
-                role="listitem"
-                itemScope
-                itemType="https://schema.org/Review"
-              >
-                <div className="rev-stars" aria-label="5 stars">
-                  {[1, 2, 3, 4, 5].map((s) => (
-                    <span key={s} className="rev-star" aria-hidden="true">
-                      ★
-                    </span>
-                  ))}
-                </div>
-                <meta itemProp="reviewRating" content="5" />
-                <blockquote className="rev-q" itemProp="reviewBody">
-                  {r.q}
-                </blockquote>
-                <div className="rev-auth">
-                  <div className="rev-av" aria-hidden="true">
-                    {r.init}
-                  </div>
-                  <div>
-                    <div className="rev-name" itemProp="author">
-                      {r.n}
-                    </div>
-                    <div className="rev-loc">{r.l}</div>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+ 
 
       {/* LOCATIONS */}
       <section className="sec sec-surf" aria-labelledby="locations-heading">
@@ -856,22 +839,27 @@ export default function HomePage() {
       {/* FINAL CTA */}
       <section className="sec" aria-labelledby="cta-heading">
         <div className="fcta-in">
-          <div className="fcta-img-wrap">
-            <img
-              src={IMGS.cta}
-              alt="Water damage restoration professional team ready to respond in Clarksville TN"
-              className="fcta-img"
-              loading="lazy"
-              decoding="async"
-              width={900}
-              height={540}
-            />
-            <div className="fcta-img-ov" aria-hidden="true" />
-            <div className="fcta-badge">
-              <div className="fcta-badge-n">(931) 271-2350</div>
-              <div className="fcta-badge-l">Available 24 hours a day</div>
+          <figure style={{ margin: 0 }}>
+            <div className="fcta-img-wrap">
+              <Image
+                src={IMAGES.cta}
+                alt="Water damage restoration professional team ready to respond in Clarksville TN"
+                className="fcta-img"
+                fill
+                sizes="(max-width: 1024px) 100vw, 480px"
+                style={{ objectFit: "cover" }}
+              />
+              <div className="fcta-img-ov" aria-hidden="true" />
+              <div className="fcta-badge">
+                <div className="fcta-badge-n">(931) 271-2350</div>
+                <div className="fcta-badge-l">Available 24 hours a day</div>
+              </div>
             </div>
-          </div>
+            <figcaption className="img-caption">
+              Our Clarksville, TN restoration crew — dispatched 24/7, on-site
+              within 60 minutes.
+            </figcaption>
+          </figure>
           <div>
             <div className="eyebrow">
               <span className="eyebrow-dot" aria-hidden="true" />
