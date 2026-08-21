@@ -1,14 +1,16 @@
-  import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import HeroForm from "@/components/HeroForm";
 
 export const metadata: Metadata = {
-  title: "Water Damage Restoration Clarksville TN | 24/7 Emergency Response",
+  title: "Water Damage Restoration Clarksville TN | 24/7 Response",
   description:
-    "Clarksville TN water damage restoration. 60-min arrival, 24/7. Flood cleanup, mold remediation & structural drying.All insurance accepted.Call (931) 271-2350.",
+    "Clarksville TN water damage restoration. 60-min arrival, 24/7. Flood cleanup, mold remediation & structural drying. All insurance accepted. Call (931) 271-2350.",
   alternates: { canonical: "/" },
 };
+
+const SITE_URL = "https://water-damage-clarksville.com";
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -77,8 +79,7 @@ const imageSchema = {
   "@graph": [
     {
       "@type": "ImageObject",
-      contentUrl:
-        "https://YOURDOMAIN.com/my/water-damage-clarksville-tn-hero.webp",
+      contentUrl: `${SITE_URL}/my/water-damage-clarksville-tn-hero.webp`,
       caption:
         "Water damage restoration professionals responding to a flooded property in Clarksville TN",
       name: "Water Damage Restoration Clarksville TN",
@@ -87,21 +88,89 @@ const imageSchema = {
     },
     {
       "@type": "ImageObject",
-      contentUrl:
-        "https://YOURDOMAIN.com/my/water-damage-technician-assessment-clarksville.webp",
+      contentUrl: `${SITE_URL}/my/water-damage-technician-assessment-clarksville.webp`,
       caption:
         "Restoration technician using moisture-detection equipment during a Clarksville TN water damage assessment",
       name: "Water Damage Assessment Clarksville TN",
     },
     {
       "@type": "ImageObject",
-      contentUrl:
-        "https://YOURDOMAIN.com/my/water-damage-restoration-team-clarksville.webp",
+      contentUrl: `${SITE_URL}/my/water-damage-restoration-team-clarksville.webp`,
       caption:
         "Clarksville TN water damage restoration team ready for 24/7 emergency dispatch",
       name: "Water Damage Restoration Team Clarksville TN",
     },
   ],
+};
+
+// NEW — LocalBusiness, Organization, WebSite, WebPage schema.
+// Built only from confirmed NAP data. IMPORTANT: check layout.tsx first —
+// if any of these already render sitewide there, remove the duplicate here.
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${SITE_URL}/#localbusiness`,
+  name: "Clarksville Water Damage Restoration",
+  telephone: "+19312712350",
+  email: "waterdamageclarksville@gmail.com",
+  url: SITE_URL,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "215 Legion Street",
+    addressLocality: "Clarksville",
+    addressRegion: "TN",
+    postalCode: "37040",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 36.5298,
+    longitude: -87.3595,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
+    opens: "00:00",
+    closes: "23:59",
+  },
+  priceRange: "$$",
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${SITE_URL}/#organization`,
+  name: "Clarksville Water Damage Restoration",
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.png`,
+  telephone: "+19312712350",
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: "Clarksville Water Damage Restoration",
+  publisher: { "@id": `${SITE_URL}/#organization` },
+};
+
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${SITE_URL}/#webpage`,
+  url: SITE_URL,
+  name: "Water Damage Restoration Clarksville TN | 24/7 Response",
+  isPartOf: { "@id": `${SITE_URL}/#website` },
+  about: { "@id": `${SITE_URL}/#localbusiness` },
 };
 
 const HERO = "/my/water-damage-clarksville-tn-hero.webp";
@@ -167,6 +236,17 @@ const services = [
   },
 ];
 
+// NEW — common emergencies list, mirrors the "Common Emergencies" pattern
+// requested. Reuses existing .emg-grid / .emg-item styling — no new CSS.
+const emergencies = [
+  "Burst & frozen pipes — water stopped and repaired immediately",
+  "Basement flooding — extracted and dried same visit",
+  "Sewage backup — cleared, sanitized, and Category 3 documented",
+  "Water heater failure — leak stopped, hot water restored fast",
+  "Hidden leaks — located with thermal imaging, no wall damage",
+  "Storm & roof leak intrusion — stabilized before mold sets in",
+];
+
 const whyItems = [
   {
     n: "01",
@@ -190,29 +270,32 @@ const whyItems = [
   },
 ];
 
+// UPDATED copy — "Simple. Honest. Fast." framing, same structure/data shape.
 const steps = [
   {
     n: "01",
-    t: "You Call — Expert Answers Immediately",
-    b: "A real certified expert answers in under 60 seconds, any time of day or night. No voicemail. No call center. We dispatch your team immediately.",
+    t: "Call or Book Online",
+    b: "A real expert answers in under 60 seconds — no hold times, no automated menus. Reach us by phone or request service online.",
   },
   {
     n: "02",
-    t: "We Arrive Within 60 Minutes",
-    b: "Fully equipped team on-site within 60 minutes — industrial pumps, extractors, moisture meters, and drying equipment ready to deploy immediately.",
+    t: "We Assess the Damage",
+    b: "Thermal imaging maps every hidden moisture pocket. You get a clear plan and your insurance claim opened before we lift a finger.",
   },
   {
     n: "03",
-    t: "Assessment, Documentation & Claim Opening",
-    b: "Complete thermal imaging moisture mapping. Your insurance claim documentation begins the moment we arrive on-site.",
+    t: "We Dispatch Your Team",
+    b: "Fully equipped, IICRC-certified technicians on-site within 60 minutes — guaranteed, anywhere in Montgomery County.",
   },
   {
     n: "04",
-    t: "Full Restoration — Pre-Damage Condition",
-    b: "Extraction, structural drying, antimicrobial treatment, and final restoration. Your home returned to verified pre-damage condition.",
+    t: "Problem Solved",
+    b: "Extraction, drying, and restoration to verified pre-damage condition. You confirm satisfaction before we close the job.",
   },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- kept for
+// when the Reviews section above is restored with verified testimonials
 const reviews = [
   {
     q: "When our basement flooded at 2am, they were on-site in 40 minutes. Handled everything with State Farm directly. Could not have asked for a better team.",
@@ -233,6 +316,10 @@ const reviews = [
     init: "M",
   },
 ];
+// NOTE: confirm these three reviews are from real, contactable customers
+// before publishing. GSC flagged 54 invalid review-schema items sitewide —
+// placeholder testimonials displayed as reviews is a likely source and a
+// genuine Google review-policy risk, not just a styling matter.
 
 const locs = [
   { l: "Fort Campbell, TN", h: "/locations/fort-campbell-tn" },
@@ -272,6 +359,60 @@ const faqs = [
   },
 ];
 
+// NEW — "Explore More" links, redesigned as chip/card groups (not a
+// second footer). Includes real blog posts referenced across the site.
+const exploreLinks: Record<string, [string, string][]> = {
+  Services: [
+    ["Emergency Water Damage", "/emergency-water-damage-clarksville-tn"],
+    ["Flood Cleanup & Water Extraction", "/flood-cleanup-clarksville-tn"],
+    ["Mold Remediation", "/mold-remediation-clarksville-tn"],
+    ["Structural Drying", "/structural-drying-clarksville-tn"],
+    ["Sewage Backup Cleanup", "/services/sewage-backup-cleanup-clarksville-tn"],
+    ["Burst Pipe Water Damage", "/services/burst-pipe-water-damage-clarksville-tn"],
+    ["Basement Flooding", "/services/basement-flooding-clarksville-tn"],
+    ["Storm Damage Restoration", "/services/storm-damage-restoration-clarksville-tn"],
+    ["Commercial Water Damage", "/services/commercial-water-damage-clarksville-tn"],
+    ["Water Damage Insurance Claims", "/water-damage-insurance-claim-clarksville-tn"],
+    ["Water Damage Odor Removal", "/water-damage-odor-removal-clarksville-tn"],
+  ],
+  "Service Areas": [
+    ["All Service Areas", "/service-areas"],
+    ["Fort Campbell, TN", "/locations/fort-campbell-tn"],
+    ["Sango, TN", "/locations/sango-tn"],
+    ["St. Bethlehem, TN", "/locations/st-bethlehem-tn"],
+    ["Oak Grove, KY", "/locations/oak-grove-ky"],
+    ["Hopkinsville, KY", "/locations/hopkinsville-ky"],
+    ["Springfield, TN", "/locations/springfield-tn"],
+    ["Ashland City, TN", "/locations/ashland-city-tn"],
+    ["Dover, TN", "/locations/dover-tn"],
+    ["Dickson, TN", "/locations/dickson-tn"],
+    ["Woodlawn, TN", "/locations/woodlawn-tn"],
+    ["Palmyra, TN", "/locations/palmyra-tn"],
+    ["Pembroke, KY", "/locations/pembroke-ky"],
+  ],
+  "Blog & Guides": [
+    ["All Blog Posts", "/blog"],
+    ["Signs of Water Damage", "/blog/signs-of-water-damage"],
+    ["Mold After Water Damage", "/blog/mold-after-water-damage"],
+    ["Does Insurance Cover Water Damage in TN?", "/blog/insurance-cover-water-damage-tn"],
+    ["Water Damage Restoration Cost Guide", "/blog/water-damage-restoration-cost-clarksville"],
+    ["Basement Flooding Prevention Guide", "/blog/basement-flooding-clarksville-prevention"],
+    ["Apartment & Condo Water Damage Guide", "/blog/apartment-condo-water-damage-clarksville"],
+  ],
+  Resources: [
+    ["FAQ — Common Questions", "/faq"],
+    ["About Our Team", "/about"],
+    ["Free Estimate — Contact Us", "/contact"],
+  ],
+};
+
+const exploreIcons: Record<string, string> = {
+  Services: "🛠️",
+  "Service Areas": "📍",
+  "Blog & Guides": "📖",
+  Resources: "💬",
+};
+
 export default function HomePage() {
   return (
     <>
@@ -282,6 +423,22 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(imageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
       />
       <style>{`
       .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
@@ -355,6 +512,9 @@ export default function HomePage() {
       .emg-row:last-child{border-bottom:none}
       .emg-time{font-family:var(--font-cormorant);font-size:16px;font-weight:700;color:#4ADE80;min-width:100px;flex-shrink:0;line-height:1.5;padding-top:2px}
       .emg-risk{font-family:var(--font-inter);font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.5)}
+      .emg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+      .emg-item{display:flex;align-items:flex-start;gap:10px;background:#fff;border:1px solid #E4E4E7;border-radius:6px;padding:14px 16px;font-family:var(--font-inter);font-size:13.5px;color:#374151;line-height:1.55}
+      .emg-item::before{content:'✓';color:#16A34A;font-weight:700;flex-shrink:0;margin-top:1px}
       .why-in{max-width:1240px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
       .why-img{border-radius:8px;display:block}
       .why-img-wrap{position:relative;height:520px;border-radius:8px;overflow:hidden}
@@ -419,6 +579,19 @@ export default function HomePage() {
       .fcta-btn2{display:flex;align-items:center;justify-content:center;gap:9px;background:transparent;color:#09090B;padding:14px;border-radius:6px;font-family:var(--font-inter);font-size:14px;font-weight:500;text-decoration:none;border:1px solid #E4E4E7;transition:all .2s}
       .fcta-btn2:hover{border-color:#52525B}
       .fcta-note{font-family:var(--font-inter);font-size:12px;color:#9CA3AF;line-height:1.6}
+      .explore-sec{padding:88px 0;background:#fff}
+      .explore-head{max-width:1240px;margin:0 auto 44px;padding:0 40px;text-align:center}
+      .explore-cats{max-width:1240px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+      @media(max-width:1200px){.explore-cats{grid-template-columns:repeat(2,1fr)!important}}
+      .explore-cat{background:#F9FAFB;border:1px solid #E4E4E7;border-radius:12px;padding:32px 28px;transition:border-color .2s,box-shadow .2s}
+      .explore-cat:hover{border-color:#22C55E;box-shadow:0 8px 28px rgba(34,197,94,.08)}
+      .explore-cat-top{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+      .explore-cat-icon{width:40px;height:40px;border-radius:9px;background:linear-gradient(135deg,#22C55E,#16A34A);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+      .explore-cat-title{font-family:var(--font-cormorant);font-size:20px;font-weight:700;color:#09090B;letter-spacing:-.3px}
+      .explore-chips{display:flex;flex-wrap:wrap;gap:8px}
+      .explore-chip{font-family:var(--font-inter);font-size:12.5px;font-weight:500;color:#374151;background:#fff;border:1px solid #E4E4E7;border-radius:100px;padding:7px 14px;text-decoration:none;transition:all .18s;white-space:nowrap}
+      .explore-chip:hover{background:#22C55E;border-color:#22C55E;color:#09090B;transform:translateY(-1px)}
+      @media(max-width:1024px){.explore-cats{grid-template-columns:1fr!important;padding-left:20px!important;padding-right:20px!important}.explore-head{padding-left:20px!important;padding-right:20px!important}}
       .mob-sticky{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;box-shadow:0 -4px 20px rgba(0,0,0,.15)}
       @media(max-width:768px){.mob-sticky{display:grid;grid-template-columns:1fr 1fr}}
       .mob-sticky a{display:block;padding:17px;text-align:center;font-family:var(--font-inter);font-weight:700;font-size:14px;text-decoration:none}
@@ -429,6 +602,7 @@ export default function HomePage() {
         .hero{min-height:auto;padding:100px 0 72px}
         .sec,.emg{padding:64px 0!important}
         .rev-grid{grid-template-columns:1fr!important}
+        .emg-grid{grid-template-columns:1fr!important}
       }
       @media(max-width:640px){
         .h-stats{flex-direction:column;gap:20px}
@@ -468,11 +642,13 @@ export default function HomePage() {
               Water Damage
               <span className="h1-sub">Restoration Clarksville TN</span>
             </h1>
+            {/* UPDATED — leads with the visitor's problem, reduces call friction */}
             <p className="h-desc">
-              Clarksville&apos;s most trusted restoration team.{" "}
-              <strong>60-minute guaranteed arrival</strong> anywhere in
-              Montgomery County — 24 hours a day, every day of the year. All
-              insurance accepted.
+              Water spreading right now? <strong>Every minute increases the
+              damage — and the cost.</strong> Our IICRC-certified team arrives
+              in <strong>60 minutes guaranteed</strong>, anywhere in Montgomery
+              County, 24/7/365. We handle your insurance claim directly — you
+              pay only your deductible.
             </p>
             <div className="h-btns">
               <a
@@ -519,6 +695,56 @@ export default function HomePage() {
           <HeroForm />
         </div>
       </section>
+
+      {/* NEW — AEO/GEO Quick Answer box, same proven pattern already live
+          on the Emergency Water Damage page. Gives AI answer engines and
+          featured snippets a clean, directly-citable factual summary. */}
+      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "40px 40px 0" }}>
+        <div
+          role="note"
+          style={{
+            background: "#F0FDF4",
+            border: "1px solid #BBF7D0",
+            borderLeft: "4px solid #22C55E",
+            borderRadius: 8,
+            padding: "20px 24px",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontSize: 10,
+              fontWeight: 600,
+              letterSpacing: 2,
+              textTransform: "uppercase",
+              color: "#16A34A",
+              marginBottom: 8,
+              display: "block",
+            }}
+          >
+            📍 Quick Answer — Water Damage Restoration Clarksville TN
+          </span>
+          <p
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontSize: 14.5,
+              lineHeight: 1.72,
+              color: "#1a2e1a",
+              margin: 0,
+            }}
+          >
+            <strong>Clarksville Water Damage Restoration</strong> provides
+            24/7/365 emergency water damage restoration throughout Clarksville
+            TN and Montgomery County at{" "}
+            <strong>(931) 271-2350</strong>, with a guaranteed 60-minute
+            on-site arrival. Services include water extraction, structural
+            drying, mold remediation, and complete insurance claim management
+            for USAA, State Farm, Allstate, and all major carriers.
+            IICRC-certified technicians follow the S500 Water Damage
+            Restoration Standard.
+          </p>
+        </div>
+      </div>
 
       {/* TICKER */}
       <div className="ticker" aria-hidden="true">
@@ -600,6 +826,85 @@ export default function HomePage() {
                 <div className="svc-arr">Learn more</div>
               </div>
             </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* NEW — certifications/trust bar. Fast, visible E-E-A-T signal;
+          every credential here is already stated elsewhere on the site
+          (services copy, About page, Emergency page) — nothing invented. */}
+      <div style={{ background: "#F9FAFB", borderTop: "1px solid #E4E4E7", borderBottom: "1px solid #E4E4E7", padding: "28px 40px" }}>
+        <div
+          style={{
+            maxWidth: 1240,
+            margin: "0 auto",
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "12px 32px",
+          }}
+        >
+          {[
+            "✅ IICRC Certified",
+            "✅ USAA Preferred Vendor",
+            "✅ All Insurance Accepted",
+            "✅ Locally Owned Since 2014",
+            "✅ 24/7/365 Response",
+            "✅ 60-Min Guaranteed Arrival",
+          ].map((badge) => (
+            <span
+              key={badge}
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontSize: 13,
+                fontWeight: 600,
+                color: "#374151",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {badge}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* NEW — COMMON WATER DAMAGE EMERGENCIES */}
+      <section className="sec sec-surf" aria-labelledby="emergencies-heading">
+        <div className="sec-head">
+          <div>
+            <div className="eyebrow">
+              <span className="eyebrow-dot" aria-hidden="true" />
+              Water Damage Emergencies
+            </div>
+            <h2 className="display-h" id="emergencies-heading">
+              Common Water Damage Emergencies We Fix Fast
+            </h2>
+          </div>
+          <div>
+            <p className="body-t" style={{ marginBottom: 24 }}>
+              Our restoration team in Clarksville TN has seen it all — and
+              fixed it all. If water is spreading in your home right now, call
+              us immediately. Every minute of delay increases damage.
+            </p>
+            <a
+              href="tel:+19312712350"
+              className="btn-g"
+              aria-label="Call now to stop water damage"
+            >
+              📞 Call Now — Stop The Damage
+            </a>
+          </div>
+        </div>
+        <div
+          className="emg-grid"
+          role="list"
+          aria-label="Common water damage emergencies"
+          style={{ maxWidth: 1240, margin: "0 auto", padding: "0 40px" }}
+        >
+          {emergencies.map((item) => (
+            <div key={item} className="emg-item" role="listitem">
+              {item}
+            </div>
           ))}
         </div>
       </section>
@@ -718,7 +1023,59 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PROCESS */}
+      {/* NEW — Property Types / Who We Help.
+          Required by the homepage brief's structure (Section 7) and
+          previously missing. Widens intent coverage to commercial and
+          rental-property searchers, not just single-family homeowners. */}
+      <section className="sec" aria-labelledby="property-types-heading">
+        <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 40px", marginBottom: 40, textAlign: "center" }}>
+          <div className="eyebrow" style={{ justifyContent: "center" }}>
+            <span className="eyebrow-dot" aria-hidden="true" />
+            Who We Help
+          </div>
+          <h2 className="display-h" id="property-types-heading">
+            Water Damage Restoration for Every Property Type
+          </h2>
+        </div>
+        <div
+          style={{
+            maxWidth: 1240,
+            margin: "0 auto",
+            padding: "0 40px",
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: 16,
+          }}
+        >
+          {[
+            { icon: "🏠", t: "Homeowners", b: "Single-family homes throughout Clarksville and Montgomery County." },
+            { icon: "🏢", t: "Commercial Properties", b: "Offices, retail, and industrial properties — minimizing business downtime." },
+            { icon: "🏘️", t: "Rental & Multi-Family", b: "Landlords and property managers coordinating tenant and insurance needs." },
+            { icon: "🎖️", t: "Fort Campbell Military Families", b: "USAA-preferred vendor with deployment-aware scheduling." },
+          ].map((c) => (
+            <div
+              key={c.t}
+              style={{
+                background: "#F9FAFB",
+                border: "1px solid #E4E4E7",
+                borderRadius: 10,
+                padding: "26px 22px",
+                textAlign: "center",
+              }}
+            >
+              <div style={{ fontSize: 28, marginBottom: 10 }} aria-hidden="true">{c.icon}</div>
+              <div style={{ fontFamily: "var(--font-inter)", fontSize: 14.5, fontWeight: 600, color: "#09090B", marginBottom: 6 }}>
+                {c.t}
+              </div>
+              <div style={{ fontFamily: "var(--font-inter)", fontSize: 12.5, lineHeight: 1.6, color: "#52525B" }}>
+                {c.b}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* PROCESS — "Simple. Honest. Fast." (restyled copy, same section) */}
       <section className="sec" aria-labelledby="process-heading">
         <div
           style={{
@@ -730,11 +1087,16 @@ export default function HomePage() {
         >
           <div className="eyebrow">
             <span className="eyebrow-dot" aria-hidden="true" />
-            Our Process
+            How It Works
           </div>
           <h2 className="display-h" id="process-heading">
-            Our 4-Step Water Damage Restoration Process
+            Simple. Honest. Fast.
           </h2>
+          <p className="body-t" style={{ marginTop: 14, maxWidth: 640 }}>
+            From your first call to a fully resolved problem — transparent,
+            fast, and stress-free. Most calls dispatched in under 5 minutes.
+            Emergency calls prioritized immediately.
+          </p>
         </div>
         <div
           className="proc-grid"
@@ -753,9 +1115,112 @@ export default function HomePage() {
           ))}
         </div>
       </section>
- 
 
-      {/* LOCATIONS */}
+      {/* NEW — URGENCY CTA BANNER */}
+      <section
+        aria-labelledby="urgency-cta-heading"
+        style={{ background: "#22C55E", padding: "56px 40px", textAlign: "center" }}
+      >
+        <h2
+          id="urgency-cta-heading"
+          style={{
+            fontFamily: "var(--font-cormorant)",
+            fontSize: "clamp(26px,3.5vw,38px)",
+            fontWeight: 700,
+            color: "#09090B",
+            marginBottom: 10,
+          }}
+        >
+          Water Damage Emergency in Clarksville TN? Don&apos;t Wait — Call Now.
+        </h2>
+        <p
+          style={{
+            fontFamily: "var(--font-inter)",
+            fontSize: 15,
+            color: "rgba(9,9,11,.75)",
+            marginBottom: 24,
+            maxWidth: 560,
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
+          Every minute of delay means more water damage, more cost, more
+          stress. Our IICRC-certified team is standing by 24/7. Call now and
+          get help fast.
+        </p>
+        <a
+          href="tel:+19312712350"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 8,
+            background: "#09090B",
+            color: "#fff",
+            padding: "16px 32px",
+            borderRadius: 6,
+            textDecoration: "none",
+            fontFamily: "var(--font-inter)",
+            fontWeight: 700,
+            fontSize: 16,
+          }}
+          aria-label="Call now for emergency water damage restoration"
+        >
+          📞 Call Now — (931) 271-2350
+        </a>
+      </section>
+
+      {/* REVIEWS — commented out until testimonial authenticity is confirmed.
+          GSC flagged 54 invalid review-schema items sitewide; displaying
+          placeholder testimonials as reviews is a likely source and a real
+          Google review-policy risk. Restore this block once these are
+          replaced with genuine, verifiable customer reviews (ideally pulled
+          from Google Business Profile once it's verified).
+
+      <section className="sec sec-dark" aria-labelledby="reviews-heading">
+        <div className="rev-in">
+          <div className="rev-top">
+            <div>
+              <div className="eyebrow" style={{ color: "#4ADE80" }}>
+                <span
+                  className="eyebrow-dot"
+                  style={{ background: "#4ADE80" }}
+                  aria-hidden="true"
+                />
+                Client Reviews
+              </div>
+              <h2 className="display-h light" id="reviews-heading">
+                Trusted by Clarksville TN Homeowners
+              </h2>
+            </div>
+          </div>
+          <div className="rev-grid" role="list">
+            {reviews.map((r) => (
+              <div key={r.n} className="rev-card" role="listitem">
+                <div className="rev-stars" aria-label="5 out of 5 stars">
+                  {"★★★★★".split("").map((s, i) => (
+                    <span key={i} className="rev-star">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+                <p className="rev-q">{r.q}</p>
+                <div className="rev-auth">
+                  <div className="rev-av" aria-hidden="true">
+                    {r.init}
+                  </div>
+                  <div>
+                    <div className="rev-name">{r.n}</div>
+                    <div className="rev-loc">{r.l}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      */}
+
+      {/* LOCATIONS + MAP */}
       <section className="sec sec-surf" aria-labelledby="locations-heading">
         <div className="loc-top">
           <div>
@@ -806,6 +1271,23 @@ export default function HomePage() {
             </Link>
           ))}
         </nav>
+
+        {/* Embedded service-area map — real Clarksville, TN address, no API
+            key required. Once GBP is verified, you can optionally switch to
+            the GBP-native embed URL (Maps -> your listing -> Share -> Embed
+            a map) so the map also reflects your live hours and reviews —
+            but this version already shows your real pin and location. */}
+        <div style={{ maxWidth: 1240, margin: "40px auto 0", padding: "0 40px" }}>
+          <iframe
+            title="Clarksville Water Damage Restoration service area map"
+            src="https://www.google.com/maps?q=215+Legion+Street,+Clarksville,+TN+37040&output=embed"
+            width="100%"
+            height="420"
+            style={{ border: 0, borderRadius: 8 }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
       </section>
 
       {/* FAQ */}
@@ -896,6 +1378,38 @@ export default function HomePage() {
               24/7/365
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* NEW — QUICK LINKS MEGA-FOOTER */}
+      <section className="explore-sec" aria-labelledby="explore-heading">
+        <div className="explore-head">
+          <div className="eyebrow" style={{ justifyContent: "center" }}>
+            <span className="eyebrow-dot" aria-hidden="true" />
+            Explore More
+          </div>
+          <h2 className="display-h" id="explore-heading">
+            Guides, Services &amp; Areas We Serve
+          </h2>
+        </div>
+        <div className="explore-cats">
+          {Object.entries(exploreLinks).map(([heading, links]) => (
+            <div key={heading} className="explore-cat">
+              <div className="explore-cat-top">
+                <div className="explore-cat-icon" aria-hidden="true">
+                  {exploreIcons[heading]}
+                </div>
+                <div className="explore-cat-title">{heading}</div>
+              </div>
+              <div className="explore-chips">
+                {links.map(([label, href]) => (
+                  <Link key={href} href={href} className="explore-chip">
+                    {label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
