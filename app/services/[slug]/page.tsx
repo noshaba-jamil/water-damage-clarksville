@@ -1,3 +1,5 @@
+
+
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -24,6 +26,85 @@ const heroImgs: Record<string, string> = {
     "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1800&q=80",
 };
 
+// NEW — per-service "causes" content. Only slugs with a real entry get the
+// section rendered; unknown slugs simply skip it rather than showing
+// fabricated content. Sewage backup is filled in with accurate,
+// industry-standard causes (not business-specific facts).
+const causesBySlug: Record<string, { intro: string; items: string[] }> = {
+  "sewage-backup-cleanup-clarksville-tn": {
+    intro:
+      "Sewage backups are classified as Category 3 (\"black water\") contamination and require specialized handling — not a standard cleanup. Understanding the cause helps prevent recurrence after remediation.",
+    items: [
+      "Clogged or blocked sewer lines from grease, wipes, or debris buildup",
+      "Tree root intrusion into aging sewer laterals — common in older Clarksville neighborhoods",
+      "Municipal sewer system backups during heavy rain or flooding",
+      "Collapsed or damaged sewer pipes",
+      "Sump pump failure allowing sewage-contaminated water to back up",
+      "Septic system failure or overflow in areas outside city sewer lines",
+    ],
+  },
+};
+
+// NEW — per-service FAQ content. Sewage backup gets accurate, specific
+// answers; any other slug falls back to the existing generic 3-question set
+// already in this file.
+const faqsBySlug: Record<
+  string,
+  { q: string; a: string }[]
+> = {
+  "sewage-backup-cleanup-clarksville-tn": [
+    {
+      q: "Is sewage backup water dangerous?",
+      a: "Yes. Sewage backup is classified as Category 3 (\"black water\") — it can contain bacteria, viruses, and other pathogens. Avoid contact and don't attempt DIY cleanup. Our technicians use full PPE and follow IICRC S500 protocols for safe, complete decontamination.",
+    },
+    {
+      q: "How much does sewage backup cleanup cost in Clarksville TN?",
+      a: "Cost depends on the extent of contamination and how many materials (flooring, drywall, insulation) need to be removed and replaced due to Category 3 exposure. We provide a free inspection and handle insurance documentation directly.",
+    },
+    {
+      q: "Will homeowners insurance cover a sewage backup?",
+      a: "Often yes, especially with sewer backup coverage riders, which many Tennessee policies include. We work directly with USAA, State Farm, Allstate, and all major carriers to document and submit your claim.",
+    },
+    {
+      q: "How long does sewage backup cleanup take?",
+      a: "Most residential sewage backup jobs take 2-5 days, including extraction, disposal of contaminated materials, sanitization, and drying — longer than a standard water cleanup due to the decontamination requirements.",
+    },
+    {
+      q: "What should I do immediately after a sewage backup?",
+      a: "Avoid contact with the water, keep children and pets away from the area, and call (931) 271-2350 immediately. Don't attempt to clean it yourself — Category 3 water requires professional decontamination, not household cleaning products.",
+    },
+  ],
+};
+
+const allServices: [string, string][] = [
+  ["Emergency Water Damage", "/emergency-water-damage-clarksville-tn"],
+  ["Flood Cleanup & Water Extraction", "/flood-cleanup-clarksville-tn"],
+  ["Mold Remediation", "/mold-remediation-clarksville-tn"],
+  ["Structural Drying", "/structural-drying-clarksville-tn"],
+  ["Sewage Backup Cleanup", "/services/sewage-backup-cleanup-clarksville-tn"],
+  ["Burst Pipe Water Damage", "/services/burst-pipe-water-damage-clarksville-tn"],
+  ["Basement Flooding", "/services/basement-flooding-clarksville-tn"],
+  ["Storm Damage Restoration", "/services/storm-damage-restoration-clarksville-tn"],
+  ["Commercial Water Damage", "/services/commercial-water-damage-clarksville-tn"],
+  ["Insurance Claim Management", "/water-damage-insurance-claim-clarksville-tn"],
+  ["Water Damage Odor Removal", "/water-damage-odor-removal-clarksville-tn"],
+];
+
+const allAreas: [string, string][] = [
+  ["Fort Campbell, TN", "/locations/fort-campbell-tn"],
+  ["Sango, TN", "/locations/sango-tn"],
+  ["St. Bethlehem, TN", "/locations/st-bethlehem-tn"],
+  ["Oak Grove, KY", "/locations/oak-grove-ky"],
+  ["Hopkinsville, KY", "/locations/hopkinsville-ky"],
+  ["Springfield, TN", "/locations/springfield-tn"],
+  ["Ashland City, TN", "/locations/ashland-city-tn"],
+  ["Dover, TN", "/locations/dover-tn"],
+  ["Dickson, TN", "/locations/dickson-tn"],
+  ["Woodlawn, TN", "/locations/woodlawn-tn"],
+  ["Palmyra, TN", "/locations/palmyra-tn"],
+  ["Pembroke, KY", "/locations/pembroke-ky"],
+];
+
 export function generateStaticParams() {
   return getAllServiceSlugs().map((slug) => ({ slug }));
 }
@@ -48,6 +129,24 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     heroImgs[params.slug] ||
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=80";
 
+  const causes = causesBySlug[params.slug];
+  const faqs =
+    faqsBySlug[params.slug] ||
+    [
+      {
+        q: `How quickly can you provide ${service.title} in Clarksville TN?`,
+        a: `We guarantee 60-minute on-site arrival for ${service.title} anywhere in Clarksville TN and Montgomery County, 24/7/365. Call (931) 271-2350 and a real expert answers in under 60 seconds.`,
+      },
+      {
+        q: `Is ${service.title} covered by homeowners insurance in Tennessee?`,
+        a: `Most ${service.title.toLowerCase()} costs caused by sudden, accidental events are covered by homeowners insurance. We work directly with USAA, State Farm, Allstate, Farmers, Liberty Mutual, and all major carriers.`,
+      },
+      {
+        q: "Do you serve Fort Campbell military families?",
+        a: "Yes. Fort Campbell is within our primary 60-minute response area. We have extensive experience with USAA insurance claims and deployment-aware scheduling for military families.",
+      },
+    ];
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -65,8 +164,9 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { position: 1, name: "Home", item: SITE_URL },
+      { position: 2, name: "Services", item: `${SITE_URL}/service-areas` },
       {
-        position: 2,
+        position: 3,
         name: service.title,
         item: `${SITE_URL}/services/${params.slug}`,
       },
@@ -75,25 +175,22 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        name: `How quickly can you provide ${service.title} in Clarksville TN?`,
-        acceptedAnswer: {
-          text: `We guarantee 60-minute on-site arrival for ${service.title} anywhere in Clarksville TN and Montgomery County, 24/7/365.`,
-        },
-      },
-      {
-        name: `Is ${service.title} covered by homeowners insurance in Tennessee?`,
-        acceptedAnswer: {
-          text: `Most ${service.title.toLowerCase()} costs caused by sudden, accidental events are covered. We work directly with USAA, State Farm, Allstate, and all major carriers.`,
-        },
-      },
-    ].map((q) => ({
-      ...q,
+    mainEntity: faqs.map((f) => ({
       "@type": "Question",
-      acceptedAnswer: { "@type": "Answer", ...q.acceptedAnswer },
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
   };
+
+  // NEW — TOC, built dynamically based on what actually exists on this page
+  const toc: [string, string][] = [
+    ...service.sections.map((sec: { heading: string }, i: number): [string, string] => [sec.heading, `#sec-${i}`]),
+    ...(causes ? ([["What Causes This", "#causes"]] as [string, string][]) : []),
+    ...(service.bullets ? ([["What's Included", "#included"]] as [string, string][]) : []),
+    ["FAQ", "#faq"],
+    ["All Services", "#all-services"],
+    ["All Service Areas", "#all-areas"],
+  ];
 
   return (
     <>
@@ -121,11 +218,74 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
         stat2="24/7"
         stat2Sub="Always Available"
       />
-      <style>{`.sp{max-width:1240px;margin:0 auto;padding:80px 40px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start} .sp-ey{font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#16A34A;margin-bottom:10px;display:block} .sp-h2{font-family:var(--font-cormorant);font-size:clamp(22px,2.5vw,30px);font-weight:700;color:#09090B;margin-bottom:14px;letter-spacing:-0.4px;line-height:1.1;margin-top:40px} .sp-h2:first-child{margin-top:0} .sp-h3{font-family:var(--font-inter);font-size:15px;font-weight:600;color:#09090B;margin-bottom:6px;margin-top:20px} .sp-p{font-family:var(--font-inter);font-size:15px;line-height:1.78;color:#52525B;margin-bottom:14px} .sp-bullet{display:flex;align-items:flex-start;gap:11px;margin-bottom:10px} .sp-bullet-check{width:20px;height:20px;border-radius:50%;background:#22C55E;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;flex-shrink:0;margin-top:2px} .sp-cta{background:#09090B;border-radius:10px;padding:30px;text-align:center;margin:36px 0} .sp-cta-h{font-family:var(--font-cormorant);font-size:24px;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:-0.3px} .sp-cta-p{font-family:var(--font-inter);font-size:13px;color:rgba(255,255,255,.5);margin-bottom:18px} .sp-cta-btn{display:inline-flex;align-items:center;gap:8px;background:#22C55E;color:#09090B;padding:12px 24px;border-radius:6px;text-decoration:none;font-family:var(--font-inter);font-weight:700;font-size:14px} .sp-cta-btn:hover{background:#16A34A} .faq-item{border-bottom:1px solid #E4E4E7} .faq-q{font-family:var(--font-inter);font-size:15px;font-weight:600;color:#09090B;padding:16px 0;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px} .faq-q::-webkit-details-marker{display:none} .faq-q::after{content:'+';font-size:18px;font-weight:300;color:#9CA3AF;flex-shrink:0;transition:transform .2s} details[open] .faq-q::after{transform:rotate(45deg)} .faq-a{font-family:var(--font-inter);font-size:14px;line-height:1.78;color:#52525B;padding-bottom:16px} .sb{display:flex;flex-direction:column;gap:18px;position:sticky;top:130px} .sb-cta{background:#09090B;border-radius:10px;padding:26px} .sb-ey{font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#4ADE80;margin-bottom:8px} .sb-num{font-family:var(--font-cormorant);font-size:26px;font-weight:700;color:#fff;margin-bottom:4px;letter-spacing:-0.5px} .sb-sub{font-family:var(--font-inter);font-size:12px;color:rgba(255,255,255,.3);margin-bottom:18px} .sb-b1{display:block;background:#22C55E;color:#09090B;padding:12px;border-radius:6px;text-decoration:none;font-family:var(--font-inter);font-weight:700;font-size:14px;text-align:center;margin-bottom:8px} .sb-b1:hover{background:#16A34A} .sb-b2{display:block;background:transparent;color:rgba(255,255,255,.45);padding:10px;border-radius:6px;text-decoration:none;font-family:var(--font-inter);font-size:13px;font-weight:500;text-align:center;border:1px solid rgba(255,255,255,.09)} .sb-b2:hover{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.75)} .sb-box{background:#F9FAFB;border:1px solid #E4E4E7;border-radius:10px;padding:22px} .sb-bh{font-family:var(--font-inter);font-size:12px;font-weight:600;color:#09090B;margin-bottom:14px} .sb-links{display:flex;flex-direction:column;gap:10px} .sb-links a{font-family:var(--font-inter);font-size:13px;font-weight:500;color:#52525B;text-decoration:none;transition:color .15s;display:flex;align-items:center;gap:6px} .sb-links a::before{content:'→';font-size:11px;color:#16A34A;flex-shrink:0} .sb-links a:hover{color:#16A34A} @media(max-width:1024px){.sp{grid-template-columns:1fr;padding:52px 20px}.sb{position:static}}`}</style>
+      <style>{`
+        /* GLOBAL OVERFLOW SAFETY NET — same fix applied to the homepage */
+        html,body{max-width:100vw;overflow-x:hidden}
+        p,span,a,div,h1,h2,h3{overflow-wrap:break-word;word-break:break-word}
+        img,iframe,svg{max-width:100%}
+        .sp{max-width:1240px;margin:0 auto;padding:80px 40px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start}
+        .sp-ey{font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#16A34A;margin-bottom:10px;display:block}
+        .sp-h2{font-family:var(--font-cormorant);font-size:clamp(22px,2.5vw,30px);font-weight:700;color:#09090B;margin-bottom:14px;letter-spacing:-0.4px;line-height:1.1;margin-top:40px}
+        .sp-h2:first-child{margin-top:0}
+        .sp-h3{font-family:var(--font-inter);font-size:15px;font-weight:600;color:#09090B;margin-bottom:6px;margin-top:20px}
+        .sp-p{font-family:var(--font-inter);font-size:15px;line-height:1.78;color:#52525B;margin-bottom:14px}
+        .sp-bullet{display:flex;align-items:flex-start;gap:11px;margin-bottom:10px}
+        .sp-bullet-check{width:20px;height:20px;border-radius:50%;background:#22C55E;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;flex-shrink:0;margin-top:2px}
+        .sp-cta{background:#09090B;border-radius:10px;padding:30px;text-align:center;margin:36px 0}
+        .sp-cta-h{font-family:var(--font-cormorant);font-size:24px;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:-0.3px}
+        .sp-cta-p{font-family:var(--font-inter);font-size:13px;color:rgba(255,255,255,.5);margin-bottom:18px}
+        .sp-cta-btn{display:inline-flex;align-items:center;gap:8px;background:#22C55E;color:#09090B;padding:12px 24px;border-radius:6px;text-decoration:none;font-family:var(--font-inter);font-weight:700;font-size:14px}
+        .sp-cta-btn:hover{background:#16A34A}
+        .faq-item{border-bottom:1px solid #E4E4E7}
+        .faq-q{font-family:var(--font-inter);font-size:15px;font-weight:600;color:#09090B;padding:16px 0;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px}
+        .faq-q::-webkit-details-marker{display:none}
+        .faq-q::after{content:'+';font-size:18px;font-weight:300;color:#9CA3AF;flex-shrink:0;transition:transform .2s}
+        details[open] .faq-q::after{transform:rotate(45deg)}
+        .faq-a{font-family:var(--font-inter);font-size:14px;line-height:1.78;color:#52525B;padding-bottom:16px}
+        .sb{display:flex;flex-direction:column;gap:18px;position:sticky;top:130px}
+        .sb-cta{background:#09090B;border-radius:10px;padding:26px}
+        .sb-ey{font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#4ADE80;margin-bottom:8px}
+        .sb-num{font-family:var(--font-cormorant);font-size:26px;font-weight:700;color:#fff;margin-bottom:4px;letter-spacing:-0.5px}
+        .sb-sub{font-family:var(--font-inter);font-size:12px;color:rgba(255,255,255,.3);margin-bottom:18px}
+        .sb-b1{display:block;background:#22C55E;color:#09090B;padding:12px;border-radius:6px;text-decoration:none;font-family:var(--font-inter);font-weight:700;font-size:14px;text-align:center;margin-bottom:8px}
+        .sb-b1:hover{background:#16A34A}
+        .sb-b2{display:block;background:transparent;color:rgba(255,255,255,.45);padding:10px;border-radius:6px;text-decoration:none;font-family:var(--font-inter);font-size:13px;font-weight:500;text-align:center;border:1px solid rgba(255,255,255,.09)}
+        .sb-b2:hover{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.75)}
+        .sb-box{background:#F9FAFB;border:1px solid #E4E4E7;border-radius:10px;padding:22px}
+        .sb-bh{font-family:var(--font-inter);font-size:12px;font-weight:600;color:#09090B;margin-bottom:14px}
+        .sb-links{display:flex;flex-direction:column;gap:10px}
+        .sb-links a{font-family:var(--font-inter);font-size:13px;font-weight:500;color:#52525B;text-decoration:none;transition:color .15s;display:flex;align-items:center;gap:6px}
+        .sb-links a::before{content:'→';font-size:11px;color:#16A34A;flex-shrink:0}
+        .sb-links a:hover{color:#16A34A}
+        .toc-box{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:18px 20px;margin-bottom:32px}
+        .toc-label{font-family:var(--font-inter);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#16A34A;margin-bottom:10px}
+        .toc-links{display:flex;flex-wrap:wrap;gap:8px 18px}
+        .toc-links a{font-family:var(--font-inter);font-size:13px;font-weight:500;color:#1a2e1a;text-decoration:none}
+        .toc-links a:hover{color:#16A34A;text-decoration:underline}
+        .causes-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+        .cause-item{display:flex;align-items:flex-start;gap:10px;background:#F9FAFB;border:1px solid #E4E4E7;border-radius:8px;padding:12px 14px;font-family:var(--font-inter);font-size:13px;color:#374151;line-height:1.55}
+        .cause-item::before{content:"⚠️";flex-shrink:0}
+        .link-chips{display:flex;flex-wrap:wrap;gap:8px}
+        .link-chip{font-family:var(--font-inter);font-size:13px;font-weight:500;color:#16A34A;text-decoration:none;background:#F0FDF4;border:1px solid #BBF7D0;padding:6px 14px;border-radius:100}
+        .link-chip:hover{background:#22C55E;color:#09090B;border-color:#22C55E}
+        @media(max-width:1024px){.sp{grid-template-columns:1fr;padding:52px 20px}.sb{position:static}.causes-grid{grid-template-columns:1fr}}
+      `}</style>
       <div style={{ background: "#fff" }}>
         <div className="sp">
           <main>
-            {service.sections.map((sec, i) => (
+            {/* NEW — TOC */}
+            <nav className="toc-box" aria-label="Page contents">
+              <div className="toc-label">On This Page</div>
+              <div className="toc-links">
+                {toc.map(([label, href]) => (
+                  <a key={href} href={href}>
+                    {label}
+                  </a>
+                ))}
+              </div>
+            </nav>
+
+            {service.sections.map((sec: { heading: string; content: string }, i: number) => (
               <section key={i} aria-labelledby={`sec-${i}`}>
                 {i === 1 && (
                   <div className="sp-cta">
@@ -145,13 +305,33 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
                 <p className="sp-p">{sec.content}</p>
               </section>
             ))}
+
+            {/* NEW — causes section, only rendered when real content exists
+                for this slug (currently: sewage backup) */}
+            {causes && (
+              <section id="causes" aria-labelledby="causes-h">
+                <span className="sp-ey">Common Causes</span>
+                <h2 className="sp-h2" id="causes-h">
+                  What Causes {service.title}
+                </h2>
+                <p className="sp-p">{causes.intro}</p>
+                <div className="causes-grid">
+                  {causes.items.map((c) => (
+                    <div key={c} className="cause-item">
+                      {c}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
             {service.bullets && (
-              <section aria-labelledby="inc-h">
+              <section id="included" aria-labelledby="inc-h">
                 <h2 className="sp-h2" id="inc-h">
                   What Our {service.title} Service Includes
                 </h2>
                 <div role="list">
-                  {service.bullets.map((b) => (
+                  {service.bullets.map((b: string) => (
                     <div key={b} className="sp-bullet" role="listitem">
                       <div className="sp-bullet-check" aria-hidden="true">
                         ✓
@@ -171,67 +351,52 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
                 </div>
               </section>
             )}
-            <section aria-labelledby="faq-h" style={{ marginTop: 40 }}>
+
+            <section id="faq" aria-labelledby="faq-h" style={{ marginTop: 40 }}>
               <span className="sp-ey">Frequently Asked Questions</span>
               <h2 className="sp-h2" id="faq-h">
                 {service.title} FAQs — Clarksville TN
               </h2>
-              {[
-                {
-                  q: `How quickly can you provide ${service.title} in Clarksville TN?`,
-                  a: `We guarantee 60-minute on-site arrival for ${service.title} anywhere in Clarksville TN and Montgomery County, 24/7/365. Call (931) 271-2350 and a real expert answers in under 60 seconds.`,
-                },
-                {
-                  q: `Is ${service.title} covered by homeowners insurance in Tennessee?`,
-                  a: `Most ${service.title.toLowerCase()} costs caused by sudden, accidental events are covered by homeowners insurance. We work directly with USAA, State Farm, Allstate, Farmers, Liberty Mutual, and all major carriers.`,
-                },
-                {
-                  q: "Do you serve Fort Campbell military families?",
-                  a: "Yes. Fort Campbell is within our primary 60-minute response area. We have extensive experience with USAA insurance claims and deployment-aware scheduling for military families.",
-                },
-              ].map((faq, i) => (
+              {faqs.map((faq, i) => (
                 <details key={i} className="faq-item">
                   <summary className="faq-q">{faq.q}</summary>
                   <p className="faq-a">{faq.a}</p>
                 </details>
               ))}
             </section>
-            <section style={{ marginTop: 40 }} aria-labelledby="areas-h">
+
+            {/* NEW — full services list */}
+            <section id="all-services" style={{ marginTop: 40 }}>
+              <span className="sp-ey">All Water Damage Services in Clarksville TN</span>
+              <div className="link-chips">
+                {allServices.map(([l, h]) => (
+                  <Link key={h} href={h} className="link-chip">
+                    {l}
+                  </Link>
+                ))}
+              </div>
+            </section>
+
+            {/* UPDATED — full service areas list (was 6 cities, now all 12) */}
+            <section id="all-areas" style={{ marginTop: 28 }} aria-labelledby="areas-h">
               <span className="sp-ey">Service Areas</span>
               <h2 className="sp-h2" id="areas-h">
                 {service.title} Throughout Our Service Area
               </h2>
               <nav aria-label="Service area locations">
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                  {[
-                    [
-                      "Clarksville TN",
-                      "/emergency-water-damage-clarksville-tn",
-                    ],
-                    ["Fort Campbell TN", "/locations/fort-campbell-tn"],
-                    ["Sango TN", "/locations/sango-tn"],
-                    ["Oak Grove KY", "/locations/oak-grove-ky"],
-                    ["Hopkinsville KY", "/locations/hopkinsville-ky"],
-                    ["Springfield TN", "/locations/springfield-tn"],
-                  ].map(([l, h]) => (
-                    <Link
-                      key={h}
-                      href={h}
-                      style={{
-                        fontFamily: "var(--font-inter)",
-                        fontSize: 13,
-                        fontWeight: 500,
-                        color: "#16A34A",
-                        textDecoration: "none",
-                        background: "#F0FDF4",
-                        border: "1px solid #BBF7D0",
-                        padding: "6px 14px",
-                        borderRadius: 100,
-                      }}
-                    >
+                <div className="link-chips">
+                  {allAreas.map(([l, h]) => (
+                    <Link key={h} href={h} className="link-chip">
                       {l}
                     </Link>
                   ))}
+                  <Link
+                    href="/service-areas"
+                    className="link-chip"
+                    style={{ background: "#09090B", color: "#fff", borderColor: "#09090B" }}
+                  >
+                    View All Areas →
+                  </Link>
                 </div>
               </nav>
             </section>

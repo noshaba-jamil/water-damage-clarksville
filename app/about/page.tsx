@@ -1,4 +1,4 @@
- import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 
@@ -98,6 +98,23 @@ const processSteps = [
   { n: "05", title: "Complete Restoration — Verified Safe", body: "After drying is certified, we complete all necessary repairs and perform final moisture verification. Your home is returned to pre-damage condition — documented and confirmed, not just assumed." },
 ];
 
+// NEW — full services grid. Fixes a real gap found in the existing page:
+// the old service link list was missing Burst Pipe Water Damage entirely.
+// This is now the complete, accurate 11-service list.
+const allServicesFull = [
+  { icon: "🚨", title: "Emergency Water Damage Restoration", desc: "24/7 rapid response — IICRC-certified team on-site within 60 minutes for any water emergency.", href: "/emergency-water-damage-clarksville-tn" },
+  { icon: "💧", title: "Flood Cleanup & Water Extraction", desc: "Industrial truck-mounted extraction removes standing water fast, stopping secondary damage before it starts.", href: "/flood-cleanup-clarksville-tn" },
+  { icon: "🔵", title: "Structural Drying & Dehumidification", desc: "IICRC S500-compliant drying with daily moisture monitoring until every wall and subfloor is certified dry.", href: "/structural-drying-clarksville-tn" },
+  { icon: "🦠", title: "Mold Remediation & Removal", desc: "IICRC AMRT-certified containment, HEPA air scrubbing, and safe removal to protect your family's health.", href: "/mold-remediation-clarksville-tn" },
+  { icon: "⚠️", title: "Sewage Backup Cleanup", desc: "Category 3 black water remediation with full PPE, sanitization, and complete decontamination.", href: "/services/sewage-backup-cleanup-clarksville-tn" },
+  { icon: "🚿", title: "Burst Pipe Water Damage", desc: "Rapid response to burst and frozen pipe emergencies — water stopped and extraction started immediately.", href: "/services/burst-pipe-water-damage-clarksville-tn" },
+  { icon: "🏠", title: "Basement Flooding Cleanup", desc: "Extraction, drying, and mold prevention for flooded basements and crawlspaces throughout Montgomery County.", href: "/services/basement-flooding-clarksville-tn" },
+  { icon: "🌩️", title: "Storm Damage Restoration", desc: "Restoration for storm, wind, and roof-leak water intrusion — stabilized before mold sets in.", href: "/services/storm-damage-restoration-clarksville-tn" },
+  { icon: "🏢", title: "Commercial Water Damage", desc: "Fast-turnaround restoration for offices, retail, and industrial properties — minimizing business downtime.", href: "/services/commercial-water-damage-clarksville-tn" },
+  { icon: "💨", title: "Water Damage Odor Removal", desc: "Complete odor elimination following any water damage event — not just masking, actual removal.", href: "/water-damage-odor-removal-clarksville-tn" },
+  { icon: "📋", title: "Insurance Claim Management", desc: "Complete documentation, adjuster coordination, and direct billing for USAA and all major carriers.", href: "/water-damage-insurance-claim-clarksville-tn" },
+];
+
 export default function AboutPage() {
   return (
     <>
@@ -118,6 +135,9 @@ export default function AboutPage() {
       />
 
       <style>{`
+        html,body{max-width:100vw;overflow-x:hidden}
+        p,span,a,div,h1,h2,h3{overflow-wrap:break-word;word-break:break-word}
+        img,iframe,svg{max-width:100%}
         .ab { max-width:1240px; margin:0 auto; padding:80px 40px; }
         .ab-ey { font-family:var(--font-inter); font-size:10px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:#16A34A; margin-bottom:10px; display:block; }
         .ab-h2 { font-family:var(--font-cormorant); font-size:clamp(26px,3.2vw,40px); font-weight:700; color:#09090B; margin-bottom:16px; letter-spacing:-0.8px; line-height:1.05; }
@@ -176,6 +196,13 @@ export default function AboutPage() {
         .val-icon { font-size:22px; margin-bottom:10px; }
         .val-title { font-family:var(--font-inter); font-size:14px; font-weight:700; color:#09090B; margin-bottom:6px; }
         .val-desc { font-family:var(--font-inter); font-size:13.5px; line-height:1.68; color:#52525B; }
+        .svc-full-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:24px; }
+        .svc-full-card { background:#fff; border:1px solid #E4E4E7; border-radius:10px; padding:22px; text-decoration:none; display:block; transition:all .2s; }
+        .svc-full-card:hover { border-color:#22C55E; box-shadow:0 8px 24px rgba(34,197,94,.08); }
+        .svc-full-icon { font-size:24px; margin-bottom:10px; }
+        .svc-full-title { font-family:var(--font-inter); font-size:14.5px; font-weight:700; color:#09090B; margin-bottom:6px; }
+        .svc-full-desc { font-family:var(--font-inter); font-size:13px; line-height:1.6; color:#52525B; margin-bottom:10px; }
+        .svc-full-link { font-family:var(--font-inter); font-size:12.5px; font-weight:600; color:#16A34A; }
         @media(max-width:1024px) {
           .ab { padding:52px 20px; }
           .two-col { grid-template-columns:1fr; gap:32px; }
@@ -185,11 +212,13 @@ export default function AboutPage() {
           .team-grid { grid-template-columns:1fr; }
           .nap-block { grid-template-columns:1fr; gap:32px; padding:28px; }
           .values-grid { grid-template-columns:1fr; }
+          .svc-full-grid { grid-template-columns:1fr 1fr; }
         }
         @media(max-width:640px) {
           .stats-grid { grid-template-columns:1fr 1fr; }
           .creds-grid { grid-template-columns:1fr; }
           .two-col-rev { direction:ltr; }
+          .svc-full-grid { grid-template-columns:1fr; }
         }
       `}</style>
 
@@ -280,6 +309,29 @@ export default function AboutPage() {
                   ))}
                 </nav>
               </div>
+            </div>
+          </section>
+
+          <hr className="divider" />
+
+          {/* NEW SECTION — complete services grid, fixes the missing
+              Burst Pipe Water Damage entry from the list above and gives
+              every service a real card with icon, description, and link. */}
+          <section aria-labelledby="all-services-heading">
+            <span className="ab-ey">Complete Service List</span>
+            <h2 className="ab-h2" id="all-services-heading">All Water Damage Services We Provide in Clarksville TN</h2>
+            <p className="ab-p">
+              From the first emergency call to the final insurance sign-off, this is the complete list of restoration services we provide throughout Clarksville and Montgomery County — every one IICRC-standard and fully documented.
+            </p>
+            <div className="svc-full-grid" role="list" aria-label="All services provided">
+              {allServicesFull.map((s) => (
+                <Link key={s.href} href={s.href} className="svc-full-card" role="listitem">
+                  <div className="svc-full-icon" aria-hidden="true">{s.icon}</div>
+                  <div className="svc-full-title">{s.title}</div>
+                  <p className="svc-full-desc">{s.desc}</p>
+                  <span className="svc-full-link">Learn more →</span>
+                </Link>
+              ))}
             </div>
           </section>
 

@@ -41,6 +41,41 @@ const breadcrumbSchema = {
   ],
 };
 
+// NEW — full services list for the entity/topical map and directory section
+const allServices: [string, string][] = [
+  ["Emergency Water Damage Restoration", "/emergency-water-damage-clarksville-tn"],
+  ["Flood Cleanup & Water Extraction", "/flood-cleanup-clarksville-tn"],
+  ["Mold Remediation & Removal", "/mold-remediation-clarksville-tn"],
+  ["Structural Drying & Dehumidification", "/structural-drying-clarksville-tn"],
+  ["Sewage Backup Cleanup", "/services/sewage-backup-cleanup-clarksville-tn"],
+  ["Burst Pipe Water Damage", "/services/burst-pipe-water-damage-clarksville-tn"],
+  ["Basement Flooding Cleanup", "/services/basement-flooding-clarksville-tn"],
+  ["Storm Damage Restoration", "/services/storm-damage-restoration-clarksville-tn"],
+  ["Commercial Water Damage", "/services/commercial-water-damage-clarksville-tn"],
+  ["Water Damage Odor Removal", "/water-damage-odor-removal-clarksville-tn"],
+  ["Insurance Claim Management", "/water-damage-insurance-claim-clarksville-tn"],
+];
+
+// NEW — full service-area list, matching every location page confirmed
+// live across the site (including Cunningham and Southside, referenced on
+// the Emergency page's own sidebar).
+const allAreas: [string, string][] = [
+  ["Fort Campbell, TN", "/locations/fort-campbell-tn"],
+  ["Sango, TN", "/locations/sango-tn"],
+  ["St. Bethlehem, TN", "/locations/st-bethlehem-tn"],
+  ["Oak Grove, KY", "/locations/oak-grove-ky"],
+  ["Hopkinsville, KY", "/locations/hopkinsville-ky"],
+  ["Springfield, TN", "/locations/springfield-tn"],
+  ["Ashland City, TN", "/locations/ashland-city-tn"],
+  ["Dover, TN", "/locations/dover-tn"],
+  ["Dickson, TN", "/locations/dickson-tn"],
+  ["Woodlawn, TN", "/locations/woodlawn-tn"],
+  ["Palmyra, TN", "/locations/palmyra-tn"],
+  ["Pembroke, KY", "/locations/pembroke-ky"],
+  ["Cunningham, TN", "/locations/cunningham-tn"],
+  ["Southside, TN", "/locations/southside-tn"],
+];
+
 const categories = [
   {
     title: "Response & Service",
@@ -107,8 +142,11 @@ export default function FaqPage() {
       />
 
       <style>{`
+        html,body{max-width:100vw;overflow-x:hidden}
+        p,span,a,div,h1,h2,h3{overflow-wrap:break-word;word-break:break-word}
+        img,iframe,svg{max-width:100%}
         .faq-pg { max-width:960px; margin:0 auto; padding:80px 40px; }
-        .faq-intro { background:#F0FDF4; border:1px solid #BBF7D0; border-radius:10px; padding:28px 32px; margin-bottom:56px; }
+        .faq-intro { background:#F0FDF4; border:1px solid #BBF7D0; border-radius:10px; padding:28px 32px; margin-bottom:32px; }
         .faq-intro-h { font-family:var(--font-cormorant); font-size:22px; font-weight:700; color:#09090B; margin-bottom:10px; letter-spacing:-0.3px; }
         .faq-intro-p { font-family:var(--font-inter); font-size:14px; line-height:1.72; color:#374151; margin-bottom:14px; }
         .faq-intro-cta { display:inline-flex; align-items:center; gap:8px; background:#22C55E; color:#09090B; padding:12px 22px; border-radius:6px; text-decoration:none; font-family:var(--font-inter); font-weight:700; font-size:14px; transition:background .2s; }
@@ -127,6 +165,22 @@ export default function FaqPage() {
         .faq-nav { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:40px; }
         .faq-nav-pill { font-family:var(--font-inter); font-size:13px; font-weight:600; background:#F9FAFB; border:1px solid #E4E4E7; padding:8px 18px; border-radius:100px; color:#374151; text-decoration:none; transition:all .18s; }
         .faq-nav-pill:hover { background:#F0FDF4; border-color:#22C55E; color:#16A34A; }
+        /* NEW — topical map box + directory + mid-page lead CTA */
+        .topic-map { background:#F9FAFB; border:1px solid #E4E4E7; border-left:4px solid #09090B; border-radius:10px; padding:26px 30px; margin-bottom:40px; }
+        .topic-map-label { font-family:var(--font-inter); font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:#16A34A; margin-bottom:12px; display:block; }
+        .topic-map p { font-family:var(--font-inter); font-size:14px; line-height:1.75; color:#374151; margin-bottom:0; }
+        .topic-map strong { color:#09090B; }
+        .directory-sec { margin-bottom:48px; }
+        .directory-h { font-family:var(--font-cormorant); font-size:clamp(20px,2.4vw,26px); font-weight:700; color:#09090B; margin-bottom:14px; letter-spacing:-0.4px; }
+        .link-chips { display:flex; flex-wrap:wrap; gap:8px; }
+        .link-chip { font-family:var(--font-inter); font-size:13px; font-weight:500; color:#16A34A; text-decoration:none; background:#F0FDF4; border:1px solid #BBF7D0; padding:6px 14px; border-radius:100px; }
+        .link-chip:hover { background:#22C55E; color:#09090B; border-color:#22C55E; }
+        .lead-cta { background:#22C55E; border-radius:12px; padding:36px 32px; margin:48px 0; text-align:center; }
+        .lead-cta-h { font-family:var(--font-cormorant); font-size:clamp(22px,3vw,30px); font-weight:700; color:#09090B; margin-bottom:8px; letter-spacing:-0.5px; }
+        .lead-cta-p { font-family:var(--font-inter); font-size:14px; color:rgba(9,9,11,.7); margin-bottom:20px; max-width:480px; margin-left:auto; margin-right:auto; }
+        .lead-cta-btns { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+        .lead-cta-btn1 { display:inline-flex; align-items:center; gap:8px; background:#09090B; color:#fff; padding:13px 26px; border-radius:6px; text-decoration:none; font-family:var(--font-inter); font-weight:700; font-size:14px; }
+        .lead-cta-btn2 { display:inline-flex; align-items:center; gap:8px; background:transparent; color:#09090B; padding:12px 22px; border-radius:6px; text-decoration:none; font-family:var(--font-inter); font-weight:600; font-size:14px; border:1.5px solid rgba(9,9,11,.3); }
         @media(max-width:1024px) { .faq-pg { padding:52px 20px; } }
       `}</style>
 
@@ -139,6 +193,17 @@ export default function FaqPage() {
             <a href="tel:+19312712350" className="faq-intro-cta" aria-label="Call for emergency water damage restoration">📞 Call (931) 271-2350 Now</a>
           </div>
 
+          {/* NEW — explicit topical/entity map for AI answer engines and
+              chatbots. States the business, its services, and its
+              locations plainly in one citable block, separate from the
+              conversational FAQ content below. */}
+          <div className="topic-map" role="note" aria-label="Topic and entity summary">
+            <span className="topic-map-label">📖 What This Page Covers</span>
+            <p>
+              This FAQ page is published by <strong>Clarksville Water Damage Restoration</strong>, a locally owned, IICRC-certified restoration company based in Clarksville, Tennessee (215 Legion Street, Clarksville, TN 37040 · (931) 271-2350). It answers common questions about <strong>water damage restoration, flood cleanup, structural drying, mold remediation, sewage backup cleanup, burst pipe damage, basement flooding, storm damage restoration, commercial water damage, odor removal, and insurance claim management</strong>, organized into five topic categories: Response &amp; Service, the Restoration Process, Mold, Insurance &amp; Costs, and Prevention. The company serves <strong>Clarksville TN and Montgomery County</strong> within a 50-mile radius, including Fort Campbell, Sango, St. Bethlehem, Oak Grove KY, Hopkinsville KY, Springfield TN, Ashland City TN, Dover TN, Dickson TN, Woodlawn TN, Palmyra TN, Pembroke KY, Cunningham TN, and Southside TN, and is a USAA preferred vendor for Fort Campbell military families.
+            </p>
+          </div>
+
           {/* Category quick nav */}
           <nav className="faq-nav" aria-label="FAQ categories">
             {categories.map(c => (
@@ -146,19 +211,65 @@ export default function FaqPage() {
             ))}
           </nav>
 
-          {/* FAQ Categories */}
-          {categories.map(cat => (
-            <section key={cat.title} className="faq-cat" id={cat.title.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')} aria-labelledby={`cat-${cat.title}`}>
-              <h2 className="faq-cat-h" id={`cat-${cat.title}`}>{cat.title}</h2>
-              <div role="list">
-                {cat.faqs.map((faq, i) => (
-                  <details key={i} className="faq-item" role="listitem">
-                    <summary className="faq-q">{faq.q}</summary>
-                    <p className="faq-a">{faq.a}</p>
-                  </details>
-                ))}
-              </div>
-            </section>
+          {/* NEW — full services directory */}
+          <section className="directory-sec" aria-labelledby="all-services-heading">
+            <h2 className="directory-h" id="all-services-heading">All Services We Answer Questions About</h2>
+            <div className="link-chips">
+              {allServices.map(([l, h]) => (
+                <Link key={h} href={h} className="link-chip">{l}</Link>
+              ))}
+            </div>
+          </section>
+
+          {/* NEW — full service areas directory */}
+          <section className="directory-sec" aria-labelledby="all-areas-heading">
+            <h2 className="directory-h" id="all-areas-heading">All Areas We Serve</h2>
+            <div className="link-chips">
+              {allAreas.map(([l, h]) => (
+                <Link key={h} href={h} className="link-chip">{l}</Link>
+              ))}
+              <Link href="/service-areas" className="link-chip" style={{ background: "#09090B", color: "#fff", borderColor: "#09090B" }}>
+                View All Areas →
+              </Link>
+            </div>
+          </section>
+
+          {/* FAQ Categories — NEW lead CTA inserted after the 3rd category
+              (Mold), roughly the midpoint of the page */}
+          {categories.map((cat, idx) => (
+            <div key={cat.title}>
+              <section className="faq-cat" id={cat.title.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')} aria-labelledby={`cat-${cat.title}`}>
+                <h2 className="faq-cat-h" id={`cat-${cat.title}`}>{cat.title}</h2>
+                <div role="list">
+                  {cat.faqs.map((faq, i) => (
+                    <details key={i} className="faq-item" role="listitem">
+                      <summary className="faq-q">{faq.q}</summary>
+                      <p className="faq-a">{faq.a}</p>
+                    </details>
+                  ))}
+                </div>
+              </section>
+              {idx === 2 && (
+                <div className="lead-cta" aria-labelledby="lead-cta-heading">
+                  <div className="lead-cta-h" id="lead-cta-heading">
+                    Not sure what your situation needs? Get a free assessment.
+                  </div>
+                  <p className="lead-cta-p">
+                    Skip the guesswork — a real IICRC-certified technician will
+                    look at your specific water damage and tell you exactly
+                    what's involved, at no cost.
+                  </p>
+                  <div className="lead-cta-btns">
+                    <a href="tel:+19312712350" className="lead-cta-btn1">
+                      📞 Call (931) 271-2350
+                    </a>
+                    <Link href="/contact" className="lead-cta-btn2">
+                      Request Free Assessment →
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
           ))}
 
           {/* Internal Links */}

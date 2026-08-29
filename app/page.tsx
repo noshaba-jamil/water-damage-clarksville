@@ -441,6 +441,12 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
       />
       <style>{`
+      /* GLOBAL OVERFLOW SAFETY NET — catches any long unbroken string
+         (emails, phone links, URLs) or unexpected wide element that could
+         force horizontal scroll on narrow screens. Safe to add broadly. */
+      html,body{max-width:100vw;overflow-x:hidden}
+      p,span,a,div,h1,h2,h3{overflow-wrap:break-word;word-break:break-word}
+      img,iframe,svg{max-width:100%}
       .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
       .hero-img{position:absolute;inset:0;overflow:hidden;background-color:#09090B}
       .hero-ov{position:absolute;inset:0;background:linear-gradient(110deg,rgba(9,9,11,.96) 38%,rgba(9,9,11,.6) 65%,rgba(9,9,11,.25) 100%);z-index:1}
@@ -592,6 +598,24 @@ export default function HomePage() {
       .explore-chip{font-family:var(--font-inter);font-size:12.5px;font-weight:500;color:#374151;background:#fff;border:1px solid #E4E4E7;border-radius:100px;padding:7px 14px;text-decoration:none;transition:all .18s;white-space:nowrap}
       .explore-chip:hover{background:#22C55E;border-color:#22C55E;color:#09090B;transform:translateY(-1px)}
       @media(max-width:1024px){.explore-cats{grid-template-columns:1fr!important;padding-left:20px!important;padding-right:20px!important}.explore-head{padding-left:20px!important;padding-right:20px!important}}
+      .qa-box-wrap{max-width:1240px;margin:0 auto;padding:40px 40px 0}
+      .cert-bar{background:#F9FAFB;border-top:1px solid #E4E4E7;border-bottom:1px solid #E4E4E7;padding:28px 40px}
+      .cert-bar-in{max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:12px 32px}
+      .ptypes-head{max-width:1240px;margin:0 auto 40px;padding:0 40px;text-align:center}
+      .ptypes-grid{max-width:1240px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+      .ptype-card{background:#F9FAFB;border:1px solid #E4E4E7;border-radius:10px;padding:26px 22px;text-align:center}
+      .pad-wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+      @media(max-width:640px){.pad-wrap{padding-left:20px!important;padding-right:20px!important}}
+      @media(max-width:1024px){
+        .qa-box-wrap{padding-left:20px!important;padding-right:20px!important}
+        .cert-bar{padding:22px 20px!important}
+        .ptypes-head{padding-left:20px!important;padding-right:20px!important}
+        .ptypes-grid{grid-template-columns:repeat(2,1fr)!important;padding-left:20px!important;padding-right:20px!important}
+      }
+      @media(max-width:640px){
+        .ptypes-grid{grid-template-columns:1fr!important}
+        .cert-bar-in{flex-direction:column;align-items:center;gap:10px!important}
+      }
       .mob-sticky{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;box-shadow:0 -4px 20px rgba(0,0,0,.15)}
       @media(max-width:768px){.mob-sticky{display:grid;grid-template-columns:1fr 1fr}}
       .mob-sticky a{display:block;padding:17px;text-align:center;font-family:var(--font-inter);font-weight:700;font-size:14px;text-decoration:none}
@@ -611,6 +635,21 @@ export default function HomePage() {
         .proc-grid,.svc-grid{grid-template-columns:1fr!important}
         .loc-grid{grid-template-columns:1fr 1fr!important}
         .sec{padding:52px 0!important}
+      }
+      /* NEW — map height shrinks on mobile instead of eating the viewport */
+      .map-embed{height:420px}
+      @media(max-width:640px){.map-embed{height:260px}}
+      /* NEW — urgency CTA banner padding tightens on mobile */
+      .urgency-cta{padding:56px 40px}
+      @media(max-width:640px){.urgency-cta{padding:40px 20px}}
+      /* NEW — extra small-phone breakpoint (iPhone SE, small Android ~360-390px) */
+      @media(max-width:400px){
+        .h-badge-t{font-size:10px}
+        .btn-g,.btn-w{padding:13px 20px;font-size:13px}
+        .display-h{font-size:26px!important}
+        .svc-body,.proc-card,.ptype-card{padding:20px!important}
+        .explore-cat{padding:24px 18px!important}
+        .qa-box-wrap>div,.cert-bar,.urgency-cta{padding-left:16px!important;padding-right:16px!important}
       }
     `}</style>
 
@@ -699,7 +738,7 @@ export default function HomePage() {
       {/* NEW — AEO/GEO Quick Answer box, same proven pattern already live
           on the Emergency Water Damage page. Gives AI answer engines and
           featured snippets a clean, directly-citable factual summary. */}
-      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "40px 40px 0" }}>
+      <div className="qa-box-wrap">
         <div
           role="note"
           style={{
@@ -833,17 +872,8 @@ export default function HomePage() {
       {/* NEW — certifications/trust bar. Fast, visible E-E-A-T signal;
           every credential here is already stated elsewhere on the site
           (services copy, About page, Emergency page) — nothing invented. */}
-      <div style={{ background: "#F9FAFB", borderTop: "1px solid #E4E4E7", borderBottom: "1px solid #E4E4E7", padding: "28px 40px" }}>
-        <div
-          style={{
-            maxWidth: 1240,
-            margin: "0 auto",
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: "12px 32px",
-          }}
-        >
+      <div className="cert-bar">
+        <div className="cert-bar-in">
           {[
             "✅ IICRC Certified",
             "✅ USAA Preferred Vendor",
@@ -896,10 +926,10 @@ export default function HomePage() {
           </div>
         </div>
         <div
-          className="emg-grid"
+          className="emg-grid pad-wrap"
           role="list"
           aria-label="Common water damage emergencies"
-          style={{ maxWidth: 1240, margin: "0 auto", padding: "0 40px" }}
+          style={{ maxWidth: 1240, margin: "0 auto" }}
         >
           {emergencies.map((item) => (
             <div key={item} className="emg-item" role="listitem">
@@ -1028,7 +1058,7 @@ export default function HomePage() {
           previously missing. Widens intent coverage to commercial and
           rental-property searchers, not just single-family homeowners. */}
       <section className="sec" aria-labelledby="property-types-heading">
-        <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 40px", marginBottom: 40, textAlign: "center" }}>
+        <div className="ptypes-head">
           <div className="eyebrow" style={{ justifyContent: "center" }}>
             <span className="eyebrow-dot" aria-hidden="true" />
             Who We Help
@@ -1037,32 +1067,14 @@ export default function HomePage() {
             Water Damage Restoration for Every Property Type
           </h2>
         </div>
-        <div
-          style={{
-            maxWidth: 1240,
-            margin: "0 auto",
-            padding: "0 40px",
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: 16,
-          }}
-        >
+        <div className="ptypes-grid">
           {[
             { icon: "🏠", t: "Homeowners", b: "Single-family homes throughout Clarksville and Montgomery County." },
             { icon: "🏢", t: "Commercial Properties", b: "Offices, retail, and industrial properties — minimizing business downtime." },
             { icon: "🏘️", t: "Rental & Multi-Family", b: "Landlords and property managers coordinating tenant and insurance needs." },
             { icon: "🎖️", t: "Fort Campbell Military Families", b: "USAA-preferred vendor with deployment-aware scheduling." },
           ].map((c) => (
-            <div
-              key={c.t}
-              style={{
-                background: "#F9FAFB",
-                border: "1px solid #E4E4E7",
-                borderRadius: 10,
-                padding: "26px 22px",
-                textAlign: "center",
-              }}
-            >
+            <div key={c.t} className="ptype-card">
               <div style={{ fontSize: 28, marginBottom: 10 }} aria-hidden="true">{c.icon}</div>
               <div style={{ fontFamily: "var(--font-inter)", fontSize: 14.5, fontWeight: 600, color: "#09090B", marginBottom: 6 }}>
                 {c.t}
@@ -1077,14 +1089,7 @@ export default function HomePage() {
 
       {/* PROCESS — "Simple. Honest. Fast." (restyled copy, same section) */}
       <section className="sec" aria-labelledby="process-heading">
-        <div
-          style={{
-            maxWidth: 1240,
-            margin: "0 auto",
-            padding: "0 40px",
-            marginBottom: 48,
-          }}
-        >
+        <div className="pad-wrap" style={{ marginBottom: 48 }}>
           <div className="eyebrow">
             <span className="eyebrow-dot" aria-hidden="true" />
             How It Works
@@ -1118,8 +1123,9 @@ export default function HomePage() {
 
       {/* NEW — URGENCY CTA BANNER */}
       <section
+        className="urgency-cta"
         aria-labelledby="urgency-cta-heading"
-        style={{ background: "#22C55E", padding: "56px 40px", textAlign: "center" }}
+        style={{ background: "#22C55E", textAlign: "center" }}
       >
         <h2
           id="urgency-cta-heading"
@@ -1277,13 +1283,13 @@ export default function HomePage() {
             the GBP-native embed URL (Maps -> your listing -> Share -> Embed
             a map) so the map also reflects your live hours and reviews —
             but this version already shows your real pin and location. */}
-        <div style={{ maxWidth: 1240, margin: "40px auto 0", padding: "0 40px" }}>
+        <div className="pad-wrap" style={{ margin: "40px auto 0" }}>
           <iframe
             title="Clarksville Water Damage Restoration service area map"
             src="https://www.google.com/maps?q=215+Legion+Street,+Clarksville,+TN+37040&output=embed"
             width="100%"
-            height="420"
-            style={{ border: 0, borderRadius: 8 }}
+            className="map-embed"
+            style={{ border: 0, borderRadius: 8, width: "100%" }}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
