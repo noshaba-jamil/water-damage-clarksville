@@ -8,7 +8,7 @@ export default function EmergencyBar() {
       <span>|</span>
       <a href="tel:+19312712350" style={{color:"#4ADE80",fontWeight:600}}>(931) 271-2350</a>
       <span>|</span>
-      <span>60-Minute guaranteed arrival · Clarksville TN</span>
+      <span>Fast 24/7 response · Clarksville TN</span>
     </div>
   );
 }

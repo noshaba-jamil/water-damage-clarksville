@@ -19,7 +19,7 @@ const nextConfig = {
     serverActions: {
       allowedOrigins: [
         "water-damage-clarksville.com",
-        "www.waterdamageclarksville.com",
+        "www.water-damage-clarksville.com", // fixed: was missing hyphens, so it matched the wrong domain
         "localhost:3000",
         "localhost:3001",
       ],
@@ -62,9 +62,22 @@ const nextConfig = {
       {
         source: "/:path*",
         has: [{ type: "host", value: "www.water-damage-clarksville.com" }],
-        destination: "https://water-damage-clarksville.com:path*",
+        destination: "https://water-damage-clarksville.com/:path*", // fixed: was missing the leading slash before :path*
         permanent: true,
       },
+
+      // Retired location pages: too far from Clarksville (45-55+ min) or too little
+      // real content to be worth keeping. Each had 0-6 Search Console impressions
+      // and none had any clicks. Redirected to the service-areas hub instead of
+      // left as thin, near-duplicate pages. Reviewed 2026-09.
+      { source: "/locations/erin-tn", destination: "/service-areas", permanent: true },
+      { source: "/locations/indian-mound-tn", destination: "/service-areas", permanent: true },
+      { source: "/locations/cumberland-city-tn", destination: "/service-areas", permanent: true },
+      { source: "/locations/big-rock-tn", destination: "/service-areas", permanent: true },
+      { source: "/locations/chapmansboro-tn", destination: "/service-areas", permanent: true },
+      { source: "/locations/charlotte-tn", destination: "/service-areas", permanent: true },
+      { source: "/locations/cumberland-furnace-tn", destination: "/service-areas", permanent: true },
+      // { source: "/locations/trenton-tn", destination: "/service-areas", permanent: true }, // uncomment once the county is confirmed
     ];
   },
 };

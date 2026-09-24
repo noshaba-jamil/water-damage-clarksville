@@ -5,7 +5,7 @@ import PageHero from "@/components/PageHero";
 export const metadata: Metadata = {
   title: "Structural Drying Clarksville TN | IICRC S500 Certified",
   description:
-    "IICRC S500-certified structural drying in Clarksville TN. Industrial LGR dehumidifiers, desiccant drying, daily moisture monitoring. All insurance. Call (931) 271-2350.",
+    "IICRC S500-certified structural drying in Clarksville TN. LGR dehumidifiers, daily moisture monitoring. All insurance. Call (931) 271-2350.",
   alternates: { canonical: "/structural-drying-clarksville-tn" },
 };
 
@@ -21,7 +21,6 @@ const serviceSchema = {
     "IICRC S500-certified structural drying in Clarksville TN. Industrial LGR dehumidifiers, desiccant drying, and daily moisture monitoring.",
 };
 
-// NEW — FAQ schema
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -82,7 +81,7 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-    { "@type": "ListItem", position: 2, name: "Services", item: `${SITE_URL}/service-areas` },
+    { "@type": "ListItem", position: 2, name: "Services", item: SITE_URL },
     {
       "@type": "ListItem",
       position: 3,
@@ -92,7 +91,6 @@ const breadcrumbSchema = {
   ],
 };
 
-// NEW — TOC
 const toc = [
   ["Signs You Need Structural Drying", "#signs"],
   ["Drying Equipment", "#equipment"],
@@ -103,8 +101,6 @@ const toc = [
   ["All Service Areas", "#all-areas"],
 ];
 
-// NEW — signs section, this page previously had zero "why you need this"
-// content, unlike every other rebuilt page.
 const signs = [
   "Musty or damp smell that lingers after visible water is gone",
   "Warped, cupped, or buckling flooring near a past water event",
@@ -159,7 +155,7 @@ export default function StructuralDryingPage() {
         subtitle="Industrial LGR dehumidifiers and precision drying. Daily monitoring until certified dry. All insurance. 60-min response."
         image="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=80"
         imageFocus="center 40%"
-        breadcrumbs={[{ label: "Services", href: "/service-areas" }, { label: "Structural Drying" }]}
+        breadcrumbs={[{ label: "Services", href: "/" }, { label: "Structural Drying" }]}
         stat1="S500"
         stat1Sub="IICRC Certified"
         stat2="24/7"
@@ -216,7 +212,6 @@ export default function StructuralDryingPage() {
       <div style={{ background: "#fff" }}>
         <div className="sp">
           <main>
-            {/* NEW — TOC */}
             <nav className="toc-box" aria-label="Page contents">
               <div className="toc-label">On This Page</div>
               <div className="toc-links">
@@ -244,7 +239,6 @@ export default function StructuralDryingPage() {
               home is certified dry.
             </p>
 
-            {/* NEW — signs section */}
             <div id="signs" className="warn-box">
               <h3>⚠️ Signs You Need Structural Drying</h3>
               <div className="signs-grid">
@@ -297,7 +291,6 @@ export default function StructuralDryingPage() {
               ))}
             </ul>
 
-            {/* NEW — FAQ section, powers faqSchema */}
             <span id="faq" className="sp-ey">Structural Drying FAQ</span>
             <div>
               {faqs.map((faq, i) => (
@@ -308,7 +301,6 @@ export default function StructuralDryingPage() {
               ))}
             </div>
 
-            {/* NEW — full services list */}
             <span id="all-services" className="sp-ey">All Water Damage Services in Clarksville TN</span>
             <div className="link-chips">
               {allServices.map(([l, h]) => (
@@ -316,7 +308,6 @@ export default function StructuralDryingPage() {
               ))}
             </div>
 
-            {/* NEW — full service areas list */}
             <span id="all-areas" className="sp-ey" style={{ marginTop: 28 }}>All Service Areas</span>
             <div className="link-chips">
               {allAreas.map(([l, h]) => (

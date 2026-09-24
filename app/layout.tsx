@@ -60,8 +60,8 @@ export const metadata: Metadata = {
 };
 
 // Single source of truth for the business entity.
-// Other pages should reference this via itemReviewed: { "@id": `${SITE_URL}/#localbusiness` }
-// instead of redeclaring their own aggregateRating.
+//   { "@id": `${SITE_URL}/#localbusiness` }
+ 
 const bizSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -86,7 +86,7 @@ const bizSchema = {
     { "@type": "AdministrativeArea", name: "Montgomery County, Tennessee" },
   ],
   priceRange: "$$",
-  aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: "47", bestRating: "5" },
+   
   contactPoint: {
     "@type": "ContactPoint",
     telephone: PHONE_RAW,
@@ -94,6 +94,12 @@ const bizSchema = {
     availableLanguage: "English",
     hoursAvailable: "Mo-Su 00:00-24:00",
   },
+     sameAs: [
+     "https://www.youtube.com/@waterdamageclarksville",
+     "https://www.instagram.com/waterdamageclarksville2026/",
+     "https://www.facebook.com/profile.php?id=61591774597110",
+     "https://www.pinterest.com/waterdamageclarksville/",
+   ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

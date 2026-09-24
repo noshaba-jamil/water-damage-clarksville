@@ -1,5 +1,3 @@
-
-
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -26,7 +24,7 @@ const heroImgs: Record<string, string> = {
     "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1800&q=80",
 };
 
-// NEW — per-service "causes" content. Only slugs with a real entry get the
+// Per-service "causes" content. Only slugs with a real entry get the
 // section rendered; unknown slugs simply skip it rather than showing
 // fabricated content. Sewage backup is filled in with accurate,
 // industry-standard causes (not business-specific facts).
@@ -45,9 +43,12 @@ const causesBySlug: Record<string, { intro: string; items: string[] }> = {
   },
 };
 
-// NEW — per-service FAQ content. Sewage backup gets accurate, specific
-// answers; any other slug falls back to the existing generic 3-question set
-// already in this file.
+// Per-service FAQ content. Sewage backup gets accurate, specific answers.
+// The fallback below (used by every other slug) is deliberately kept free
+// of the "how fast do you respond" and "Fort Campbell military families"
+// questions — those are already covered on the homepage, and the military
+// question in particular had zero interpolation, so it was rendering as
+// literally identical text across every service page using this fallback.
 const faqsBySlug: Record<
   string,
   { q: string; a: string }[]
@@ -134,16 +135,16 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     faqsBySlug[params.slug] ||
     [
       {
-        q: `How quickly can you provide ${service.title} in Clarksville TN?`,
-        a: `We guarantee 60-minute on-site arrival for ${service.title} anywhere in Clarksville TN and Montgomery County, 24/7/365. Call (931) 271-2350 and a real expert answers in under 60 seconds.`,
+        q: `What does ${service.title} include in Clarksville TN?`,
+        a: `Our ${service.title.toLowerCase()} service includes a full on-site inspection, IICRC-standard mitigation work specific to the issue, complete moisture and damage documentation, and direct coordination with your insurance carrier. Call (931) 271-2350 for a free assessment.`,
       },
       {
         q: `Is ${service.title} covered by homeowners insurance in Tennessee?`,
         a: `Most ${service.title.toLowerCase()} costs caused by sudden, accidental events are covered by homeowners insurance. We work directly with USAA, State Farm, Allstate, Farmers, Liberty Mutual, and all major carriers.`,
       },
       {
-        q: "Do you serve Fort Campbell military families?",
-        a: "Yes. Fort Campbell is within our primary 60-minute response area. We have extensive experience with USAA insurance claims and deployment-aware scheduling for military families.",
+        q: `How long does ${service.title.toLowerCase()} typically take?`,
+        a: `Timelines vary based on the extent of the damage — most jobs run from a few days to about a week. We'll give you a specific estimate for your property after an on-site inspection.`,
       },
     ];
 
@@ -164,7 +165,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { position: 1, name: "Home", item: SITE_URL },
-      { position: 2, name: "Services", item: `${SITE_URL}/service-areas` },
+      { position: 2, name: "Services", item: SITE_URL },
       {
         position: 3,
         name: service.title,
@@ -182,7 +183,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     })),
   };
 
-  // NEW — TOC, built dynamically based on what actually exists on this page
+  // TOC, built dynamically based on what actually exists on this page
   const toc: [string, string][] = [
     ...service.sections.map((sec: { heading: string }, i: number): [string, string] => [sec.heading, `#sec-${i}`]),
     ...(causes ? ([["What Causes This", "#causes"]] as [string, string][]) : []),
@@ -212,7 +213,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
         accent="— Clarksville TN"
         subtitle={service.intro.substring(0, 180) + "..."}
         image={img}
-        breadcrumbs={[{ label: "Services" }, { label: service.title }]}
+        breadcrumbs={[{ label: "Services", href: "/" }, { label: service.title }]}
         stat1="60min"
         stat1Sub="Guaranteed Arrival"
         stat2="24/7"
@@ -273,7 +274,6 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
       <div style={{ background: "#fff" }}>
         <div className="sp">
           <main>
-            {/* NEW — TOC */}
             <nav className="toc-box" aria-label="Page contents">
               <div className="toc-label">On This Page</div>
               <div className="toc-links">
@@ -306,8 +306,6 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
               </section>
             ))}
 
-            {/* NEW — causes section, only rendered when real content exists
-                for this slug (currently: sewage backup) */}
             {causes && (
               <section id="causes" aria-labelledby="causes-h">
                 <span className="sp-ey">Common Causes</span>
@@ -365,7 +363,6 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
               ))}
             </section>
 
-            {/* NEW — full services list */}
             <section id="all-services" style={{ marginTop: 40 }}>
               <span className="sp-ey">All Water Damage Services in Clarksville TN</span>
               <div className="link-chips">
@@ -377,7 +374,6 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
               </div>
             </section>
 
-            {/* UPDATED — full service areas list (was 6 cities, now all 12) */}
             <section id="all-areas" style={{ marginTop: 28 }} aria-labelledby="areas-h">
               <span className="sp-ey">Service Areas</span>
               <h2 className="sp-h2" id="areas-h">

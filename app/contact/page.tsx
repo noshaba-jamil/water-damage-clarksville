@@ -1,36 +1,31 @@
- import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import ContactForm from "@/components/ContactForm";
-export const metadata: Metadata = { title:"Contact Us | Free Water Damage Assessment | Clarksville TN | (931) 271-2350", description:"Contact Clarksville Water Damage Restoration for a free emergency assessment. Call (931) 271-2350 anytime — 24/7. 60-min arrival guaranteed. Serving Clarksville TN & Fort Campbell.", alternates:{canonical:"/contact"} };
-const LOCAL_BUSINESS_SCHEMA = {
+
+const SITE_URL = "https://water-damage-clarksville.com";
+
+export const metadata: Metadata = {
+  title: "Contact Us | Free Water Damage Assessment TN",
+  description:
+    "Contact Clarksville Water Damage Restoration for a free assessment. Call (931) 271-2350 anytime, 24/7. Serving Clarksville TN and Fort Campbell.",
+  alternates: { canonical: "/contact" },
+};
+
+// This page does NOT redeclare a full LocalBusiness entity. The canonical
+// business record (name, address, geo, hours, @id) lives on the homepage
+// as https://water-damage-clarksville.com/#localbusiness — every other
+// page references it via that @id. The previous version of this schema
+// declared a second, unlinked "HomeAndConstructionBusiness" entity on the
+// wrong domain (waterdamageclarksville.com, no hyphens), which told Google
+// this page belongs to a different business than the rest of the site.
+// ContactPage + a reference to the canonical @id avoids that entirely.
+const CONTACT_PAGE_SCHEMA = {
   "@context": "https://schema.org",
-  "@type": "HomeAndConstructionBusiness",
-  "name": "Clarksville Water Damage Restoration",
-  "image": "https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1800&q=80",
-  "telephone": "+1-931-271-2350",
-  "email": "waterdamageclarksville@gmail.com",
-  "url": "https://waterdamageclarksville.com/contact",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "215 Legion Street",
-    "addressLocality": "Clarksville",
-    "addressRegion": "TN",
-    "postalCode": "37040",
-    "addressCountry": "US"
-  },
-  "geo": { "@type": "GeoCoordinates", "latitude": 36.5298, "longitude": -87.3595 },
-  "areaServed": [
-    { "@type": "City", "name": "Clarksville, TN" },
-    { "@type": "Place", "name": "Fort Campbell, KY" }
-  ],
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-    "opens": "00:00",
-    "closes": "23:59"
-  },
-  "priceRange": "$$"
+  "@type": "ContactPage",
+  "name": "Contact Clarksville Water Damage Restoration",
+  "url": `${SITE_URL}/contact`,
+  "about": { "@id": `${SITE_URL}/#localbusiness` },
 };
 
 const FAQ_SCHEMA = {
@@ -59,8 +54,8 @@ const FAQ_SCHEMA = {
     },
     {
       "@type": "Question",
-      "name": "How quickly will someone respond?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Calls are answered in about 60 seconds and we guarantee on-site arrival within 60 minutes for emergencies." }
+      "name": "What happens after I submit the contact form?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A team member calls you back within 15 minutes to confirm details and schedule your free assessment. If it's an active emergency, call (931) 271-2350 directly instead of using the form." }
     },
     {
       "@type": "Question",
@@ -72,7 +67,7 @@ const FAQ_SCHEMA = {
 
 export default function ContactPage() {
   return (<>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(LOCAL_BUSINESS_SCHEMA) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(CONTACT_PAGE_SCHEMA) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }} />
     <PageHero eyebrow="Get In Touch — Free Assessment" title="Contact Us for" accent="Free Water Damage Assessment" subtitle="Call (931) 271-2350 anytime — 24 hours a day. Or submit the form and a real expert calls you back within 15 minutes." image="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1800&q=80" imageFocus="center 45%" breadcrumbs={[{label:"Contact"}]}/>
     <style>{`.cp{max-width:1240px;margin:0 auto;padding:80px 40px;display:grid;grid-template-columns:1fr 420px;gap:56px;align-items:start} .cf{background:#09090B;border-radius:10px;padding:40px;order:2} .cf-ey{font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#4ADE80;margin-bottom:8px;display:block} .cf-h{font-family:var(--font-cormorant);font-size:28px;font-weight:700;color:#fff;letter-spacing:-0.5px;margin-bottom:6px;line-height:1.1} .cf-s{font-family:var(--font-inter);font-size:13px;color:rgba(255,255,255,.35);margin-bottom:24px} .cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px} .cf-f{margin-bottom:12px} .cf-f label{display:block;font-family:var(--font-inter);font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:6px} .cf-f input,.cf-f select,.cf-f textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:5px;color:#fff;font-family:var(--font-inter);font-size:14px;padding:11px 13px;outline:none;transition:border-color .2s;-webkit-appearance:none} .cf-f input::placeholder,.cf-f textarea::placeholder{color:rgba(255,255,255,.22)} .cf-f input:focus,.cf-f select:focus,.cf-f textarea:focus{border-color:#22C55E} .cf-f select option{background:#09090B;color:#fff} .cf-f textarea{height:90px;resize:none} .cf-btn{width:100%;background:#22C55E;color:#09090B;border:none;border-radius:6px;padding:14px;font-family:var(--font-inter);font-size:15px;font-weight:700;cursor:pointer;transition:background .2s;margin-top:4px} .cf-btn:hover{background:#16A34A} .cf-note{font-family:var(--font-inter);font-size:11px;color:rgba(255,255,255,.2);text-align:center;margin-top:12px} .ci{display:flex;flex-direction:column;gap:20px;order:1} .ci-emg{background:linear-gradient(135deg,#09090B,#18181B);border:1px solid rgba(74,222,128,.15);border-radius:10px;padding:28px;text-align:center} .ci-emg-ey{font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#4ADE80;margin-bottom:10px} .ci-emg-h{font-family:var(--font-cormorant);font-size:22px;font-weight:700;color:#fff;margin-bottom:6px;letter-spacing:-0.3px} .ci-emg-s{font-family:var(--font-inter);font-size:13px;color:rgba(255,255,255,.4);margin-bottom:18px} .ci-emg-num{display:block;font-family:var(--font-cormorant);font-size:34px;font-weight:700;color:#4ADE80;text-decoration:none;letter-spacing:-1px;transition:color .2s} .ci-emg-num:hover{color:#22C55E} .ci-card{background:#F9FAFB;border:1px solid #E4E4E7;border-radius:10px;padding:24px;transition:border-color .25s} .ci-card:hover{border-color:#22C55E} .ci-card-i{font-size:22px;margin-bottom:10px} .ci-card-h{font-family:var(--font-inter);font-size:15px;font-weight:600;color:#09090B;margin-bottom:10px} .ci-card-t{font-family:var(--font-inter);font-size:13.5px;color:#52525B;line-height:1.65} .ci-card-t a{color:#16A34A;font-weight:600;text-decoration:none} .ci-check{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px} .ci-check-m{color:#16A34A;font-weight:700;flex-shrink:0;font-family:var(--font-inter)} .ci-check-t{font-family:var(--font-inter);font-size:13.5px;color:#52525B} .cmap{max-width:1240px;margin:0 auto;padding:0 40px 80px} .cmap-inner{border-radius:10px;overflow:hidden;border:1px solid #E4E4E7;box-shadow:0 1px 3px rgba(0,0,0,.05)} .cmap-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px} .cmap-ey{font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#16A34A;margin-bottom:8px;display:block} .cmap-h{font-family:var(--font-cormorant);font-size:26px;font-weight:700;color:#09090B;letter-spacing:-0.5px} .cmap-link{font-family:var(--font-inter);font-size:13px;font-weight:600;color:#16A34A;text-decoration:none;white-space:nowrap} .cmap-link:hover{color:#15803D} .cmap iframe{width:100%;height:420px;border:0;display:block} .cfaq{max-width:1240px;margin:0 auto;padding:0 40px 90px} .cfaq-list{display:grid;grid-template-columns:1fr 1fr;gap:20px} .cfaq-item{background:#F9FAFB;border:1px solid #E4E4E7;border-radius:10px;padding:22px 24px} .cfaq-q{font-family:var(--font-inter);font-size:14.5px;font-weight:700;color:#09090B;margin-bottom:8px;line-height:1.4} .cfaq-a{font-family:var(--font-inter);font-size:13.5px;color:#52525B;line-height:1.65;margin:0} @media(max-width:1024px){.cp{grid-template-columns:1fr;padding:52px 20px}.cf{order:1}.ci{order:2}.cf-row{grid-template-columns:1fr} .cmap{padding:0 20px 52px} .cmap iframe{height:320px} .cfaq{padding:0 20px 60px} .cfaq-list{grid-template-columns:1fr}}`}</style>

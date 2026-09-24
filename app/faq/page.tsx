@@ -3,8 +3,8 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
-  title: "Water Damage FAQ | Clarksville TN | Common Questions Answered",
-  description: "Answers to the most common water damage restoration questions for Clarksville TN homeowners. Costs, insurance, mold, process, and more. Call (931) 271-2350.",
+  title: "Water Damage FAQ | Clarksville TN Questions Answered",
+  description: "Answers to common water damage restoration questions for Clarksville TN homeowners: costs, insurance, mold, and process. Call (931) 271-2350.",
   alternates: { canonical: "/faq" },
   openGraph: {
     title: "Water Damage FAQ — Clarksville TN | Expert Answers",
@@ -15,23 +15,6 @@ export const metadata: Metadata = {
 
 const SITE_URL = "https://water-damage-clarksville.com";
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    { "@type": "Question", name: "How quickly can you respond to water damage emergencies in Clarksville TN?", acceptedAnswer: { "@type": "Answer", text: "We guarantee 60-minute on-site arrival anywhere in Clarksville TN and Montgomery County, 24/7/365. A real expert answers your call in under 60 seconds and our fully equipped team dispatches immediately." } },
-    { "@type": "Question", name: "Does homeowners insurance cover water damage in Tennessee?", acceptedAnswer: { "@type": "Answer", text: "Yes — Tennessee homeowners insurance covers sudden, accidental water damage from internal sources including burst pipes, appliance failures, plumbing leaks, and roof leaks from covered storms. It does not cover gradual leaks or external flooding (which requires NFIP flood insurance). We work directly with all major carriers including USAA for Fort Campbell military families." } },
-    { "@type": "Question", name: "How much does water damage restoration cost in Clarksville TN?", acceptedAnswer: { "@type": "Answer", text: "Costs range from $1,300–$5,400 for minor events to $15,000–$40,000+ for major structural damage. The average Tennessee insurance claim is approximately $13,200. We provide a free inspection and detailed estimate before any work begins. Most costs are covered by homeowners insurance." } },
-    { "@type": "Question", name: "How long does water damage restoration take?", acceptedAnswer: { "@type": "Answer", text: "Most residential water damage restoration takes 3–7 days for the drying phase, followed by 1–4 weeks for structural repairs depending on scope. Minor events may be complete in 1–2 weeks total; major structural events can take 4–8 weeks. We provide daily updates and moisture readings throughout the process." } },
-    { "@type": "Question", name: "Will mold grow after water damage in my Clarksville home?", acceptedAnswer: { "@type": "Answer", text: "In Clarksville's humid subtropical climate, mold can begin growing within 24–48 hours of any water event. This is why immediate professional extraction and structural drying is critical. Our team applies EPA-registered antimicrobial treatments on every job from Day 1 to prevent mold growth." } },
-    { "@type": "Question", name: "Do you serve Fort Campbell military families?", acceptedAnswer: { "@type": "Answer", text: "Yes. Fort Campbell is within our primary service area. We are experienced USAA preferred vendors and serve military families daily with deployment-aware scheduling. We understand USAA claims processing, PCS move considerations, and on-base housing protocols." } },
-    { "@type": "Question", name: "What is Category 3 black water and why is it dangerous?", acceptedAnswer: { "@type": "Answer", text: "Category 3 black water is water from sewage, river flooding, or other grossly contaminated sources. It contains dangerous pathogens including E. coli, Salmonella, and Hepatitis A. Category 3 cleanup requires professional PPE, hospital-grade disinfectants, and disposal of all contaminated porous materials. Never attempt DIY sewage backup cleanup." } },
-    { "@type": "Question", name: "What is the IICRC S500 standard for water damage restoration?", acceptedAnswer: { "@type": "Answer", text: "The IICRC S500 is the global technical standard defining water damage categories, drying goals, equipment requirements, and monitoring protocols. When our team follows S500, your home is dried to verified, documented standards — which also satisfies insurance adjuster requirements and protects you from future claims disputes." } },
-    { "@type": "Question", name: "Do you handle mold remediation after water damage?", acceptedAnswer: { "@type": "Answer", text: "Yes. Our team holds IICRC AMRT (Applied Microbial Remediation Technician) certification. We provide complete mold remediation including containment barriers, HEPA air scrubbing, contaminated material removal, EPA-registered antimicrobial treatment, and post-remediation verification." } },
-    { "@type": "Question", name: "How do I know if I need flood insurance in Clarksville TN?", acceptedAnswer: { "@type": "Answer", text: "Homeowners in FEMA-designated high-risk flood zones (Zone A or AE) with federally backed mortgages are required to carry NFIP flood insurance. Even outside mandatory zones, many Clarksville properties near the Cumberland River, Red River, and their tributaries benefit from flood insurance. Check FEMA's Flood Map Service Center at msc.fema.gov for your specific property." } },
-  ],
-};
-
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -41,7 +24,7 @@ const breadcrumbSchema = {
   ],
 };
 
-// NEW — full services list for the entity/topical map and directory section
+// Full services list for the entity/topical map and directory section
 const allServices: [string, string][] = [
   ["Emergency Water Damage Restoration", "/emergency-water-damage-clarksville-tn"],
   ["Flood Cleanup & Water Extraction", "/flood-cleanup-clarksville-tn"],
@@ -56,9 +39,9 @@ const allServices: [string, string][] = [
   ["Insurance Claim Management", "/water-damage-insurance-claim-clarksville-tn"],
 ];
 
-// NEW — full service-area list, matching every location page confirmed
-// live across the site (including Cunningham and Southside, referenced on
-// the Emergency page's own sidebar).
+// Full service-area list, matching every location page confirmed live
+// across the site (including Cunningham and Southside, referenced on the
+// Emergency page's own sidebar).
 const allAreas: [string, string][] = [
   ["Fort Campbell, TN", "/locations/fort-campbell-tn"],
   ["Sango, TN", "/locations/sango-tn"],
@@ -76,6 +59,13 @@ const allAreas: [string, string][] = [
   ["Southside, TN", "/locations/southside-tn"],
 ];
 
+// Single source of truth for every FAQ on this page. The old version had a
+// separate hand-written 10-question `faqSchema` used only for the JSON-LD
+// block, while the visible page rendered a completely different 20-question
+// `categories` structure — meaning the structured data barely matched what
+// was actually on the page (some questions had different answer text in
+// each place, and most visible questions had no schema entry at all).
+// Generating the schema from `categories` below guarantees they match.
 const categories = [
   {
     title: "Response & Service",
@@ -125,6 +115,18 @@ const categories = [
   },
 ];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: categories.flatMap((cat) =>
+    cat.faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    }))
+  ),
+};
+
 export default function FaqPage() {
   return (
     <>
@@ -165,7 +167,6 @@ export default function FaqPage() {
         .faq-nav { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:40px; }
         .faq-nav-pill { font-family:var(--font-inter); font-size:13px; font-weight:600; background:#F9FAFB; border:1px solid #E4E4E7; padding:8px 18px; border-radius:100px; color:#374151; text-decoration:none; transition:all .18s; }
         .faq-nav-pill:hover { background:#F0FDF4; border-color:#22C55E; color:#16A34A; }
-        /* NEW — topical map box + directory + mid-page lead CTA */
         .topic-map { background:#F9FAFB; border:1px solid #E4E4E7; border-left:4px solid #09090B; border-radius:10px; padding:26px 30px; margin-bottom:40px; }
         .topic-map-label { font-family:var(--font-inter); font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:#16A34A; margin-bottom:12px; display:block; }
         .topic-map p { font-family:var(--font-inter); font-size:14px; line-height:1.75; color:#374151; margin-bottom:0; }
@@ -186,17 +187,12 @@ export default function FaqPage() {
 
       <div style={{ background: "#fff" }}>
         <main className="faq-pg">
-          {/* Emergency CTA box */}
           <div className="faq-intro">
             <div className="faq-intro-h">Have a water damage emergency right now?</div>
             <p className="faq-intro-p">Don't read — call. Our IICRC-certified team responds in 60 minutes, 24 hours a day, 7 days a week, 365 days a year. A real expert answers in under 60 seconds.</p>
             <a href="tel:+19312712350" className="faq-intro-cta" aria-label="Call for emergency water damage restoration">📞 Call (931) 271-2350 Now</a>
           </div>
 
-          {/* NEW — explicit topical/entity map for AI answer engines and
-              chatbots. States the business, its services, and its
-              locations plainly in one citable block, separate from the
-              conversational FAQ content below. */}
           <div className="topic-map" role="note" aria-label="Topic and entity summary">
             <span className="topic-map-label">📖 What This Page Covers</span>
             <p>
@@ -204,14 +200,12 @@ export default function FaqPage() {
             </p>
           </div>
 
-          {/* Category quick nav */}
           <nav className="faq-nav" aria-label="FAQ categories">
             {categories.map(c => (
               <a key={c.title} href={`#${c.title.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`} className="faq-nav-pill">{c.title}</a>
             ))}
           </nav>
 
-          {/* NEW — full services directory */}
           <section className="directory-sec" aria-labelledby="all-services-heading">
             <h2 className="directory-h" id="all-services-heading">All Services We Answer Questions About</h2>
             <div className="link-chips">
@@ -221,7 +215,6 @@ export default function FaqPage() {
             </div>
           </section>
 
-          {/* NEW — full service areas directory */}
           <section className="directory-sec" aria-labelledby="all-areas-heading">
             <h2 className="directory-h" id="all-areas-heading">All Areas We Serve</h2>
             <div className="link-chips">
@@ -234,8 +227,6 @@ export default function FaqPage() {
             </div>
           </section>
 
-          {/* FAQ Categories — NEW lead CTA inserted after the 3rd category
-              (Mold), roughly the midpoint of the page */}
           {categories.map((cat, idx) => (
             <div key={cat.title}>
               <section className="faq-cat" id={cat.title.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')} aria-labelledby={`cat-${cat.title}`}>
@@ -272,7 +263,6 @@ export default function FaqPage() {
             </div>
           ))}
 
-          {/* Internal Links */}
           <section aria-labelledby="resources-heading" style={{ marginTop: 48, paddingTop: 40, borderTop: "1px solid #E4E4E7" }}>
             <h2 style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(22px,2.5vw,30px)", fontWeight: 700, color: "#09090B", marginBottom: 20, letterSpacing: "-0.4px" }} id="resources-heading">
               Related Resources
@@ -297,7 +287,6 @@ export default function FaqPage() {
             </nav>
           </section>
 
-          {/* CTA */}
           <div className="faq-cta-box">
             <h2 className="faq-cta-h">Still Have Questions? Call Now.</h2>
             <p className="faq-cta-p">Our team answers in under 60 seconds — any question, any time, 24/7.</p>

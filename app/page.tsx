@@ -4,60 +4,13 @@ import Image from "next/image";
 import HeroForm from "@/components/HeroForm";
 
 export const metadata: Metadata = {
-  title: "Water Damage Restoration Clarksville TN | 24/7 Response",
+  title: "Water Damage Restoration Clarksville TN | 24/7",
   description:
-    "Clarksville TN water damage restoration. 60-min arrival, 24/7. Flood cleanup, mold remediation & structural drying. All insurance accepted. Call (931) 271-2350.",
+    "Clarksville TN water damage restoration: 60-min arrival, 24/7 service. Flood cleanup, mold remediation, structural drying. Insurance accepted.",
   alternates: { canonical: "/" },
 };
 
 const SITE_URL = "https://water-damage-clarksville.com";
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "How fast can you respond to water damage in Clarksville TN?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "We guarantee 60-minute on-site arrival anywhere in Clarksville TN and Montgomery County, 24/7/365. A real expert answers your call in under 60 seconds.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Do you work with homeowners insurance for water damage in Tennessee?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. We work directly with USAA, State Farm, Allstate, Farmers, Liberty Mutual, Nationwide, and all major carriers. We handle full documentation, adjuster coordination, and direct billing.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How much does water damage restoration cost in Clarksville TN?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Costs range from $1,300–$5,400 for minor events to $15,000–$40,000+ for major structural damage. The average Tennessee insurance claim is $12,473. Free inspection — call (931) 271-2350.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Will mold grow after water damage in Clarksville?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes — in Clarksville's humid subtropical climate, mold can begin growing within 24–48 hours of any water event. Immediate professional extraction and structural drying is critical.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Do you serve Fort Campbell military families?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. Fort Campbell is within our primary service area. We are experienced USAA preferred vendors and serve military families daily with deployment-aware scheduling.",
-      },
-    },
-  ],
-};
 
 /**
  * All images live in /public/my/
@@ -103,7 +56,7 @@ const imageSchema = {
   ],
 };
 
-// NEW — LocalBusiness, Organization, WebSite, WebPage schema.
+// LocalBusiness, Organization, WebSite, WebPage schema.
 // Built only from confirmed NAP data. IMPORTANT: check layout.tsx first —
 // if any of these already render sitewide there, remove the duplicate here.
 const localBusinessSchema = {
@@ -236,7 +189,7 @@ const services = [
   },
 ];
 
-// NEW — common emergencies list, mirrors the "Common Emergencies" pattern
+// Common emergencies list, mirrors the "Common Emergencies" pattern
 // requested. Reuses existing .emg-grid / .emg-item styling — no new CSS.
 const emergencies = [
   "Burst & frozen pipes — water stopped and repaired immediately",
@@ -255,8 +208,8 @@ const whyItems = [
   },
   {
     n: "02",
-    t: "60-Minute Guaranteed Arrival — Any Time",
-    b: "We guarantee on-site arrival within 60 minutes to any property in our service area, 24 hours a day. This is a commitment, not an estimate.",
+    t: "Fast, Reliable Response — Any Time",
+    b: "We aim to arrive on-site within 60 minutes to any property in our service area, 24 hours a day.",
   },
   {
     n: "03",
@@ -270,7 +223,7 @@ const whyItems = [
   },
 ];
 
-// UPDATED copy — "Simple. Honest. Fast." framing, same structure/data shape.
+// "Simple. Honest. Fast." framing, same structure/data shape.
 const steps = [
   {
     n: "01",
@@ -285,7 +238,7 @@ const steps = [
   {
     n: "03",
     t: "We Dispatch Your Team",
-    b: "Fully equipped, IICRC-certified technicians on-site within 60 minutes — guaranteed, anywhere in Montgomery County.",
+    b: "Fully equipped, IICRC-certified technicians aim to be on-site within 60 minutes, anywhere in Montgomery County.",
   },
   {
     n: "04",
@@ -339,7 +292,7 @@ const locs = [
 const faqs = [
   {
     q: "How fast can you respond to water damage emergencies in Clarksville TN?",
-    a: "We guarantee 60-minute on-site arrival anywhere in Clarksville TN and Montgomery County, 24/7/365 — including holidays. A real expert answers your call in under 60 seconds.",
+    a: "We aim for 60-minute on-site arrival anywhere in Clarksville TN and Montgomery County, 24/7/365 — including holidays. A real expert answers your call quickly.",
   },
   {
     q: "Do you work with homeowners insurance for water damage claims?",
@@ -359,7 +312,23 @@ const faqs = [
   },
 ];
 
-// NEW — "Explore More" links, redesigned as chip/card groups (not a
+// FAQPage schema is generated directly from the `faqs` array above, so the
+// structured data can never drift out of sync with what's actually visible
+// on the page (a mismatch here is exactly what Google flags in GSC).
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
+};
+
+// "Explore More" links, redesigned as chip/card groups (not a
 // second footer). Includes real blog posts referenced across the site.
 const exploreLinks: Record<string, [string, string][]> = {
   Services: [
@@ -636,13 +605,13 @@ export default function HomePage() {
         .loc-grid{grid-template-columns:1fr 1fr!important}
         .sec{padding:52px 0!important}
       }
-      /* NEW — map height shrinks on mobile instead of eating the viewport */
+      /* map height shrinks on mobile instead of eating the viewport */
       .map-embed{height:420px}
       @media(max-width:640px){.map-embed{height:260px}}
-      /* NEW — urgency CTA banner padding tightens on mobile */
+      /* urgency CTA banner padding tightens on mobile */
       .urgency-cta{padding:56px 40px}
       @media(max-width:640px){.urgency-cta{padding:40px 20px}}
-      /* NEW — extra small-phone breakpoint (iPhone SE, small Android ~360-390px) */
+      /* extra small-phone breakpoint (iPhone SE, small Android ~360-390px) */
       @media(max-width:400px){
         .h-badge-t{font-size:10px}
         .btn-g,.btn-w{padding:13px 20px;font-size:13px}
@@ -681,11 +650,10 @@ export default function HomePage() {
               Water Damage
               <span className="h1-sub">Restoration Clarksville TN</span>
             </h1>
-            {/* UPDATED — leads with the visitor's problem, reduces call friction */}
             <p className="h-desc">
               Water spreading right now? <strong>Every minute increases the
-              damage — and the cost.</strong> Our IICRC-certified team arrives
-              in <strong>60 minutes guaranteed</strong>, anywhere in Montgomery
+              damage — and the cost.</strong> Our IICRC-certified team aims to arrive
+              in <strong>60 minutes</strong>, anywhere in Montgomery
               County, 24/7/365. We handle your insurance claim directly — you
               pay only your deductible.
             </p>
@@ -719,15 +687,15 @@ export default function HomePage() {
                     min
                   </span>
                 </div>
-                <div className="hs-l">Guaranteed Arrival</div>
+                <div className="hs-l">Target Arrival Time</div>
               </div>
               <div className="hs">
                 <div className="hs-n">24/7</div>
                 <div className="hs-l">Always Available</div>
               </div>
               <div className="hs">
-                <div className="hs-n">500+</div>
-                <div className="hs-l">Homes Restored</div>
+                <div className="hs-n">50mi</div>
+                <div className="hs-l">Service Radius</div>
               </div>
             </div>
           </div>
@@ -735,7 +703,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* NEW — AEO/GEO Quick Answer box, same proven pattern already live
+      {/* AEO/GEO Quick Answer box, same proven pattern already live
           on the Emergency Water Damage page. Gives AI answer engines and
           featured snippets a clean, directly-citable factual summary. */}
       <div className="qa-box-wrap">
@@ -775,7 +743,7 @@ export default function HomePage() {
             <strong>Clarksville Water Damage Restoration</strong> provides
             24/7/365 emergency water damage restoration throughout Clarksville
             TN and Montgomery County at{" "}
-            <strong>(931) 271-2350</strong>, with a guaranteed 60-minute
+            <strong>(931) 271-2350</strong>, aiming for a 60-minute
             on-site arrival. Services include water extraction, structural
             drying, mold remediation, and complete insurance claim management
             for USAA, State Farm, Allstate, and all major carriers.
@@ -791,7 +759,7 @@ export default function HomePage() {
           {[...Array(2)].map((_, ri) =>
             [
               "24/7 Emergency Response",
-              "60-Min Guaranteed Arrival",
+              "Fast On-Site Response",
               "Water Extraction Clarksville TN",
               "Structural Drying",
               "Mold Remediation",
@@ -869,18 +837,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* NEW — certifications/trust bar. Fast, visible E-E-A-T signal;
+      {/* Certifications/trust bar. Fast, visible E-E-A-T signal;
           every credential here is already stated elsewhere on the site
           (services copy, About page, Emergency page) — nothing invented. */}
       <div className="cert-bar">
         <div className="cert-bar-in">
           {[
             "✅ IICRC Certified",
-            "✅ USAA Preferred Vendor",
             "✅ All Insurance Accepted",
-            "✅ Locally Owned Since 2014",
+            "✅ Locally Owned & Operated",
             "✅ 24/7/365 Response",
-            "✅ 60-Min Guaranteed Arrival",
+            "✅ Fast On-Site Response",
           ].map((badge) => (
             <span
               key={badge}
@@ -898,7 +865,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* NEW — COMMON WATER DAMAGE EMERGENCIES */}
+      {/* COMMON WATER DAMAGE EMERGENCIES */}
       <section className="sec sec-surf" aria-labelledby="emergencies-heading">
         <div className="sec-head">
           <div>
@@ -1014,8 +981,8 @@ export default function HomePage() {
                 style={{ objectFit: "cover" }}
               />
               <div className="why-badge">
-                <div className="why-badge-n">10+</div>
-                <div className="why-badge-l">Years in Clarksville</div>
+                <div className="why-badge-n">24/7</div>
+                <div className="why-badge-l">Always Available</div>
               </div>
             </div>
             <figcaption className="img-caption">
@@ -1033,7 +1000,7 @@ export default function HomePage() {
               id="why-heading"
               style={{ marginBottom: 36 }}
             >
-              Clarksville&apos;s Most Experienced Water Damage Restoration
+              Clarksville&apos;s Local Water Damage Restoration
               Company
             </h2>
             <div className="why-list" role="list">
@@ -1053,7 +1020,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* NEW — Property Types / Who We Help.
+      {/* Property Types / Who We Help.
           Required by the homepage brief's structure (Section 7) and
           previously missing. Widens intent coverage to commercial and
           rental-property searchers, not just single-family homeowners. */}
@@ -1072,7 +1039,7 @@ export default function HomePage() {
             { icon: "🏠", t: "Homeowners", b: "Single-family homes throughout Clarksville and Montgomery County." },
             { icon: "🏢", t: "Commercial Properties", b: "Offices, retail, and industrial properties — minimizing business downtime." },
             { icon: "🏘️", t: "Rental & Multi-Family", b: "Landlords and property managers coordinating tenant and insurance needs." },
-            { icon: "🎖️", t: "Fort Campbell Military Families", b: "USAA-preferred vendor with deployment-aware scheduling." },
+            { icon: "🎖️", t: "Fort Campbell Military Families", b: "Experience with USAA claims and deployment-aware scheduling." },
           ].map((c) => (
             <div key={c.t} className="ptype-card">
               <div style={{ fontSize: 28, marginBottom: 10 }} aria-hidden="true">{c.icon}</div>
@@ -1121,7 +1088,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* NEW — URGENCY CTA BANNER */}
+      {/* URGENCY CTA BANNER */}
       <section
         className="urgency-cta"
         aria-labelledby="urgency-cta-heading"
@@ -1241,7 +1208,7 @@ export default function HomePage() {
           </div>
           <div>
             <p className="body-t" style={{ marginBottom: 24 }}>
-              We provide 60-minute guaranteed emergency response throughout
+              We provide fast emergency response throughout
               Montgomery County and all surrounding communities.
             </p>
             <Link
@@ -1344,8 +1311,8 @@ export default function HomePage() {
               </div>
             </div>
             <figcaption className="img-caption">
-              Our Clarksville, TN restoration crew — dispatched 24/7, on-site
-              within 60 minutes.
+              Our Clarksville, TN restoration crew — dispatched 24/7, aiming to
+              arrive within 60 minutes.
             </figcaption>
           </figure>
           <div>
@@ -1380,14 +1347,14 @@ export default function HomePage() {
               </a>
             </div>
             <div className="fcta-note">
-              Free inspection · All insurance accepted · USAA specialists ·
+              Free inspection · All insurance accepted ·
               24/7/365
             </div>
           </div>
         </div>
       </section>
 
-      {/* NEW — QUICK LINKS MEGA-FOOTER */}
+      {/* QUICK LINKS MEGA-FOOTER */}
       <section className="explore-sec" aria-labelledby="explore-heading">
         <div className="explore-head">
           <div className="eyebrow" style={{ justifyContent: "center" }}>

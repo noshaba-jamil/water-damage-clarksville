@@ -15,18 +15,18 @@ export interface LocationContent {
 }
 
 export const locationsData: LocationContent[] = [
-  // ── EXISTING 12 LOCATIONS ──
+
   {
     slug: "fort-campbell-tn",
     city: "Fort Campbell",
     state: "TN",
     county: "Montgomery County",
     metaTitle:
-      "Water Damage Restoration Fort Campbell TN | USAA Specialists | (931) 271-2350",
+      "Water Damage Restoration Fort Campbell TN | (931) 271-2350",
     metaDesc:
-      "Water damage restoration serving Fort Campbell TN military families. USAA preferred vendor, 60-min response, 24/7. Free assessment. Call (931) 271-2350.",
+      "Water damage restoration serving Fort Campbell TN military families. Fast response, 24/7. Free assessment. Call (931) 271-2350.",
     intro:
-      "Fort Campbell straddles the Tennessee-Kentucky border and is home to tens of thousands of active duty military families — many carrying USAA insurance. We are experienced USAA preferred vendors serving Fort Campbell on-base and surrounding off-base housing 24/7.",
+      "Fort Campbell straddles the Tennessee-Kentucky border and is home to tens of thousands of active duty military families — many carrying USAA insurance. We handle USAA claims documentation for Fort Campbell on-base and surrounding off-base housing, serving 24/7.",
     distanceNote:
       "Located within our primary service area — fastest response times available.",
     risks: [
@@ -40,15 +40,15 @@ export const locationsData: LocationContent[] = [
       "Flood Cleanup & Extraction",
       "Mold Remediation",
       "Structural Drying",
-      "USAA Insurance Claim Management",
+      "Insurance Claim Management",
       "Sewage Backup Cleanup",
     ],
     closingLine:
-      "Our team serves Fort Campbell military families daily with the speed, professionalism, and USAA expertise that service members deserve.",
+      "Our team serves Fort Campbell military families daily with the speed and professionalism service members deserve.",
     faqs: [
       {
         q: "Do you work with USAA insurance for Fort Campbell military families?",
-        a: "Yes. We are experienced USAA preferred vendors. We handle all documentation and direct billing for USAA claims — common for Fort Campbell active duty and veterans.",
+        a: "Yes. We handle documentation and direct billing for USAA claims — common for Fort Campbell active duty and veterans.",
       },
       {
         q: "Can you schedule around military deployment schedules?",
@@ -56,7 +56,7 @@ export const locationsData: LocationContent[] = [
       },
       {
         q: "How fast can you respond to water damage at Fort Campbell?",
-        a: "Fort Campbell is within our primary service area. We guarantee 60-minute on-site arrival, 24 hours a day, 7 days a week.",
+        a: "Fort Campbell is within our primary service area. We aim to arrive on-site within 60 minutes, 24 hours a day, 7 days a week.",
       },
     ],
   },
@@ -73,7 +73,7 @@ export const locationsData: LocationContent[] = [
     intro:
       "Sango is one of Clarksville's fastest-growing suburbs — a community of newer subdivisions, master-planned neighborhoods, and established family homes. Our team provides 24/7 water damage restoration throughout all of Sango and northern Montgomery County.",
     distanceNote:
-      "Approximately 10–15 minutes from our Clarksville base — fast response guaranteed.",
+      "Approximately 10–15 minutes from our Clarksville base — fast response.",
     risks: [
       "New construction plumbing failures in rapidly built subdivisions",
       "Subdivisions built on graded land with altered natural drainage patterns",
@@ -93,7 +93,7 @@ export const locationsData: LocationContent[] = [
     faqs: [
       {
         q: "How quickly can you respond to water damage in Sango TN?",
-        a: "We guarantee 60-minute on-site arrival in Sango, typically in 10-15 minutes from our Clarksville base. We answer in under 60 seconds, 24/7.",
+        a: "We aim to arrive on-site within 60 minutes in Sango, typically in 10-15 minutes from our Clarksville base. We answer quickly, 24/7.",
       },
       {
         q: "Do you handle new construction water damage claims in Sango?",
@@ -149,7 +149,7 @@ export const locationsData: LocationContent[] = [
     metaTitle:
       "Water Damage Restoration Oak Grove KY | Fort Campbell Area | (931) 271-2350",
     metaDesc:
-      "Water damage restoration in Oak Grove KY. Serving Fort Campbell corridor. USAA specialists. 60-min response, 24/7. Free assessment. Call (931) 271-2350.",
+      "Water damage restoration in Oak Grove KY. Serving Fort Campbell corridor. Fast 24/7 response. Free assessment. Call (931) 271-2350.",
     intro:
       "Oak Grove KY sits directly outside the Fort Campbell main gate and is home to thousands of military families and civilian workers. The Tennessee-Kentucky state line is no barrier to our service.",
     distanceNote:
@@ -164,7 +164,7 @@ export const locationsData: LocationContent[] = [
       "Flood Cleanup",
       "Mold Remediation",
       "Structural Drying",
-      "USAA Insurance Claims",
+      "Insurance Claims",
       "Sewage Backup",
     ],
     closingLine:
@@ -172,7 +172,7 @@ export const locationsData: LocationContent[] = [
     faqs: [
       {
         q: "Do you serve Kentucky homes like Oak Grove KY?",
-        a: "Yes. The Tennessee-Kentucky state line is no barrier. We serve Oak Grove KY with the same 60-minute guaranteed response as our Tennessee customers.",
+        a: "Yes. The Tennessee-Kentucky state line is no barrier. We serve Oak Grove KY with the same fast response as our Tennessee customers.",
       },
       {
         q: "How far is Oak Grove KY from your Clarksville base?",
@@ -211,7 +211,7 @@ export const locationsData: LocationContent[] = [
     faqs: [
       {
         q: "Is Hopkinsville KY in your service area?",
-        a: "Yes. Hopkinsville is approximately 25-30 minutes from our Clarksville base and fully within our service area. We respond within 60 minutes.",
+        a: "Yes. Hopkinsville is approximately 25-30 minutes from our Clarksville base and fully within our service area. We aim to respond within 60 minutes.",
       },
       {
         q: "Do you handle flood damage from Little River flooding in Hopkinsville?",
@@ -231,7 +231,7 @@ export const locationsData: LocationContent[] = [
     intro:
       "Woodlawn is a rural and semi-rural community in southern Montgomery County. Our team serves all of Woodlawn with 24/7 emergency response.",
     distanceNote:
-      "Approximately 15 minutes from Clarksville — fast response guaranteed.",
+      "Approximately 15 minutes from Clarksville — fast response.",
     risks: [
       "Rural properties with private well systems and septic issues",
       "Agricultural land drainage affecting residential properties",
@@ -446,7 +446,7 @@ export const locationsData: LocationContent[] = [
     faqs: [
       {
         q: "How fast can you respond to water damage in Palmyra TN?",
-        a: "Palmyra is approximately 20-25 minutes from our Clarksville base, well within our 60-minute guaranteed response window. We serve Palmyra 24 hours a day.",
+        a: "Palmyra is approximately 20-25 minutes from our Clarksville base, well within our fast-response window. We serve Palmyra 24 hours a day.",
       },
       {
         q: "Do you handle Cumberland River flooding near Palmyra?",
@@ -494,7 +494,6 @@ export const locationsData: LocationContent[] = [
     ],
   },
 
-  // ── 20 NEW ADDITIONAL LOCATIONS ──
   {
     slug: "cunningham-tn",
     city: "Cunningham",
@@ -528,7 +527,7 @@ export const locationsData: LocationContent[] = [
     faqs: [
       {
         q: "Do you serve Cunningham TN for water damage emergencies?",
-        a: "Yes. Cunningham is approximately 20-25 minutes from our Clarksville base — well within our 60-minute guaranteed response window. We serve all of eastern Montgomery County 24/7.",
+        a: "Yes. Cunningham is approximately 20-25 minutes from our Clarksville base — well within our fast-response window. We serve all of eastern Montgomery County 24/7.",
       },
       {
         q: "Can you handle Red River flooding damage in Cunningham TN?",
@@ -555,7 +554,7 @@ export const locationsData: LocationContent[] = [
     intro:
       "Southside is a growing suburban community in southern Montgomery County, Tennessee. Located along the US-41A corridor south of Clarksville, Southside has experienced rapid residential development over the past decade — bringing with it the water damage challenges common to newly developed areas. Our team provides 24/7 emergency water damage restoration throughout Southside with the speed and professionalism Clarksville area homeowners depend on.",
     distanceNote:
-      "Approximately 10–15 minutes from our Clarksville base — fast response guaranteed.",
+      "Approximately 10–15 minutes from our Clarksville base — fast response.",
     risks: [
       "New residential construction drainage issues on previously agricultural land",
       "Slab-on-grade foundations common in newer subdivisions vulnerable to slab leaks",
@@ -572,11 +571,11 @@ export const locationsData: LocationContent[] = [
       "Insurance Claim Management",
     ],
     closingLine:
-      "Southside TN homeowners trust our team for rapid response — often arriving faster than the 60-minute guarantee given our proximity to this southern Montgomery County community.",
+      "Southside TN homeowners trust our team for rapid response, often arriving within minutes given our proximity to this southern Montgomery County community.",
     faqs: [
       {
         q: "How quickly can you respond to water damage in Southside TN?",
-        a: "Southside is approximately 10-15 minutes from our Clarksville base, making it one of our fastest response areas. We guarantee 60-minute arrival and typically arrive sooner for Southside properties.",
+        a: "Southside is approximately 10-15 minutes from our Clarksville base, making it one of our fastest response areas. We aim for 60-minute arrival and typically arrive sooner for Southside properties.",
       },
       {
         q: "Do you handle slab leak water damage in Southside TN homes?",
@@ -623,7 +622,7 @@ export const locationsData: LocationContent[] = [
     faqs: [
       {
         q: "Do you serve the Dotsonville TN area for water damage restoration?",
-        a: "Yes. Dotsonville is within our primary service area, approximately 15-20 minutes from Clarksville. We respond within 60 minutes to any water damage emergency in Dotsonville.",
+        a: "Yes. Dotsonville is within our primary service area, approximately 15-20 minutes from Clarksville. We aim to respond within 60 minutes to any water damage emergency in Dotsonville.",
       },
       {
         q: "Can you handle water damage from private well failures in Dotsonville?",
@@ -687,196 +686,6 @@ export const locationsData: LocationContent[] = [
   },
 
   {
-    slug: "cumberland-furnace-tn",
-    city: "Cumberland Furnace",
-    state: "TN",
-    county: "Dickson County",
-    metaTitle:
-      "Water Damage Restoration Cumberland Furnace TN | (931) 271-2350",
-    metaDesc:
-      "Water damage restoration in Cumberland Furnace TN. 60-min response, 24/7. Flood cleanup, mold removal & structural drying. All insurance. Call (931) 271-2350.",
-    intro:
-      "Cumberland Furnace is a historic unincorporated community in Dickson County, Tennessee, named for the Cumberland Furnace ironworks that operated here in the 19th century. Today, Cumberland Furnace is a quiet rural community where older homes and farmsteads dot the landscape. Our team provides emergency water damage restoration to Cumberland Furnace and surrounding Dickson County communities.",
-    distanceNote:
-      "Approximately 35–40 minutes from Clarksville — within our extended service area.",
-    risks: [
-      "Rural Dickson County flooding from Jones Creek and seasonal runoff",
-      "Older historic properties with original or aging plumbing infrastructure",
-      "Crawl space and basement moisture from clay-heavy Tennessee soils",
-      "Private well failures causing sudden interior flooding",
-      "Limited local emergency services requiring faster professional response",
-    ],
-    services: [
-      "Emergency Water Damage Restoration",
-      "Flood Cleanup",
-      "Mold Remediation",
-      "Structural Drying",
-      "Crawl Space Water Damage",
-      "Insurance Claims",
-    ],
-    closingLine:
-      "Cumberland Furnace homeowners have access to professional water damage restoration from our Clarksville team — serving historic Dickson County properties with the care they deserve.",
-    faqs: [
-      {
-        q: "Do you serve Cumberland Furnace TN for water damage restoration?",
-        a: "Yes. Cumberland Furnace is within our service area at approximately 35-40 minutes from Clarksville. We respond to water damage emergencies throughout the Cumberland Furnace area.",
-      },
-      {
-        q: "How do you restore historic properties in Cumberland Furnace?",
-        a: "We approach historic properties with care, preserving original materials wherever possible while meeting current restoration standards. We have experience with original hardwood floors, plaster walls, and other period construction materials.",
-      },
-      {
-        q: "What should I do first after water damage in my Cumberland Furnace home?",
-        a: "Immediately shut off your main water supply if the source is a plumbing failure, then call (931) 271-2350. Do not attempt DIY cleanup — professional extraction and drying is critical to prevent mold in Middle Tennessee's humid climate.",
-      },
-    ],
-    uniqueContent:
-      "Cumberland Furnace's historic character and rural Dickson County location create unique water damage restoration considerations. Properties here range from 19th-century farmhouses to mid-century rural homes, all requiring restoration approaches that respect their character and construction methods.",
-  },
-
-  {
-    slug: "cumberland-city-tn",
-    city: "Cumberland City",
-    state: "TN",
-    county: "Stewart County",
-    metaTitle: "Water Damage Restoration Cumberland City TN | (931) 271-2350",
-    metaDesc:
-      "Water damage restoration in Cumberland City TN. 60-min response, 24/7. Cumberland River flooding specialists. All insurance. Call (931) 271-2350.",
-    intro:
-      "Cumberland City is a small community in Stewart County, Tennessee, located on the banks of the Cumberland River where it widens before entering Lake Barkley. The community's river location creates unique flooding risks, with Cumberland River level changes and TVA lake management decisions directly affecting property owners. Our team provides specialized water damage restoration for Cumberland City and surrounding Stewart County communities.",
-    distanceNote:
-      "Approximately 45–50 minutes from Clarksville — within our extended service area for significant events.",
-    risks: [
-      "Direct Cumberland River flooding risk for low-lying properties",
-      "TVA lake management and dam releases causing rapid water level changes",
-      "Stewart County's limited municipal infrastructure affecting drainage",
-      "Older riverside construction with foundation waterproofing challenges",
-      "Seasonal flooding during spring melt and major rainfall events",
-    ],
-    services: [
-      "Emergency Water Damage Restoration",
-      "Flood Cleanup & Water Extraction",
-      "Mold Remediation",
-      "Structural Drying",
-      "Foundation Water Intrusion",
-      "Insurance Claims",
-    ],
-    closingLine:
-      "Cumberland City homeowners facing river flooding or other water damage events can rely on our team's specific expertise with Cumberland River restoration challenges.",
-    faqs: [
-      {
-        q: "Do you handle Cumberland River flooding in Cumberland City TN?",
-        a: "Yes. Cumberland City's riverside location means we see specific flooding events related to river levels, TVA releases, and seasonal flooding. We are experienced with the unique challenges these events present.",
-      },
-      {
-        q: "How quickly can you reach Cumberland City after a flood?",
-        a: "Cumberland City is approximately 45-50 minutes from our Clarksville base. For significant flooding events, we dispatch immediately and arrive as quickly as road conditions allow.",
-      },
-      {
-        q: "Does homeowners insurance cover Cumberland River flooding?",
-        a: "Standard homeowners insurance covers sudden, accidental water damage from internal sources but typically does NOT cover flooding from rivers or external sources. Flood insurance through NFIP is separate and required for many Cumberland City properties in the floodplain.",
-      },
-    ],
-    uniqueContent:
-      "Cumberland City's position on the Cumberland River means residents face water damage risks that are distinct from most of our service area. TVA's management of Lake Barkley creates both flood risk from high water and the potential for dramatic water level changes that can affect riverside properties in unexpected ways.",
-  },
-
-  {
-    slug: "indian-mound-tn",
-    city: "Indian Mound",
-    state: "TN",
-    county: "Stewart County",
-    metaTitle:
-      "Water Damage Restoration Indian Mound TN | Stewart County | (931) 271-2350",
-    metaDesc:
-      "Water damage restoration in Indian Mound TN. 60-min response, 24/7. Flood cleanup, mold remediation & structural drying. All insurance. Call (931) 271-2350.",
-    intro:
-      "Indian Mound is a rural community in Stewart County, Tennessee, situated near Lake Barkley and the Land Between the Lakes National Recreation Area. The area attracts both year-round residents and seasonal cabin and vacation home owners who face unique water damage challenges — including unoccupied properties that can sustain significant undiscovered damage. Our team provides professional water damage restoration for Indian Mound and surrounding Stewart County properties.",
-    distanceNote:
-      "Approximately 50–55 minutes from Clarksville — we serve major water damage events throughout Stewart County.",
-    risks: [
-      "Seasonal vacation and cabin properties experiencing undiscovered pipe failures",
-      "Lake Barkley proximity and waterway flooding risks",
-      "Rural Stewart County properties with private well and septic systems",
-      "Extreme weather events common to the Land Between the Lakes region",
-      "Older cabin and recreational property construction with limited insulation",
-    ],
-    services: [
-      "Emergency Water Damage Restoration",
-      "Flood Cleanup",
-      "Mold Remediation",
-      "Structural Drying",
-      "Vacation Property Water Damage",
-      "Insurance Claims",
-    ],
-    closingLine:
-      "Indian Mound property owners — year-round residents and seasonal visitors alike — can rely on our team for professional water damage restoration when emergencies occur.",
-    faqs: [
-      {
-        q: "Can you handle water damage at vacation cabins in Indian Mound TN?",
-        a: "Yes. Vacation properties face specific water damage risks — particularly undiscovered pipe failures during winter or extended vacancy. We handle water damage restoration for all property types.",
-      },
-      {
-        q: "What happens to a cabin left wet for days or weeks in Indian Mound?",
-        a: "In Middle Tennessee's humid climate, mold can begin growing within 24-48 hours. A cabin left wet for days or weeks will almost certainly require both water damage restoration and mold remediation. Call (931) 271-2350 immediately upon discovery.",
-      },
-      {
-        q: "Do you work with insurance for vacation property water damage near Indian Mound?",
-        a: "Yes. We work with all insurance carriers including vacation home and dwelling fire policies common for seasonal properties. We handle complete documentation and direct billing regardless of property type.",
-      },
-    ],
-    uniqueContent:
-      "Indian Mound and the Land Between the Lakes area creates unique considerations for water damage restoration. Many properties here are vacation cabins or recreational homes that may sit vacant for extended periods, making undiscovered water damage from pipe failures or roof leaks a significant risk.",
-  },
-
-  {
-    slug: "trenton-tn",
-    city: "Trenton",
-    state: "TN",
-    county: "Montgomery County",
-    metaTitle:
-      "Water Damage Restoration Trenton TN | Montgomery County | (931) 271-2350",
-    metaDesc:
-      "Water damage restoration in Trenton TN. 60-min guaranteed response, 24/7. Flood cleanup, mold removal & structural drying. All insurance. Call (931) 271-2350.",
-    intro:
-      "Trenton is a small community in Montgomery County, Tennessee. As part of the greater Clarksville metropolitan area, Trenton residents have access to rapid emergency water damage restoration from our locally based team. Whether facing a burst pipe emergency, basement flooding, or storm damage, Trenton homeowners can count on professional response within 60 minutes.",
-    distanceNote:
-      "Approximately 15–20 minutes from Clarksville — within our primary service area.",
-    risks: [
-      "Storm water flooding from Montgomery County's annual 50+ inches of rainfall",
-      "Aging plumbing infrastructure in established residential areas",
-      "Basement and crawl space moisture from Middle Tennessee clay soils",
-      "Sewer backup risk during heavy rainfall events",
-      "Mold growth accelerated by Montgomery County's humid subtropical climate",
-    ],
-    services: [
-      "Emergency Water Damage Restoration",
-      "Flood Cleanup",
-      "Mold Remediation",
-      "Structural Drying",
-      "Sewage Backup Cleanup",
-      "Insurance Claims",
-    ],
-    closingLine:
-      "Trenton TN homeowners receive the same rapid, professional water damage restoration as our Clarksville clients — backed by full insurance claim management.",
-    faqs: [
-      {
-        q: "How fast can you respond to water damage emergencies in Trenton TN?",
-        a: "Trenton is within our primary service area, approximately 15-20 minutes from Clarksville. We guarantee 60-minute on-site arrival and typically arrive sooner.",
-      },
-      {
-        q: "What is the biggest water damage risk for Trenton TN homeowners?",
-        a: "In Montgomery County's humid subtropical climate, the most significant risk is secondary damage from mold. Mold begins growing within 24-48 hours of any water event — making immediate professional extraction and drying critical.",
-      },
-      {
-        q: "Do you handle sewer backup cleanup in Trenton TN?",
-        a: "Yes. Sewer backup (Category 3 black water) requires professional remediation with full PPE and hospital-grade disinfectants. Our IICRC-certified team handles all categories of water damage in Trenton.",
-      },
-    ],
-    uniqueContent:
-      "Trenton's location in Montgomery County means residents benefit from proximity to our Clarksville base. The community shares the same humid subtropical climate and water damage risks as greater Clarksville, making rapid professional response essential for minimizing damage.",
-  },
- {
   slug: "cedar-hill-tn",
   city: "Cedar Hill",
   state: "TN",
@@ -910,102 +719,6 @@ export const locationsData: LocationContent[] = [
   closingLine:
     "Cedar Hill homeowners can count on our 24/7 emergency response and professional restoration services. Call (931) 271-2350 anytime.",
 },
-
-  {
-    slug: "charlotte-tn",
-    city: "Charlotte",
-    state: "TN",
-    county: "Dickson County",
-    metaTitle:
-      "Water Damage Restoration Charlotte TN | Dickson County Seat | (931) 271-2350",
-    metaDesc:
-      "Water damage restoration in Charlotte TN. 60-min response, 24/7. Flood cleanup, mold remediation & structural drying. All insurance. Call (931) 271-2350.",
-    intro:
-      "Charlotte is the county seat of Dickson County, Tennessee — a small historic town that serves as the administrative center for the surrounding county. As the county seat, Charlotte has a mix of older historic structures and newer residential development, each with distinct water damage restoration needs. Our team provides professional emergency water damage restoration throughout Charlotte and Dickson County.",
-    distanceNote:
-      "Approximately 40–45 minutes from Clarksville — within our extended service area.",
-    risks: [
-      "Dickson County creek and waterway flooding during seasonal rain events",
-      "Historic downtown structures with original plumbing and construction materials",
-      "Older courthouse square neighborhood homes with aging infrastructure",
-      "New residential development drainage issues on formerly agricultural land",
-      "Summer thunderstorm flooding common to the Dickson County area",
-    ],
-    services: [
-      "Emergency Water Damage Restoration",
-      "Flood Cleanup",
-      "Mold Remediation",
-      "Structural Drying",
-      "Historic Property Restoration",
-      "Insurance Claims",
-    ],
-    closingLine:
-      "Charlotte TN and Dickson County homeowners can rely on our Clarksville team for professional water damage restoration — from historic courthouse-area homes to newer subdivisions.",
-    faqs: [
-      {
-        q: "Is Charlotte TN (Dickson County) within your service area?",
-        a: "Yes. Charlotte is approximately 40-45 minutes from our Clarksville base, within our service area. We respond to significant water damage events throughout Dickson County.",
-      },
-      {
-        q: "Do you handle water damage in older historic homes in Charlotte TN?",
-        a: "Yes. We approach older and historic properties with specific care, preserving original materials — hardwood floors, plaster walls, period woodwork — wherever restoration standards allow.",
-      },
-      {
-        q: "What insurance carriers work with your team in Charlotte TN?",
-        a: "We work with all major carriers serving Dickson County: USAA, State Farm, Allstate, Farmers, Liberty Mutual, Nationwide, Progressive, and all others. We handle direct billing so you pay only your deductible.",
-      },
-    ],
-    uniqueContent:
-      "Charlotte TN as Dickson County's county seat means a mix of historic properties and newer development, requiring restoration expertise across multiple construction types and eras. Our team is prepared for both the original wide-plank floors of 19th-century homes and the modern construction of newer subdivisions.",
-  },
-
-  {
-    slug: "erin-tn",
-    city: "Erin",
-    state: "TN",
-    county: "Houston County",
-    metaTitle:
-      "Water Damage Restoration Erin TN | Houston County | (931) 271-2350",
-    metaDesc:
-      "Water damage restoration in Erin TN and Houston County. 60-min response, 24/7. Flood cleanup, mold remediation & structural drying. All insurance. Call (931) 271-2350.",
-    intro:
-      "Erin is the county seat of Houston County, Tennessee — a small, close-knit community in the heart of Middle Tennessee. Houston County is one of Tennessee's smallest counties, and Erin homeowners benefit from our Clarksville team's ability to provide professional water damage restoration services that may not be readily available locally. We serve Erin and all of Houston County with 24/7 emergency response.",
-    distanceNote:
-      "Approximately 50–55 minutes from Clarksville — within our extended service area for significant events.",
-    risks: [
-      "Red River tributary flooding affecting Houston County properties",
-      "Older housing stock in Erin with aging plumbing infrastructure",
-      "Rural property challenges including private wells and septic systems",
-      "Limited local emergency restoration services in Houston County",
-      "Clay soil conditions causing foundation drainage issues",
-    ],
-    services: [
-      "Emergency Water Damage Restoration",
-      "Flood Cleanup",
-      "Mold Remediation",
-      "Structural Drying",
-      "Crawl Space Water Damage",
-      "Insurance Claims",
-    ],
-    closingLine:
-      "Erin and Houston County homeowners deserve access to professional water damage restoration — and our Clarksville team provides exactly that, regardless of the distance.",
-    faqs: [
-      {
-        q: "Do you serve Erin TN and Houston County for water damage restoration?",
-        a: "Yes. Erin is within our extended service area at approximately 50-55 minutes from Clarksville. We respond to significant water damage events throughout Houston County.",
-      },
-      {
-        q: "Is professional water damage restoration important in a rural area like Erin TN?",
-        a: "Absolutely. In fact, rural areas like Erin and Houston County often have fewer local restoration options — making rapid professional response from our Clarksville team even more valuable. Untreated water damage leads to mold growth and structural damage regardless of location.",
-      },
-      {
-        q: "What should Erin TN homeowners do immediately after water damage?",
-        a: "Shut off your water source if possible, move valuables to dry areas, and call (931) 271-2350 immediately. Do not use household fans or shop vacs — professional industrial equipment is essential for proper drying in Tennessee's humid climate.",
-      },
-    ],
-    uniqueContent:
-      "Erin TN and Houston County represent one of Middle Tennessee's most rural communities — where access to professional services requires reaching out to regional providers like our Clarksville team. The area's older housing stock and agricultural character create specific water damage challenges that we are prepared to address.",
-  },
 
   {
     slug: "guthrie-ky",
@@ -1055,101 +768,6 @@ export const locationsData: LocationContent[] = [
       "Guthrie's historic character as the birthplace of Robert Penn Warren reflects the community's deep roots — and many of the homes here have history as well. Older housing stock requires restoration expertise that respects original construction while meeting modern standards.",
   },
 
-  {
-    slug: "big-rock-tn",
-    city: "Big Rock",
-    state: "TN",
-    county: "Stewart County",
-    metaTitle:
-      "Water Damage Restoration Big Rock TN | Stewart County | (931) 271-2350",
-    metaDesc:
-      "Water damage restoration in Big Rock TN. 60-min response, 24/7. Flood cleanup, mold remediation & structural drying. All insurance. Call (931) 271-2350.",
-    intro:
-      "Big Rock is a small, rural community in Stewart County, Tennessee, located near the Cumberland River and Lake Barkley. The area's remote character and proximity to major waterways creates specific water damage challenges — particularly seasonal flooding and the challenges of maintaining homes in a humid, riverine environment. Our team provides professional water damage restoration for Big Rock and the broader Stewart County rural area.",
-    distanceNote:
-      "Approximately 50–55 minutes from Clarksville — within our extended service area for significant events.",
-    risks: [
-      "Cumberland River and Lake Barkley proximity creating seasonal flooding risk",
-      "Remote rural location with aging housing infrastructure",
-      "Private well and septic system failures causing interior flooding",
-      "Limited local access to professional restoration services",
-      "Mold risk elevated by humid Tennessee river valley conditions",
-    ],
-    services: [
-      "Emergency Water Damage Restoration",
-      "Flood Cleanup",
-      "Mold Remediation",
-      "Structural Drying",
-      "Foundation Water Intrusion",
-      "Insurance Claims",
-    ],
-    closingLine:
-      "Big Rock TN homeowners can access the same professional water damage restoration serving urban Clarksville — delivered to their remote Stewart County location.",
-    faqs: [
-      {
-        q: "Do you serve Big Rock TN and remote Stewart County properties?",
-        a: "Yes. We serve Stewart County including remote communities like Big Rock. Distance is not a barrier — we respond to significant water damage events throughout our service area.",
-      },
-      {
-        q: "How do Cumberland River levels affect flooding risk in Big Rock TN?",
-        a: "The Cumberland River's levels are influenced by TVA dam management, upstream rainfall, and seasonal patterns. Properties near the river in Big Rock can experience flooding from both rainfall-driven events and dam release events.",
-      },
-      {
-        q: "What is the most important thing to do after flood damage in Big Rock TN?",
-        a: "Call professional help immediately — (931) 271-2350. In remote areas like Big Rock, the temptation to handle water damage yourself is understandable, but professional industrial equipment is essential for preventing mold and structural damage in Middle Tennessee's climate.",
-      },
-    ],
-    uniqueContent:
-      "Big Rock TN represents the most rural edge of our service area — a community where professional water damage restoration has historically been difficult to access. Our commitment to serving all of Stewart County means Big Rock homeowners receive the same professional service as urban Clarksville clients.",
-  },
-
-  {
-    slug: "chapmansboro-tn",
-    city: "Chapmansboro",
-    state: "TN",
-    county: "Cheatham County",
-    metaTitle:
-      "Water Damage Restoration Chapmansboro TN | Cheatham County | (931) 271-2350",
-    metaDesc:
-      "Water damage restoration in Chapmansboro TN. 60-min response, 24/7. Cumberland River flooding specialists. All insurance. Call (931) 271-2350.",
-    intro:
-      "Chapmansboro is a small community in Cheatham County, Tennessee, situated near the Cumberland River north of Ashland City. Like other communities along the Cumberland River corridor, Chapmansboro faces specific water damage risks related to river flooding, seasonal rainfall, and the challenges of older rural properties. Our Clarksville team provides professional water damage restoration throughout the Chapmansboro area.",
-    distanceNote:
-      "Approximately 35–40 minutes from Clarksville — within our service area.",
-    risks: [
-      "Cumberland River flooding risk for low-lying properties near the river",
-      "Seasonal storm flooding along Harpeth River tributaries",
-      "Cheatham County rural properties with older plumbing infrastructure",
-      "Crawl space moisture from Tennessee river valley humid conditions",
-      "Flash flooding on rural roads and properties during heavy rainfall",
-    ],
-    services: [
-      "Emergency Water Damage Restoration",
-      "Flood Cleanup",
-      "Mold Remediation",
-      "Structural Drying",
-      "Crawl Space Water Damage",
-      "Insurance Claims",
-    ],
-    closingLine:
-      "Chapmansboro homeowners along the Cumberland River can count on our team's specific expertise with riverine flooding and Cheatham County water damage challenges.",
-    faqs: [
-      {
-        q: "Do you serve Chapmansboro TN for water damage restoration?",
-        a: "Yes. Chapmansboro is approximately 35-40 minutes from our Clarksville base. We respond to water damage emergencies throughout Cheatham County.",
-      },
-      {
-        q: "How often does the Cumberland River flood in Chapmansboro TN?",
-        a: "The Cumberland River's flooding frequency varies by year based on rainfall patterns. Properties in the floodplain near Chapmansboro can experience flooding multiple times during high-rainfall years.",
-      },
-      {
-        q: "What should I do if the Cumberland River is rising toward my Chapmansboro property?",
-        a: "Do not wait for actual flooding — call (931) 271-2350 and move valuables above expected flood levels immediately. Having our number saved before a flood event saves critical response time. After flooding occurs, call immediately for water extraction.",
-      },
-    ],
-    uniqueContent:
-      "Chapmansboro's position along the Cumberland River corridor in Cheatham County creates water damage challenges that are distinct from urban Clarksville. River proximity means residents must be prepared for both sudden flooding events and the slow moisture intrusion that river valley humidity creates year-round.",
-  },
 ];
 
 export function getLocationBySlug(slug: string): LocationContent | undefined {

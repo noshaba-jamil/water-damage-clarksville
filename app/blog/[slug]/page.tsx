@@ -1,121 +1,76 @@
- import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { getPostBySlugAsync, getPublishedPostsAsync } from "@/lib/blogStorage";
-import { getBlogPostBySlug as getStaticPostBySlug, blogPosts as staticPosts } from "@/content/blog/blogData";
+import { blogPosts } from "@/content/blog/blogData";
+import { getPublishedPostsAsync } from "@/lib/blogStorage";
+import PageHero from "@/components/PageHero";
 
 export const dynamic = "force-dynamic";
 
 const SITE_URL = "https://water-damage-clarksville.com";
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const adminPost = await getPostBySlugAsync(params.slug);
-  const post = adminPost || getStaticPostBySlug(params.slug);
-  if (!post) return {};
-  return {
-    title: post.metaTitle,
-    description: post.metaDesc,
-    alternates: { canonical: `/blog/${params.slug}` },
-    openGraph: { title: post.metaTitle, description: post.metaDesc, url: `${SITE_URL}/blog/${params.slug}`, type: "article", publishedTime: post.date },
-  };
-}
+export const metadata: Metadata = { title:"Water Damage Blog | Tips & Guides | Clarksville TN", description:"Water damage restoration guides for Clarksville TN homeowners: insurance tips, cost breakdowns, mold prevention. Call (931) 271-2350.", alternates:{canonical:"/blog"} };
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const adminPost = await getPostBySlugAsync(params.slug);
-  const staticPost = getStaticPostBySlug(params.slug);
-  const post = adminPost || staticPost;
+// This page previously had no schema at all, unlike every other content
+// page on the site.
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
+  ],
+};
 
-  if (!post) notFound();
+const catColors: Record<string,string> = {"Cost & Insurance":"#16A34A","Restoration Process":"#2563EB","Prevention & Education":"#D97706","Mold & Health":"#DC2626","Flood Preparedness":"#7C3AED","Water Damage":"#16A34A"};
+const catEmoji: Record<string,string> = {"Cost & Insurance":"💰","Restoration Process":"🔧","Prevention & Education":"🔍","Mold & Health":"🦠","Flood Preparedness":"🌊","Water Damage":"💧"};
 
-  const adminPublished = await getPublishedPostsAsync();
-  const related = [...adminPublished.filter(p => p.slug !== params.slug), ...staticPosts.filter(p => p.slug !== params.slug)].slice(0, 3);
-
-  const articleSchema = { "@context": "https://schema.org", "@type": "Article", headline: post.title, description: post.metaDesc, datePublished: post.date, dateModified: post.date, author: { "@type": "Organization", name: "Clarksville Water Damage Restoration", url: SITE_URL }, publisher: { "@type": "Organization", name: "Clarksville Water Damage Restoration", url: SITE_URL }, mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/blog/${params.slug}` }, articleSection: post.category };
-  const breadcrumbSchema = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: SITE_URL }, { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` }, { "@type": "ListItem", position: 3, name: post.title, item: `${SITE_URL}/blog/${params.slug}` }] };
+export default async function BlogPage() {
+  const adminPosts = await getPublishedPostsAsync();
+  const allPosts = [...adminPosts, ...blogPosts];
 
   return (<>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-    <style>{`.bph{background:linear-gradient(135deg,#09090B 0%,#18181B 100%);padding:80px 40px 64px;position:relative;overflow:hidden} .bph::after{content:'';position:absolute;right:-100px;top:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(34,197,94,0.06) 0%,transparent 70%);pointer-events:none} .bph-in{max-width:860px;position:relative;z-index:1} .bph-bc{display:flex;align-items:center;gap:6px;margin-bottom:22px;flex-wrap:wrap} .bph-bc a{font-family:var(--font-inter);font-size:11px;font-weight:500;color:rgba(255,255,255,.35);text-decoration:none;transition:color .15s} .bph-bc a:hover{color:rgba(255,255,255,.7)} .bph-bc-sep{font-size:11px;color:rgba(255,255,255,.15)} .bph-bc-cur{font-family:var(--font-inter);font-size:11px;font-weight:500;color:rgba(255,255,255,.5)} .bph-cat{display:inline-flex;align-items:center;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ADE80;font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:18px} .bph-h1{font-family:var(--font-cormorant);font-size:clamp(28px,4vw,50px);font-weight:700;color:#fff;line-height:1.05;letter-spacing:-1px;margin-bottom:18px} .bph-meta{display:flex;align-items:center;gap:18px;flex-wrap:wrap} .bph-meta-i{font-family:var(--font-inter);font-size:12px;font-weight:500;color:rgba(255,255,255,.4)} .bpl{max-width:1240px;margin:0 auto;padding:72px 40px;display:grid;grid-template-columns:1fr 300px;gap:52px;align-items:start} .art-exc{font-family:var(--font-cormorant);font-size:clamp(17px,2vw,21px);font-weight:500;line-height:1.6;color:#374151;font-style:italic;border-left:3px solid #22C55E;padding-left:20px;margin-bottom:36px} .art-h2{font-family:var(--font-cormorant);font-size:clamp(22px,2.5vw,28px);font-weight:700;color:#09090B;margin-bottom:12px;letter-spacing:-0.4px;margin-top:40px;line-height:1.1} .art-h2:first-of-type{margin-top:0} .art-p{font-family:var(--font-inter);font-size:15px;line-height:1.8;color:#374151;margin-bottom:0} .art-cta{background:#09090B;border-radius:10px;padding:30px;text-align:center;margin:36px 0} .ac-h{font-family:var(--font-cormorant);font-size:24px;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:-0.3px} .ac-p{font-family:var(--font-inter);font-size:13px;color:rgba(255,255,255,.45);margin-bottom:18px} .ac-btn{display:inline-flex;align-items:center;gap:8px;background:#22C55E;color:#09090B;padding:12px 24px;border-radius:6px;text-decoration:none;font-family:var(--font-inter);font-weight:700;font-size:14px;transition:background .2s} .ac-btn:hover{background:#16A34A} .art-int{margin-top:44px;padding-top:32px;border-top:1px solid #E4E4E7} .art-int-h{font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#09090B;margin-bottom:14px} .art-int-links{display:flex;flex-direction:column;gap:10px} .art-int-links a{font-family:var(--font-inter);font-size:14px;font-weight:500;color:#16A34A;text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .15s} .art-int-links a::before{content:'→';font-size:11px;flex-shrink:0} .art-int-links a:hover{color:#09090B} .art-rel{margin-top:44px} .art-rel-h{font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#09090B;margin-bottom:14px} .art-rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px} .arc{background:#F9FAFB;border:1px solid #E4E4E7;border-radius:8px;padding:18px;text-decoration:none;transition:border-color .18s;display:block} .arc:hover{border-color:#22C55E} .arc-cat{font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#16A34A;margin-bottom:6px} .arc-t{font-family:var(--font-cormorant);font-size:16px;font-weight:700;color:#09090B;line-height:1.3} .bsb{display:flex;flex-direction:column;gap:18px;position:sticky;top:130px} .bsb-cta{background:#09090B;border-radius:10px;padding:24px} .bsb-ey{font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#4ADE80;margin-bottom:8px} .bsb-n{font-family:var(--font-cormorant);font-size:26px;font-weight:700;color:#fff;margin-bottom:4px;letter-spacing:-0.5px} .bsb-s{font-family:var(--font-inter);font-size:12px;color:rgba(255,255,255,.28);margin-bottom:18px} .bsb-b1{display:block;background:#22C55E;color:#09090B;padding:11px;border-radius:6px;text-decoration:none;font-family:var(--font-inter);font-weight:700;font-size:13px;text-align:center;margin-bottom:7px} .bsb-b1:hover{background:#16A34A} .bsb-b2{display:block;background:transparent;color:rgba(255,255,255,.4);padding:10px;border-radius:6px;text-decoration:none;font-family:var(--font-inter);font-size:12px;font-weight:500;text-align:center;border:1px solid rgba(255,255,255,.09)} .bsb-b2:hover{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.7)} .bsb-box{background:#F9FAFB;border:1px solid #E4E4E7;border-radius:10px;padding:20px} .bsb-bh{font-family:var(--font-inter);font-size:11px;font-weight:600;color:#09090B;margin-bottom:12px} .bsb-links{display:flex;flex-direction:column;gap:9px} .bsb-links a{font-family:var(--font-inter);font-size:13px;font-weight:500;color:#52525B;text-decoration:none;transition:color .15s;display:flex;align-items:center;gap:5px} .bsb-links a::before{content:'→';font-size:11px;color:#16A34A;flex-shrink:0} .bsb-links a:hover{color:#16A34A} @media(max-width:1024px){.bph{padding:56px 20px 44px}.bpl{grid-template-columns:1fr;padding:52px 20px}.bsb{position:static}.art-rel-grid{grid-template-columns:1fr}}`}</style>
-    <header className="bph">
-      <div className="bph-in">
-        <nav className="bph-bc" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
-          <span className="bph-bc-sep" aria-hidden="true">/</span>
-          <Link href="/blog">Blog</Link>
-          <span className="bph-bc-sep" aria-hidden="true">/</span>
-          <span className="bph-bc-cur" aria-current="page">{post.category}</span>
-        </nav>
-        <div className="bph-cat">{post.category}</div>
-        <h1 className="bph-h1">{post.title}</h1>
-        <div className="bph-meta">
-          <time dateTime={post.date} className="bph-meta-i">📅 {post.date}</time>
-          <span className="bph-meta-i">⏱ {post.readTime}</span>
-          <span className="bph-meta-i" itemProp="author">✍️ Clarksville Restoration Team</span>
-        </div>
-      </div>
-    </header>
-    <div style={{ background: "#fff" }}>
-      <div className="bpl">
-        <article itemScope itemType="https://schema.org/Article">
-          <meta itemProp="headline" content={post.title} />
-          <meta itemProp="datePublished" content={post.date} />
-          {"excerpt" in post && post.excerpt && <div className="art-exc" role="note">{post.excerpt}</div>}
-          {post.content.map((sec, i) => (
-            <section key={i} aria-labelledby={sec.heading ? `ah-${i}` : undefined}>
-              {i === 2 && <div className="art-cta"><div className="ac-h">Water Damage in Clarksville?</div><div className="ac-p">Our team responds in 60 minutes — 24/7. All insurance accepted.</div><a href="tel:+19312712350" className="ac-btn">📞 Call (931) 271-2350 Now</a></div>}
-              {sec.heading && <h2 className="art-h2" id={`ah-${i}`} itemProp="articleBody">{sec.heading}</h2>}
-              <p className="art-p" itemProp="articleBody">{sec.body}</p>
-            </section>
-          ))}
-          <div className="art-int" aria-label="Related services">
-            <div className="art-int-h">Related Services &amp; Resources</div>
-            <nav className="art-int-links" aria-label="Internal links">
-              <a href="/emergency-water-damage-clarksville-tn">Emergency Water Damage Restoration — Clarksville TN</a>
-              <a href="/flood-cleanup-clarksville-tn">Flood Cleanup &amp; Water Extraction — Clarksville TN</a>
-              <a href="/mold-remediation-clarksville-tn">Mold Remediation &amp; Removal — Clarksville TN</a>
-              <a href="/water-damage-insurance-claim-clarksville-tn">Insurance Claim Management — Tennessee</a>
-              <a href="/service-areas">View All Service Areas →</a>
-            </nav>
-          </div>
-          {related.length > 0 && (
-            <aside className="art-rel" aria-label="Related articles">
-              <div className="art-rel-h">Related Articles</div>
-              <div className="art-rel-grid">
-                {related.map(p => (
-                  <Link key={p.slug} href={`/blog/${p.slug}`} className="arc" aria-label={`Read: ${p.title}`}>
-                    <div className="arc-cat">{p.category}</div>
-                    <div className="arc-t">{p.title}</div>
-                  </Link>
-                ))}
+    <PageHero eyebrow="Expert Knowledge Base — Clarksville TN" title="Water Damage Restoration" accent="Guides & Resources" subtitle="Insurance guides, cost breakdowns, mold prevention, and flood preparedness — expert knowledge for Clarksville TN homeowners from our restoration professionals." image="https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&w=1800&q=80" imageFocus="center 40%" breadcrumbs={[{label:"Blog"}]}/>
+    <style>{`.bl{max-width:1240px;margin:0 auto;padding:80px 40px} .bl-h{font-family:var(--font-cormorant);font-size:clamp(26px,3vw,36px);font-weight:700;color:#09090B;margin-bottom:12px;letter-spacing:-0.6px} .bl-p{font-family:var(--font-inter);font-size:15px;line-height:1.75;color:#52525B;margin-bottom:40px} .bl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px} .bl-card{display:flex;flex-direction:column;background:#fff;border:1px solid #E4E4E7;border-radius:10px;overflow:hidden;text-decoration:none;transition:all .22s} .bl-card:hover{border-color:#22C55E;box-shadow:0 4px 24px rgba(34,197,94,.1);transform:translateY(-3px)} .bl-img{height:170px;overflow:hidden;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#09090B,#18181B)} .bl-emoji{font-size:48px} .bl-badge{position:absolute;top:12px;left:12px;font-family:var(--font-inter);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;padding:4px 12px;border-radius:100px} .bl-body{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1} .bl-meta{display:flex;align-items:center;gap:14px;margin-bottom:10px} .bl-meta-i{font-family:var(--font-inter);font-size:11px;font-weight:500;color:#9CA3AF} .bl-title{font-family:var(--font-cormorant);font-size:21px;font-weight:700;color:#09090B;margin-bottom:9px;letter-spacing:-0.3px;line-height:1.2} .bl-exc{font-family:var(--font-inter);font-size:13.5px;line-height:1.65;color:#52525B;flex:1} .bl-read{font-family:var(--font-inter);font-size:13px;font-weight:600;color:#16A34A;margin-top:14px;display:flex;align-items:center;gap:5px;transition:gap .2s} .bl-card:hover .bl-read{gap:9px} .bl-read::after{content:"→"} .bl-links{margin-top:52px;padding-top:44px;border-top:1px solid #E4E4E7} .bl-links-h{font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#09090B;margin-bottom:18px} .bl-links-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px} .bl-link{font-family:var(--font-inter);font-size:14px;font-weight:500;color:#16A34A;text-decoration:none;display:flex;align-items:center;gap:6px;padding:10px 14px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:6px;transition:all .18s} .bl-link::before{content:'→';font-size:11px;flex-shrink:0} .bl-link:hover{background:#DCFCE7;border-color:#22C55E} .bl-cta{background:#09090B;border-radius:10px;padding:44px;text-align:center;margin-top:56px} .bl-cta-h{font-family:var(--font-cormorant);font-size:clamp(26px,3vw,38px);font-weight:700;color:#fff;margin-bottom:12px;letter-spacing:-0.8px} .bl-cta-p{font-family:var(--font-inter);font-size:15px;color:rgba(255,255,255,.5);margin-bottom:24px} @media(max-width:1024px){.bl{padding:52px 20px}} @media(max-width:640px){.bl-grid{grid-template-columns:1fr}.bl-links-grid{grid-template-columns:1fr}}`}</style>
+    <div style={{background:"#F9FAFB"}}>
+      <main className="bl">
+        <header style={{marginBottom:40}}>
+          <h2 className="bl-h">Expert Water Damage Guides for Clarksville TN Homeowners</h2>
+          <p className="bl-p">Our restoration professionals share expert knowledge on water damage costs, insurance claims, mold prevention, and flood preparedness — specific to Clarksville TN&apos;s climate and conditions.</p>
+        </header>
+        <div className="bl-grid" role="list" aria-label="Blog articles">
+          {allPosts.map(post=>(
+            <Link key={post.slug} href={`/blog/${post.slug}`} className="bl-card" role="listitem" aria-label={`Read: ${post.title}`}>
+              <div className="bl-img" role="img" aria-label={`${post.category} article`}>
+                <span className="bl-emoji" aria-hidden="true">{catEmoji[post.category]||"📄"}</span>
+                <span className="bl-badge" style={{background:catColors[post.category]||"#16A34A"}} aria-label={`Category: ${post.category}`}>{post.category}</span>
               </div>
-            </aside>
-          )}
-        </article>
-        <aside className="bsb" aria-label="Emergency contact">
-          <div className="bsb-cta">
-            <div className="bsb-ey">24/7 Emergency</div>
-            <div className="bsb-n">(931) 271-2350</div>
-            <div className="bsb-s">Answered in 60 seconds · 24/7/365</div>
-            <a href="tel:+19312712350" className="bsb-b1">📞 Call Now</a>
-            <Link href="/contact" className="bsb-b2">Free Assessment →</Link>
+              <div className="bl-body">
+                <div className="bl-meta">
+                  <time dateTime={post.date} className="bl-meta-i">📅 {post.date}</time>
+                  <span className="bl-meta-i">⏱ {post.readTime}</span>
+                </div>
+                <h2 className="bl-title">{post.title}</h2>
+                <p className="bl-exc">{post.excerpt}</p>
+                <div className="bl-read" aria-hidden="true">Read Article</div>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <nav className="bl-links" aria-label="Related services">
+          <div className="bl-links-h">Related Services &amp; Resources</div>
+          <div className="bl-links-grid">
+            {[["Emergency Water Damage","/emergency-water-damage-clarksville-tn"],["Flood Cleanup","/flood-cleanup-clarksville-tn"],["Mold Remediation","/mold-remediation-clarksville-tn"],["Structural Drying","/structural-drying-clarksville-tn"],["Insurance Claims","/water-damage-insurance-claim-clarksville-tn"],["View All Service Areas","/service-areas"]].map(([l,h])=>(
+              <Link key={h} href={h} className="bl-link" aria-label={l}>{l}</Link>
+            ))}
           </div>
-          <nav className="bsb-box" aria-label="Our services">
-            <div className="bsb-bh">Our Services</div>
-            <div className="bsb-links">
-              {[["Emergency Water Damage", "/emergency-water-damage-clarksville-tn"], ["Flood Cleanup", "/flood-cleanup-clarksville-tn"], ["Mold Remediation", "/mold-remediation-clarksville-tn"], ["Sewage Backup", "/services/sewage-backup-cleanup-clarksville-tn"], ["Structural Drying", "/structural-drying-clarksville-tn"], ["Insurance Claims", "/water-damage-insurance-claim-clarksville-tn"]].map(([l, h]) => <Link key={h} href={h}>{l}</Link>)}
-            </div>
-          </nav>
-        </aside>
-      </div>
-    </div>
-    <div style={{ background: "#09090B", padding: "64px 40px", textAlign: "center" }}>
-      <h2 style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(26px,3.5vw,42px)", fontWeight: 700, color: "#fff", marginBottom: 14, letterSpacing: -1 }}>Need Water Damage Help in Clarksville?</h2>
-      <p style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: "rgba(255,255,255,.5)", marginBottom: 28, maxWidth: 480, margin: "0 auto 28px", lineHeight: 1.7 }}>Our team responds in 60 minutes — 24/7. All insurance accepted including USAA.</p>
-      <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
-        <a href="tel:+19312712350" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#22C55E", color: "#09090B", padding: "14px 30px", borderRadius: 6, textDecoration: "none", fontFamily: "var(--font-inter)", fontSize: 16, fontWeight: 700 }}>📞 (931) 271-2350</a>
-        <Link href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", color: "rgba(255,255,255,.7)", padding: "13px 22px", borderRadius: 6, textDecoration: "none", fontFamily: "var(--font-inter)", fontSize: 15, fontWeight: 500, border: "1px solid rgba(255,255,255,.18)" }}>Free Assessment →</Link>
-      </div>
+        </nav>
+        <div className="bl-cta">
+          <h2 className="bl-cta-h">Water Damage Emergency?</h2>
+          <p className="bl-cta-p">Don&apos;t read — call. Our team responds in 60 minutes, 24/7.</p>
+          <a href="tel:+19312712350" style={{display:"inline-flex",alignItems:"center",gap:9,background:"#22C55E",color:"#09090B",padding:"14px 32px",borderRadius:6,textDecoration:"none",fontFamily:"var(--font-inter)",fontSize:16,fontWeight:700}}>📞 (931) 271-2350</a>
+        </div>
+      </main>
     </div>
   </>);
 }
