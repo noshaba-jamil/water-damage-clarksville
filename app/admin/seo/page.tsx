@@ -197,7 +197,7 @@ function buildSnapshot(a: Audit, i: ImgAudit, h: HdAudit, t: TAudit): Snapshot {
     r.flags?.forEach((f) => put("SEO", "issue", pg, f));
   });
   i.images.forEach((im) => {
-    const pgs = [...new Set(im.usages.map((u) => u.page))];
+    const pgs = Array.from(new Set(im.usages.map((u) => u.page)));
     const label = `${pgs[0]}${pgs.length > 1 ? ` +${pgs.length - 1} pages` : ""} (${im.name})`;
     im.issues.forEach((m) => put("Images", "issue", label, m));
     im.usages.forEach((u) => u.issues.forEach((m) => put("Images", "issue", `${u.page} (${im.name})`, m)));
@@ -334,7 +334,7 @@ export default function SeoMonitorPage() {
       if (p.level === "issue") e.level = "issue";
       e.pages.add(r.page); e.count++; m.set(p.type, e);
     }));
-    return [...m.entries()].sort((a, b) => Number(b[1].level === "issue") - Number(a[1].level === "issue") || b[1].pages.size - a[1].pages.size);
+    return Array.from(m.entries()).sort((a, b) => Number(b[1].level === "issue") - Number(a[1].level === "issue") || b[1].pages.size - a[1].pages.size);
   })();
   const tcShown = tcRows
     .filter((r) => (tcShow === "issues" ? tcIssues(r) > 0 : true) && (tcType === "all" || r.problems.some((p) => p.type === tcType)))
@@ -568,7 +568,7 @@ export default function SeoMonitorPage() {
                   <tbody>
                     {shown.map((i) => {
                       const first = i.usages.find((u) => !u.og);
-                      const pgs = [...new Set(i.usages.map((u) => u.page))];
+                      const pgs = Array.from(new Set(i.usages.map((u) => u.page)));
                       const st = i.status === "fix" ? ["Needs fixing", C.red] : i.status === "note" ? ["Done, can improve", C.blue] : ["Done", C.green];
                       return (
                         <Fragment key={i.url}>
@@ -747,7 +747,7 @@ export default function SeoMonitorPage() {
                         <td><Badge label={e.level === "issue" ? "Fix" : "Note"} color={e.level === "issue" ? C.red : C.blue} /></td>
                         <td>{e.pages.size}</td>
                         <td>{e.count}</td>
-                        <td style={{ color: C.blue, fontFamily: "monospace", fontSize: 11 }}>{[...e.pages].slice(0, 3).join(", ")}{e.pages.size > 3 ? ` +${e.pages.size - 3} more` : ""}</td>
+                        <td style={{ color: C.blue, fontFamily: "monospace", fontSize: 11 }}>{Array.from(e.pages).slice(0, 3).join(", ")}{e.pages.size > 3 ? ` +${e.pages.size - 3} more` : ""}</td>
                       </tr>))}
                     </tbody>
                   </table>

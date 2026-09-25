@@ -27,7 +27,7 @@ async function audit(url: string) {
     const html = await res.text();
     const main = (/<main[\s\S]*?<\/main>/i.exec(html) || [html])[0];
 
-    const outline = [...main.matchAll(/<h([1-6])\b[^>]*>([\s\S]*?)<\/h\1>/gi)].map((m) => ({ level: Number(m[1]), text: text(m[2]), flag: null as string | null }));
+    const outline = Array.from(main.matchAll(/<h([1-6])\b[^>]*>([\s\S]*?)<\/h\1>/gi)).map((m) => ({ level: Number(m[1]), text: text(m[2]), flag: null as string | null }));
     const issues: string[] = [], notes: string[] = [];
 
     if (!outline.length) issues.push("No headings found in the main content");
@@ -72,10 +72,10 @@ export async function GET() {
   try {
     const xml = await (await fetch(`${SITE}/sitemap.xml`, { cache: "no-store" })).text();
     const host = new URL(SITE).host;
-    urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => dec(m[1]).trim()).filter((u) => { try { return new URL(u).host === host; } catch { return false; } });
+    urls = Array.from(xml.matchAll(/<loc>([^<]+)<\/loc>/g)).map((m) => dec(m[1]).trim()).filter((u) => { try { return new URL(u).host === host; } catch { return false; } });
   } catch {}
   if (!urls.length) urls = [SITE];
-  urls = [...new Set(urls)].slice(0, 80);
+  urls = Array.from(new Set(urls)).slice(0, 80);
 
   const results = await pool(urls, 6, audit);
   return NextResponse.json({ generatedAt: new Date().toISOString(), pages: results.length, results });

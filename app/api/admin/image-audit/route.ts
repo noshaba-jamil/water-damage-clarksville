@@ -93,10 +93,10 @@ export async function GET() {
   try {
     const xml = await (await fetch(`${SITE}/sitemap.xml`, { cache: "no-store" })).text();
     const host = new URL(SITE).host;
-    urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => dec(m[1]).trim()).filter((u) => { try { return new URL(u).host === host; } catch { return false; } });
+    urls = Array.from(xml.matchAll(/<loc>([^<]+)<\/loc>/g)).map((m) => dec(m[1]).trim()).filter((u) => { try { return new URL(u).host === host; } catch { return false; } });
   } catch {}
   if (!urls.length) urls = [SITE];
-  urls = [...new Set(urls)].slice(0, 80);
+  urls = Array.from(new Set(urls)).slice(0, 80);
 
   const pages = await pool(urls, 6, async (url) => {
     const r = await get(url);
@@ -114,7 +114,7 @@ export async function GET() {
   for (const p of pages) {
     if (!p.html) continue;
     const page = p.url.replace(/^https?:\/\/[^/]+/, "") || "/";
-    for (const m of p.html.matchAll(/<img\b[^>]*>/gi)) {
+    for (const m of Array.from(p.html.matchAll(/<img\b[^>]*>/gi))) {
       const tag = m[0];
       const src = attr(tag, "src");
       if (!src || src.startsWith("data:")) continue;
@@ -128,7 +128,7 @@ export async function GET() {
   }
 
   // 3. Measure each unique image file once
-  const images = await pool([...map.values()], 6, async (e) => {
+  const images = await pool(Array.from(map.values()), 6, async (e) => {
     const r = await get(e.url);
     const issues: string[] = [], notes: string[] = [];
     const name = decodeURIComponent(new URL(e.url).pathname.split("/").pop() || e.url);
@@ -167,7 +167,7 @@ export async function GET() {
       byPage.set(u.page, s);
     }
   }
-  const pageSummary = [...byPage.entries()].map(([page, s]) => ({ page, ...s, done: s.issues === 0 })).sort((a, b) => b.issues - a.issues);
+  const pageSummary = Array.from(byPage.entries()).map(([page, s]) => ({ page, ...s, done: s.issues === 0 })).sort((a, b) => b.issues - a.issues);
 
   return NextResponse.json({ generatedAt: new Date().toISOString(), pages: pages.filter((p) => p.html).length, images, pageSummary });
 }

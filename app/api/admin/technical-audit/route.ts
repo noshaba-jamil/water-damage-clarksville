@@ -97,12 +97,12 @@ async function auditPage(url: string): Promise<PageData> {
   if (ogUrl.startsWith("http://")) add("note", "Head", `og:url uses http:// (${ogUrl})`, '<meta property="og:url">');
 
   // Mixed content (http:// resources on an https page)
-  for (const m of html.matchAll(/<(img|script|iframe|source|video|audio|embed)\b[^>]*?\ssrc=(?:"(http:\/\/[^"]*)"|'(http:\/\/[^']*)')/gi)) add("issue", "Mixed content", `Loads an insecure resource: ${m[2] ?? m[3]}`, `<${m[1].toLowerCase()} src>`);
-  for (const m of html.matchAll(/<link\b([^>]*?)\shref=(?:"(http:\/\/[^"]*)"|'(http:\/\/[^']*)')[^>]*>/gi)) if (!/rel=["'](canonical|alternate)/i.test(m[0])) add("issue", "Mixed content", `Loads an insecure resource: ${m[2] ?? m[3]}`, "<link href>");
+  for (const m of Array.from(html.matchAll(/<(img|script|iframe|source|video|audio|embed)\b[^>]*?\ssrc=(?:"(http:\/\/[^"]*)"|'(http:\/\/[^']*)')/gi))) add("issue", "Mixed content", `Loads an insecure resource: ${m[2] ?? m[3]}`, `<${m[1].toLowerCase()} src>`);
+  for (const m of Array.from(html.matchAll(/<link\b([^>]*?)\shref=(?:"(http:\/\/[^"]*)"|'(http:\/\/[^']*)')[^>]*>/gi))) if (!/rel=["'](canonical|alternate)/i.test(m[0])) add("issue", "Mixed content", `Loads an insecure resource: ${m[2] ?? m[3]}`, "<link href>");
 
   // Structured data
   let n = 0;
-  for (const m of html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+  for (const m of Array.from(html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi))) {
     n++;
     try { JSON.parse(m[1].trim()); if (/"aggregateRating"/.test(m[1])) add("issue", "Schema", "aggregateRating markup found. Remove it unless real reviews are visible on this page", `JSON-LD block ${n}`); }
     catch { add("issue", "Schema", "JSON-LD cannot be parsed, so Google ignores it", `JSON-LD block ${n}`); }
@@ -124,7 +124,7 @@ async function auditPage(url: string): Promise<PageData> {
 
   // Internal links, checked later
   const seen = new Set<string>();
-  for (const m of html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)) {
+  for (const m of Array.from(html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi))) {
     const h = (/\shref=(?:"([^"]*)"|'([^']*)')/i.exec(m[1]) || [])[1] ?? (/\shref='([^']*)'/i.exec(m[1]) || [])[1];
     if (!h || /^(mailto:|tel:|javascript:|#)/i.test(h)) continue;
     try {
@@ -151,7 +151,7 @@ function robotsCheck(txt: string) {
     else { if (k === "disallow" && cur) cur.disallow.push(v); lastWasAgent = false; }
   }
   const blocked = (a: string) => groups.some((g) => g.agents.includes(a) && g.disallow.includes("/"));
-  const all = [...new Set(groups.flatMap((g) => g.agents))];
+  const all = Array.from(new Set(groups.flatMap((g) => g.agents)));
   return { hasSitemap: /^\s*sitemap\s*:/im.test(txt), adminBlocked: groups.some((g) => g.disallow.some((d) => d.startsWith("/admin"))), blockedAgents: all.filter(blocked), blockedAll: blocked("*") };
 }
 
@@ -163,13 +163,13 @@ export async function GET() {
   let urls: string[] = [];
   const sm = await hit(`${SITE}/sitemap.xml`);
   if (sm.status === 200) {
-    const all = [...sm.text.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => dec(m[1]).trim());
+    const all = Array.from(sm.text.matchAll(/<loc>([^<]+)<\/loc>/g)).map((m) => dec(m[1]).trim());
     urls = all.filter((u) => { try { return new URL(u).host === HOST; } catch { return false; } });
     const off = all.length - urls.length, dup = urls.length - new Set(urls).size;
     site.push({ name: "sitemap.xml", level: off || dup ? "issue" : "ok", detail: `${urls.length} URLs${off ? `, ${off} on another domain` : ""}${dup ? `, ${dup} duplicates` : ""}` });
   } else site.push({ name: "sitemap.xml", level: "issue", detail: `Not reachable (${sm.status || "no response"})` });
   if (!urls.length) urls = [SITE];
-  urls = [...new Set(urls)].slice(0, 80);
+  urls = Array.from(new Set(urls)).slice(0, 80);
 
   const [pages, robots, http, www, nf] = await Promise.all([
     pool(urls, 6, auditPage),
@@ -227,7 +227,7 @@ export async function GET() {
 
   // Broken and redirecting internal links
   const known = new Map(pages.map((p) => [norm(p.url), { status: p.status, loc: "" }]));
-  const targets = [...new Set(ok.flatMap((p) => p.links.map((l) => l.href)))].filter((h) => !known.has(norm(h))).slice(0, 200);
+  const targets = Array.from(new Set(ok.flatMap((p) => p.links.map((l) => l.href)))).filter((h) => !known.has(norm(h))).slice(0, 200);
   await pool(targets, 8, async (t) => {
     let r = await hit(t, "HEAD", false);
     if (r.status === 405 || r.status === 501) r = await hit(t, "GET", false);

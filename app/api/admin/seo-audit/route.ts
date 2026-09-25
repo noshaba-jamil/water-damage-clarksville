@@ -7,7 +7,7 @@ export const maxDuration = 60;
 
 const SITE = (process.env.NEXT_PUBLIC_SITE_URL || "https://water-damage-clarksville.com").replace(/\/$/, "");
 const PLACES = ["Fort Campbell", "Montgomery County", "Oak Grove", "Hopkinsville", "Sango", "St. Bethlehem", "Springfield", "Ashland City", "Dover", "Dickson", "Woodlawn", "Palmyra", "Pembroke", "Cunningham", "Adams"];
-const CLAIMS = /#1\b|number one|500\+|since 2014|10\+ years|preferred vendor|best in/gi;
+const CLAIMS = /#1\b|number one|500\+|since 2014|10\+ years|preferred vendor|preferred contractor|best in|guarantee(d)?/gi;
 const LOCAL_TYPES = ["LocalBusiness", "ProfessionalService", "Organization", "HomeAndConstructionBusiness", "EmergencyService"];
 
 type Dim = "seo" | "aeo" | "geo" | "llmo";
@@ -52,22 +52,23 @@ async function audit(url: string) {
     const fullText = strip(html);
     const words = mainText ? mainText.split(" ").length : 0;
 
-    const h1s = [...mainHtml.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/gi)].map((m) => strip(m[1]));
-    const h2s = [...mainHtml.matchAll(/<h2[^>]*>/gi)].length;
-    const questions = [...mainHtml.matchAll(/<(h[2-4]|summary|strong|dt|button)[^>]*>([\s\S]*?)<\/\1>/gi)]
+    const h1s = Array.from(mainHtml.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/gi)).map((m) => strip(m[1]));
+    const h2s = Array.from(mainHtml.matchAll(/<h2[^>]*>/gi)).length;
+    const questions = Array.from(mainHtml.matchAll(/<(h[2-4]|summary|strong|dt|button)[^>]*>([\s\S]*?)<\/\1>/gi))
       .map((m) => strip(m[2])).filter((t) => t.endsWith("?") && t.length > 15 && t.length < 160).length;
-    const jump = [...mainHtml.matchAll(/href=["']#([^"']+)["']/gi)].filter((m) => m[1] !== "main-content").length;
-    const lists = [...mainHtml.matchAll(/<(ul|ol)[\s>]/gi)].length;
-    const paras = [...mainHtml.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)].slice(0, 8).map((m) => strip(m[1]).split(" ").length);
+    const jump = Array.from(mainHtml.matchAll(/href=["']#([^"']+)["']/gi)).filter((m) => m[1] !== "main-content").length;
+    const lists = Array.from(mainHtml.matchAll(/<(ul|ol)[\s>]/gi)).length;
+    const paras = Array.from(mainHtml.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)).slice(0, 8).map((m) => strip(m[1]).split(" ").length);
     const directAnswer = paras.some((n) => n >= 25 && n <= 70);
 
-    const imgs = [...html.matchAll(/<img\b[^>]*>/gi)].map((m) => m[0]);
+    const imgs = Array.from(html.matchAll(/<img\b[^>]*>/gi)).map((m) => m[0]);
     const noAlt = imgs.filter((t) => !/\balt=["'][^"']+["']/i.test(t)).length;
-    const hrefs = [...html.matchAll(/href=["']([^"'#][^"']*)["']/gi)].map((m) => m[1]);
+    const hrefs = Array.from(html.matchAll(/href=["']([^"'#][^"']*)["']/gi)).map((m) => m[1]);
     const internal = new Set(hrefs.filter((h) => h.startsWith("/") || h.startsWith(SITE)));
-    const locLinks = [...internal].filter((h) => h.includes("/locations/") || h.includes("/service-areas")).length;
-    const hasAbout = [...internal].some((h) => /\/about\/?$/.test(h.replace(SITE, "")));
-    const hasContact = [...internal].some((h) => /\/contact\/?$/.test(h.replace(SITE, "")));
+    const internalArr = Array.from(internal);
+    const locLinks = internalArr.filter((h) => h.includes("/locations/") || h.includes("/service-areas")).length;
+    const hasAbout = internalArr.some((h) => /\/about\/?$/.test(h.replace(SITE, "")));
+    const hasContact = internalArr.some((h) => /\/contact\/?$/.test(h.replace(SITE, "")));
 
     const types = new Set<string>();
     let raw = "", ldCount = 0, ldValid = 0;
@@ -78,7 +79,7 @@ async function audit(url: string) {
       if (t) (Array.isArray(t) ? t : [t]).forEach((x: string) => types.add(x));
       Object.values(n).forEach(walk);
     };
-    for (const m of html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+    for (const m of Array.from(html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi))) {
       ldCount++;
       try { walk(JSON.parse(m[1].trim())); raw += m[1]; ldValid++; } catch {}
     }
@@ -141,7 +142,7 @@ async function audit(url: string) {
     if (h1s.length !== 1) flags.push(`${h1s.length} H1 tags`);
     if (title.length > 60) flags.push(`Title is ${title.length} characters`);
     if (noAlt) flags.push(`${noAlt} image(s) missing alt text`);
-    const claims = [...new Set((fullText.match(CLAIMS) || []).map((c) => c.toLowerCase()))];
+    const claims = Array.from(new Set((fullText.match(CLAIMS) || []).map((c) => c.toLowerCase())));
     if (claims.length) flags.push(`Claims to prove: ${claims.join(", ")}`);
 
     return { url, status: res.status, title, titleLen: title.length, metaLen: desc.length, words, scores: s, missing, flags };
@@ -159,10 +160,10 @@ export async function GET() {
   try {
     const xml = await (await fetch(`${SITE}/sitemap.xml`, { cache: "no-store" })).text();
     const host = new URL(SITE).host;
-    urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => dec(m[1]).trim()).filter((u) => { try { return new URL(u).host === host; } catch { return false; } });
+    urls = Array.from(xml.matchAll(/<loc>([^<]+)<\/loc>/g)).map((m) => dec(m[1]).trim()).filter((u) => { try { return new URL(u).host === host; } catch { return false; } });
   } catch {}
   if (!urls.length) urls = [SITE];
-  urls = [...new Set(urls)].slice(0, 80);
+  urls = Array.from(new Set(urls)).slice(0, 80);
 
   const results = await pool(urls, 6, audit);
   return NextResponse.json({ generatedAt: new Date().toISOString(), count: results.length, results });
