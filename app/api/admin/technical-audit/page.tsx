@@ -4,7 +4,7 @@ import { blogPosts } from "@/content/blog/blogData";
 import { getPublishedPostsAsync } from "@/lib/blogStorage";
 import PageHero from "@/components/PageHero";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 const SITE_URL = "https://water-damage-clarksville.com";
 
@@ -35,7 +35,7 @@ export default async function BlogPage() {
     <div style={{background:"#F9FAFB"}}>
       <main className="bl">
         <header style={{marginBottom:40}}>
-          <h2 className="bl-h">Expert Water Damage Guides for Clarksville TN Homeowners</h2>
+          <h1 className="bl-h">Expert Water Damage Guides for Clarksville TN Homeowners</h1>
           <p className="bl-p">Our restoration professionals share expert knowledge on water damage costs, insurance claims, mold prevention, and flood preparedness — specific to Clarksville TN&apos;s climate and conditions.</p>
         </header>
         <div className="bl-grid" role="list" aria-label="Blog articles">

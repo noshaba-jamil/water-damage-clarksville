@@ -21,11 +21,6 @@ const serviceSchema = {
     "Complete water damage insurance claim management in Clarksville TN — documentation, adjuster coordination, and direct billing for USAA and all major carriers.",
 };
 
-// The "does insurance cover water damage" and "will my rates go up"
-// questions also live on /faq's Insurance & Costs category with near-
-// identical answers (same facts, same structure) — since this page is the
-// specialist/deeper resource on insurance claims specifically, its answers
-// go further than the hub's summary version instead of restating it.
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -43,7 +38,7 @@ const faqSchema = {
       name: "Does USAA cover water damage for Fort Campbell military families?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "USAA homeowners and renters insurance covers the same sudden, accidental water damage events as standard policies. As a USAA preferred vendor, we handle documentation to USAA's specific requirements and understand deployment-related scheduling and on-post/off-post housing considerations.",
+        text: "USAA homeowners and renters insurance covers the same sudden, accidental water damage events as standard policies. We handle documentation to USAA's specific requirements and understand deployment-related scheduling and on-post/off-post housing considerations.",
       },
     },
     {
@@ -138,14 +133,14 @@ export default function InsurancePage() {
       <PageHero
         eyebrow="Insurance Claim Specialists"
         title="Water Damage Insurance Claims in Clarksville TN"
-        subtitle="We handle everything — documentation, adjuster communication, direct billing. USAA specialists for Fort Campbell. You pay only your deductible."
+        subtitle="We handle everything — documentation, adjuster communication, direct billing. Experienced with USAA claims for Fort Campbell families. You pay only your deductible."
         image="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1800&q=80"
         imageFocus="center 40%"
         breadcrumbs={[{ label: "Services", href: "/" }, { label: "Insurance Claims" }]}
         stat1="$0"
         stat1Sub="Out of Pocket*"
-        stat2="USAA"
-        stat2Sub="Preferred Contractor"
+        stat2="24/7"
+        stat2Sub="Claim Support"
       />
       <style>{`
         html,body{max-width:100vw;overflow-x:hidden}
@@ -161,7 +156,6 @@ export default function InsurancePage() {
         .list li::before{content:"✓";color:#16A34A;font-weight:700;flex-shrink:0;margin-top:1px}
         .insurers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
         .ins{background:#F9FAFB;border:1px solid #E4E4E7;border-radius:8px;padding:16px;text-align:center;font-family:var(--font-inter);font-size:13px;font-weight:600;color:#09090B}
-        .ins.primary{background:#F0FDF4;border-color:#BBF7D0;color:#16A34A}
         .steps{display:flex;flex-direction:column;gap:12px;margin:20px 0}
         .step{display:flex;gap:14px;padding:16px;background:#F9FAFB;border:1px solid #E4E4E7;border-radius:8px}
         .step-n{font-family:var(--font-cormorant);font-size:28px;font-weight:700;color:#D1FAE5;flex-shrink:0;line-height:1}
@@ -209,33 +203,32 @@ export default function InsurancePage() {
             <h2 className="sp-h2">Complete Insurance Claim Management — You Focus on Your Family</h2>
             <p className="sp-p">
               Dealing with an insurance claim after water damage is
-              overwhelming — especially when your home is still wet. We&apos;ve
-              managed hundreds of claims in Clarksville TN and know exactly
-              what adjusters need. Our team handles every step: emergency
+              overwhelming — especially when your home is still wet. Our
+              team handles every step: emergency
               documentation, moisture reports, adjuster communication, and
               direct billing. You pay only your deductible.
             </p>
 
             <div className="usaa-box">
-              <h3>🎖️ USAA Preferred Contractor — Fort Campbell Families</h3>
+              <h3>🎖️ USAA Claims Experience — Fort Campbell Families</h3>
               <p>
-                We are USAA-preferred contractors — critical for Fort Campbell
+                We have experience handling USAA claims — helpful for Fort Campbell
                 military families whose damage often involves military
                 housing, on-post flooding, or USAA-specific claim
-                requirements. We know the USAA process inside and out,
-                including deployment-aware scheduling so a PCS move or
+                requirements. We know the USAA process, including
+                deployment-aware scheduling so a PCS move or
                 deployment doesn&apos;t stall your claim.
               </p>
             </div>
 
-            <span id="insurers" className="sp-ey">Insurance Companies We Work With</span>
-            <div className="insurers">
-              {[["USAA", true], ["State Farm", false], ["Allstate", false], ["Farmers", false], ["GEICO", false], ["Progressive", false], ["Nationwide", false], ["Liberty Mutual", false], ["Travelers", false]].map(([n, p]) => (
-                <div key={n as string} className={`ins${p ? " primary" : ""}`}>{p ? "⭐ " : ""}{n as string}{p ? " (USAA Specialist)" : ""}</div>
+            <h2 id="insurers" className="sp-ey" style={{ fontFamily: "var(--font-inter)", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "2.5px", color: "#16A34A", marginTop: 28, marginBottom: 10 }}>Insurance Companies We Work With</h2>
+            <ul className="insurers" style={{ listStyle: "none" }}>
+              {["USAA", "State Farm", "Allstate", "Farmers", "GEICO", "Progressive", "Nationwide", "Liberty Mutual", "Travelers"].map((n) => (
+                <li key={n} className="ins">{n}</li>
               ))}
-            </div>
+            </ul>
 
-            <span id="process" className="sp-ey">Our Claims Process</span>
+            <h2 id="process" className="sp-ey" style={{ fontFamily: "var(--font-inter)", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "2.5px", color: "#16A34A", marginTop: 28, marginBottom: 10 }}>Our Claims Process</h2>
             <div className="steps">
               {[
                 { n: "01", t: "Emergency Documentation", d: "We document everything immediately — photos, moisture readings, damage scope — before cleanup begins. This protects your claim." },
@@ -252,7 +245,7 @@ export default function InsurancePage() {
               ))}
             </div>
 
-            <span id="included" className="sp-ey">What We Handle For You</span>
+            <h2 id="included" className="sp-ey" style={{ fontFamily: "var(--font-inter)", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "2.5px", color: "#16A34A", marginTop: 28, marginBottom: 10 }}>What We Handle For You</h2>
             <ul className="list">
               {["Emergency documentation before cleanup starts", "Complete photo and moisture log package", "Scope of loss preparation in insurance format", "On-site adjuster meeting and advocacy", "Direct billing to your insurance company", "USAA-specific claim requirements (Fort Campbell)", "Supplemental claims if additional damage found", "Denied claim documentation support", "Zero out-of-pocket beyond your deductible*"].map((i) => (
                 <li key={i}>{i}</li>
@@ -274,7 +267,7 @@ export default function InsurancePage() {
               </p>
             </div>
 
-            <span id="faq" className="sp-ey">Insurance Claim FAQ</span>
+            <h2 id="faq" className="sp-ey" style={{ fontFamily: "var(--font-inter)", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "2.5px", color: "#16A34A", marginTop: 28, marginBottom: 10 }}>Insurance Claim FAQ</h2>
             <div>
               {faqs.map((faq, i) => (
                 <details key={i} className="faq-item">
@@ -300,10 +293,20 @@ export default function InsurancePage() {
                 View All Areas →
               </Link>
             </div>
+
+            <h2 className="sp-ey" style={{ fontFamily: "var(--font-inter)", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "2.5px", color: "#16A34A", marginTop: 28, marginBottom: 10 }}>Service Area Map</h2>
+            <iframe
+              title="Clarksville Water Damage Restoration service area map"
+              src="https://www.google.com/maps?q=215+Legion+Street,+Clarksville,+TN+37040&output=embed"
+              width="100%"
+              style={{ border: 0, borderRadius: 8, width: "100%", height: 320 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </main>
           <aside className="sp-sb">
             <div className="sp-sb-cta">
-              <div className="sp-sb-ey">USAA Specialists — Fort Campbell</div>
+              <div className="sp-sb-ey">Insurance Claim Help — Fort Campbell</div>
               <div className="sp-sb-n">(931) 271-2350</div>
               <div className="sp-sb-s">Call before you clean up — protect your claim</div>
               <a href="tel:+19312712350" className="sp-sb-b1">📞 Call Now — Free Claim Help</a>
@@ -313,7 +316,7 @@ export default function InsurancePage() {
               <h3 style={{ fontFamily: "var(--font-inter)", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: "#16A34A", marginBottom: 12 }}>
                 Claim Benefits
               </h3>
-              {["✅ Direct insurance billing", "✅ You pay deductible only", "✅ USAA specialists", "✅ On-site adjuster support", "✅ Complete documentation", "✅ Denied claim help", "✅ No upfront costs"].map((t) => (
+              {["✅ Direct insurance billing", "✅ You pay deductible only", "✅ USAA claims experience", "✅ On-site adjuster support", "✅ Complete documentation", "✅ Denied claim help", "✅ No upfront costs"].map((t) => (
                 <div key={t} style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#374151", marginBottom: 7 }}>{t}</div>
               ))}
             </div>
@@ -325,7 +328,7 @@ export default function InsurancePage() {
           Insurance Claim Help in Clarksville TN
         </h2>
         <p style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: "rgba(255,255,255,.5)", marginBottom: 28, maxWidth: 480, margin: "0 auto 28px", lineHeight: 1.7 }}>
-          USAA specialists. Direct billing. Free claim consultation.
+          Direct billing. Free claim consultation.
         </p>
         <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
           <a href="tel:+19312712350" style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#22C55E", color: "#09090B", padding: "14px 32px", borderRadius: 6, textDecoration: "none", fontFamily: "var(--font-inter)", fontSize: 16, fontWeight: 700 }}>

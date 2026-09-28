@@ -1,4 +1,4 @@
- export interface BlogPost {
+export interface BlogPost {
   id: string; slug: string; title: string; category: string;
   date: string; readTime: string; excerpt: string;
   metaTitle: string; metaDesc: string; focusKeyword: string;
@@ -19,61 +19,54 @@ function isKvAvailable(): boolean {
   return !!(url && token);
 }
 
-async function kvGet(key: string): Promise<string | null> {
+// Every Upstash call now goes through this wrapper, so a slow or hanging
+// request fails fast (4s) instead of blocking the page indefinitely.
+// A crawler or bot hitting several pages at once no longer risks a very
+// slow, partially-rendered response — it gets a clean, fast fallback.
+async function kvFetch(path: string): Promise<any> {
   const { url, token } = getKv();
-  const res = await fetch(`${url}/get/${encodeURIComponent(key)}`, {
-    headers: { Authorization: `Bearer ${token}` },
-    cache: "no-store",
-  });
-  const json = await res.json();
-  return json.result ?? null;
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 4000);
+  try {
+    const res = await fetch(`${url}${path}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      cache: "no-store",
+      signal: ctrl.signal,
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null; // timeout, network error, or bad JSON — caller treats as "not found"
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function kvGet(key: string): Promise<string | null> {
+  const json = await kvFetch(`/get/${encodeURIComponent(key)}`);
+  return json?.result ?? null;
 }
 
 async function kvSet(key: string, value: unknown): Promise<void> {
-  const { url, token } = getKv();
   const encoded = encodeURIComponent(JSON.stringify(value));
-  await fetch(`${url}/set/${encodeURIComponent(key)}/${encoded}`, {
-    method: "GET",
-    headers: { Authorization: `Bearer ${token}` },
-    cache: "no-store",
-  });
+  await kvFetch(`/set/${encodeURIComponent(key)}/${encoded}`);
 }
 
 async function kvDel(key: string): Promise<void> {
-  const { url, token } = getKv();
-  await fetch(`${url}/del/${encodeURIComponent(key)}`, {
-    method: "GET",
-    headers: { Authorization: `Bearer ${token}` },
-    cache: "no-store",
-  });
+  await kvFetch(`/del/${encodeURIComponent(key)}`);
 }
 
 async function kvSmembers(key: string): Promise<string[]> {
-  const { url, token } = getKv();
-  const res = await fetch(`${url}/smembers/${encodeURIComponent(key)}`, {
-    headers: { Authorization: `Bearer ${token}` },
-    cache: "no-store",
-  });
-  const json = await res.json();
-  return Array.isArray(json.result) ? json.result : [];
+  const json = await kvFetch(`/smembers/${encodeURIComponent(key)}`);
+  return Array.isArray(json?.result) ? json.result : [];
 }
 
 async function kvSadd(key: string, member: string): Promise<void> {
-  const { url, token } = getKv();
-  await fetch(`${url}/sadd/${encodeURIComponent(key)}/${encodeURIComponent(member)}`, {
-    method: "GET",
-    headers: { Authorization: `Bearer ${token}` },
-    cache: "no-store",
-  });
+  await kvFetch(`/sadd/${encodeURIComponent(key)}/${encodeURIComponent(member)}`);
 }
 
 async function kvSrem(key: string, member: string): Promise<void> {
-  const { url, token } = getKv();
-  await fetch(`${url}/srem/${encodeURIComponent(key)}/${encodeURIComponent(member)}`, {
-    method: "GET",
-    headers: { Authorization: `Bearer ${token}` },
-    cache: "no-store",
-  });
+  await kvFetch(`/srem/${encodeURIComponent(key)}/${encodeURIComponent(member)}`);
 }
 
 export async function getAllBlogPostsAsync(): Promise<BlogPost[]> {
@@ -113,20 +106,33 @@ export async function getPostByIdAsync(id: string): Promise<BlogPost | null> {
   } catch { return null; }
 }
 
+// Was: fetch every post from KV just to find one by slug (1 + N calls for
+// a single page load). Now: a slug -> id index means one lookup, then one
+// direct get — 2 calls total, no matter how many posts exist. The index
+// is kept in sync inside savePostAsync/deletePostAsync below.
 export async function getPostBySlugAsync(slug: string): Promise<BlogPost | null> {
-  return (await getAllBlogPostsAsync()).find(p => p.slug === slug) || null;
+  if (!isKvAvailable()) return getPostBySlugLocal(slug);
+  try {
+    const id = await kvGet(`blog:slug:${slug}`);
+    if (id) return getPostByIdAsync(id);
+    // Fallback for posts saved before the slug index existed.
+    return (await getAllBlogPostsAsync()).find(p => p.slug === slug) || null;
+  } catch { return null; }
 }
 
 export async function savePostAsync(post: BlogPost): Promise<void> {
   if (!isKvAvailable()) { savePostLocal(post); return; }
   await kvSet(`blog:post:${post.id}`, post);
   await kvSadd("blog:ids", post.id);
+  await kvSet(`blog:slug:${post.slug}`, post.id);
 }
 
 export async function deletePostAsync(id: string): Promise<void> {
   if (!isKvAvailable()) { deletePostLocal(id); return; }
+  const existing = await getPostByIdAsync(id);
   await kvDel(`blog:post:${id}`);
   await kvSrem("blog:ids", id);
+  if (existing?.slug) await kvDel(`blog:slug:${existing.slug}`);
 }
 
 import fs from "fs";
@@ -154,6 +160,10 @@ function getPostByIdLocal(id: string): BlogPost | null {
     if (!fs.existsSync(fp)) return null;
     return JSON.parse(fs.readFileSync(fp, "utf-8")) as BlogPost;
   } catch { return null; }
+}
+
+function getPostBySlugLocal(slug: string): BlogPost | null {
+  return getAllBlogPostsLocal().find(p => p.slug === slug) || null;
 }
 
 function savePostLocal(post: BlogPost): void {
