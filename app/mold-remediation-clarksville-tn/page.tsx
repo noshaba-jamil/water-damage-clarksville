@@ -21,8 +21,6 @@ const serviceSchema = {
     "IICRC AMRT-certified mold remediation and black mold removal in Clarksville TN. Containment, HEPA filtration, air quality testing, and documentation.",
 };
 
-// NEW — FAQ schema, tied to the new on-page FAQ section below. This is what
-// makes the FAQ content eligible for rich results, not just readable copy.
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -48,7 +46,7 @@ const faqSchema = {
       name: "Does homeowners insurance cover mold remediation?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Often, if the mold resulted from a covered event like a burst pipe or storm damage. As a USAA-preferred contractor, we work directly with insurance carriers on mold claims for military families and civilian homeowners alike — you're not left navigating the claims process alone.",
+        text: "Often, if the mold resulted from a covered event like a burst pipe or storm damage. We have experience handling USAA claims and work directly with insurance carriers on mold claims for military families and civilian homeowners alike — you're not left navigating the claims process alone.",
       },
     },
     {
@@ -78,8 +76,6 @@ const faqSchema = {
   ],
 };
 
-// NEW — BreadcrumbList schema, matching the pattern already live on the
-// Emergency Water Damage page.
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -107,9 +103,6 @@ const SIDEBAR = `
   .sp-sb-b2:hover{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.75)}
 `;
 
-// NEW — table-of-contents jump links, matching the AEO-structured pattern
-// already proven on the Emergency page. Anchors point to the section ids
-// added throughout the page below.
 const toc = [
   ["Signs of a Mold Problem", "#signs"],
   ["What Causes Mold Growth", "#causes"],
@@ -122,8 +115,6 @@ const toc = [
   ["All Service Areas", "#all-areas"],
 ];
 
-// NEW — full service list, matching the pattern added to Flood Cleanup and
-// Structural Drying.
 const allServices: [string, string][] = [
   ["Emergency Water Damage", "/emergency-water-damage-clarksville-tn"],
   ["Flood Cleanup & Water Extraction", "/flood-cleanup-clarksville-tn"],
@@ -137,7 +128,6 @@ const allServices: [string, string][] = [
   ["Water Damage Odor Removal", "/water-damage-odor-removal-clarksville-tn"],
 ];
 
-// NEW — full service-area list, matching the homepage's location set.
 const allAreas: [string, string][] = [
   ["Fort Campbell, TN", "/locations/fort-campbell-tn"],
   ["Sango, TN", "/locations/sango-tn"],
@@ -153,9 +143,6 @@ const allAreas: [string, string][] = [
   ["Pembroke, KY", "/locations/pembroke-ky"],
 ];
 
-// NEW — causes section content, per the content playbook built from the
-// Thomas Restoration comparison. Genuinely fills a gap this page didn't
-// cover before.
 const causes = [
   "Water damage from burst pipes, flooding, or storm intrusion left untreated",
   "Roof leaks and attic moisture",
@@ -165,8 +152,6 @@ const causes = [
   "HVAC condensation during peak humidity months",
 ];
 
-// NEW — residential/commercial coverage, closing the property-type gap
-// found in the earlier content audit.
 const propertyTypes = [
   { icon: "🏠", t: "Homes & Basements" },
   { icon: "🏘️", t: "Rental Properties & Apartment Units" },
@@ -174,9 +159,6 @@ const propertyTypes = [
   { icon: "⛪", t: "Churches & Community Buildings" },
 ];
 
-// NEW — FAQ content matching faqSchema above, written as natural
-// conversational queries targeting the low-KD mold keywords found in
-// keyword research (mold testing, mold inspection, mold clean up).
 const faqs = [
   {
     q: "What's the difference between mold removal and mold remediation?",
@@ -188,7 +170,7 @@ const faqs = [
   },
   {
     q: "Does homeowners insurance cover mold remediation?",
-    a: "Often, if the mold resulted from a covered event like a burst pipe or storm damage. As a USAA-preferred contractor, we work directly with insurance carriers on mold claims for military families and civilian homeowners alike — you're not left navigating the claims process alone.",
+    a: "Often, if the mold resulted from a covered event like a burst pipe or storm damage. We have experience handling USAA claims and work directly with insurance carriers on mold claims for military families and civilian homeowners alike — you're not left navigating the claims process alone.",
   },
   {
     q: "Is black mold dangerous?",
@@ -222,7 +204,7 @@ export default function MoldRemediationPage() {
       <PageHero
         eyebrow="IICRC AMRT Certified"
         title="Mold Remediation & Black Mold Removal in Clarksville TN"
-        subtitle="IICRC AMRT-certified mold remediation. Containment, HEPA air scrubbing, air quality testing. All insurance accepted. 60-min response."
+        subtitle="IICRC AMRT-certified mold remediation. Containment, HEPA air scrubbing, air quality testing. All insurance accepted. Fast response."
         image="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1800&q=80"
         imageFocus="center 40%"
         breadcrumbs={[{ label: "Services", href: "/service-areas" }, { label: "Mold Remediation" }]}
@@ -249,7 +231,6 @@ export default function MoldRemediationPage() {
         .proc-n{font-family:var(--font-cormorant);font-size:26px;font-weight:700;color:#D1FAE5;flex-shrink:0;line-height:1}
         .proc-t{font-family:var(--font-inter);font-size:13px;font-weight:700;color:#09090B;margin-bottom:3px}
         .proc-d{font-family:var(--font-inter);font-size:12px;color:#71717A;line-height:1.6}
-        /* NEW — TOC, causes, property types, FAQ, areas styles */
         .toc-box{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:18px 20px;margin-bottom:32px}
         .toc-label{font-family:var(--font-inter);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#16A34A;margin-bottom:10px}
         .toc-links{display:flex;flex-wrap:wrap;gap:8px 18px}
@@ -282,7 +263,6 @@ export default function MoldRemediationPage() {
       <div style={{ background: "#fff" }}>
         <div className="sp">
           <main>
-            {/* NEW — jump-link TOC */}
             <nav className="toc-box" aria-label="Page contents">
               <div className="toc-label">On This Page</div>
               <div className="toc-links">
@@ -308,8 +288,8 @@ export default function MoldRemediationPage() {
             </p>
             <p className="sp-p">
               We serve Clarksville TN, Fort Campbell, and all of Montgomery
-              County. USAA-preferred contractor for military families. All
-              insurance claims handled directly — you pay only your
+              County, with experience handling USAA claims for military families.
+              All insurance claims handled directly — you pay only your
               deductible.
             </p>
 
@@ -332,8 +312,6 @@ export default function MoldRemediationPage() {
               </div>
             </div>
 
-            {/* NEW — causes section, closes a real content gap vs.
-                competitors */}
             <span id="causes" className="sp-ey">
               What Causes Mold Growth in Clarksville Homes
             </span>
@@ -383,7 +361,6 @@ export default function MoldRemediationPage() {
               ))}
             </div>
 
-            {/* NEW — residential/commercial coverage */}
             <span id="property-types" className="sp-ey">
               Residential & Commercial Mold Remediation
             </span>
@@ -415,7 +392,7 @@ export default function MoldRemediationPage() {
                 "EPA-registered antimicrobial treatment",
                 "Complete insurance documentation",
                 "Direct billing to insurance company",
-                "USAA specialist support",
+                "USAA claims support",
                 "Certificate of remediation at completion",
               ].map((i) => (
                 <li key={i}>{i}</li>
@@ -476,7 +453,6 @@ export default function MoldRemediationPage() {
               </a>
             </div>
 
-            {/* NEW — FAQ section, powers faqSchema above */}
             <span id="faq" className="sp-ey">
               Mold Remediation FAQ
             </span>
@@ -489,21 +465,18 @@ export default function MoldRemediationPage() {
               ))}
             </div>
 
-            {/* NEW — areas served, prose not just nav links */}
             <span id="areas" className="sp-ey">
               Areas We Serve
             </span>
             <p className="sp-p">
               We provide mold remediation throughout Clarksville and
               Montgomery County, including Fort Campbell, Sango, St.
-              Bethlehem, Oak Grove KY, Hopkinsville KY, and Springfield TN. As
-              a USAA-preferred contractor, we regularly assist military
-              families relocating to or from Fort Campbell who need a fast,
-              insurance-coordinated mold inspection before move-in or
-              move-out.
+              Bethlehem, Oak Grove KY, Hopkinsville KY, and Springfield TN.
+              We regularly assist military families relocating to or from
+              Fort Campbell who need a fast, insurance-coordinated mold
+              inspection before move-in or move-out.
             </p>
 
-            {/* NEW — full services list */}
             <span id="all-services" className="sp-ey" style={{ marginTop: 28 }}>
               All Water Damage Services in Clarksville TN
             </span>
@@ -515,7 +488,6 @@ export default function MoldRemediationPage() {
               ))}
             </div>
 
-            {/* NEW — full service areas list */}
             <span id="all-areas" className="sp-ey" style={{ marginTop: 28 }}>
               All Service Areas
             </span>

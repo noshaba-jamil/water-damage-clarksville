@@ -4,13 +4,14 @@ import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "About Us | Clarksville Water Damage Restoration",
-  description: "Meet the IICRC-certified restoration team serving Clarksville TN. Call (931) 271-2350.",
+  description: "Meet the IICRC-certified water damage restoration team serving Clarksville TN and Montgomery County. Fast 24/7 response. Call (931) 271-2350.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About Clarksville Water Damage Restoration | Local IICRC Experts",
     description: "IICRC-certified team serving Montgomery County and surrounding areas 24/7. Fast response and full insurance claim support.",
     url: "https://water-damage-clarksville.com/about",
     type: "website",
+    images: [{ url: "https://water-damage-clarksville.com/og-image.jpg", width: 1200, height: 630, alt: "Clarksville Water Damage Restoration" }],
   },
 };
 
@@ -38,6 +39,39 @@ const breadcrumbSchema = {
   ],
 };
 
+// Marks up the same 5 steps already shown on the page as a HowTo, so the
+// process itself becomes eligible for step-by-step rich results.
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "Our Water Damage Restoration Process",
+  step: [
+    { "@type": "HowToStep", name: "You Call", text: "A real IICRC-certified professional answers your call at (931) 271-2350 and gathers the essential details." },
+    { "@type": "HowToStep", name: "We Aim to Arrive Within 60 Minutes", text: "Our team aims to arrive on-site within 60 minutes anywhere in Clarksville TN and Montgomery County, 24 hours a day." },
+    { "@type": "HowToStep", name: "Assessment & Claim Opening", text: "We perform moisture mapping with thermal imaging and open your insurance claim on arrival." },
+    { "@type": "HowToStep", name: "Structural Drying", text: "Industrial air movers and LGR dehumidifiers run until every structural component reaches documented safe levels per IICRC S500 standards." },
+    { "@type": "HowToStep", name: "Verified Restoration", text: "We complete repairs and perform final moisture verification, returning your home to documented pre-damage condition." },
+  ],
+};
+
+const faqs = [
+  { q: "Is Clarksville Water Damage Restoration a local company?", a: "Yes. We're based at 215 Legion Street in Clarksville, TN — not a national franchise dispatching from out of state. Our team works and lives in Montgomery County." },
+  { q: "What certifications does your team hold?", a: "Our team holds IICRC certifications and follows the IICRC S500 Water Damage Restoration Standard on every job. Our estimators are also Xactimate certified, the estimating software insurance carriers use." },
+  { q: "How fast can you respond to a water damage emergency?", a: "We aim to arrive on-site within 60 minutes anywhere in Clarksville TN and Montgomery County, 24 hours a day, 7 days a week." },
+  { q: "Do you handle the insurance claim for me?", a: "Yes. We document the damage, coordinate with your adjuster, and bill your insurance carrier directly, including USAA, State Farm, Allstate, and other major carriers. You pay only your deductible." },
+  { q: "What areas does Clarksville Water Damage Restoration serve?", a: "We serve Clarksville TN and Montgomery County within roughly a 50-mile radius, including Fort Campbell, Sango, Oak Grove KY, and Hopkinsville KY." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 const credentials = [
   { icon: "🏆", title: "IICRC Certified Firm", desc: "Institute of Inspection Cleaning and Restoration Certification — the global standard for restoration professionals." },
   { icon: "📋", title: "Xactimate Certified", desc: "Our estimators are Xactimate certified — the industry-standard estimating software used by all major insurance carriers." },
@@ -45,7 +79,7 @@ const credentials = [
   { icon: "🔬", title: "IICRC AMRT Certified", desc: "Applied Microbial Remediation Technician certification for safe, effective mold identification and removal." },
   { icon: "📍", title: "Locally Based, Not a Franchise", desc: "Our team is stationed in Clarksville and knows Montgomery County's neighborhoods and infrastructure." },
 ];
- const stats = [
+const stats = [
   { n: "IICRC", label: "Certified Restoration Team" },
   { n: "24/7", label: "Emergency Response — Every Day" },
   { n: "50mi", label: "Service Radius from Clarksville" },
@@ -59,9 +93,6 @@ const processSteps = [
   { n: "05", title: "Complete Restoration — Verified Safe", body: "After drying is certified, we complete all necessary repairs and perform final moisture verification. Your home is returned to pre-damage condition — documented and confirmed, not just assumed." },
 ];
 
-// Full services grid. Fixes a real gap found in the existing page:
-// the old service link list was missing Burst Pipe Water Damage entirely.
-// This is now the complete, accurate 11-service list.
 const allServicesFull = [
   { icon: "🚨", title: "Emergency Water Damage Restoration", desc: "24/7 rapid response — IICRC-certified team aims to be on-site within 60 minutes for any water emergency.", href: "/emergency-water-damage-clarksville-tn" },
   { icon: "💧", title: "Flood Cleanup & Water Extraction", desc: "Industrial truck-mounted extraction removes standing water fast, stopping secondary damage before it starts.", href: "/flood-cleanup-clarksville-tn" },
@@ -76,11 +107,24 @@ const allServicesFull = [
   { icon: "📋", title: "Insurance Claim Management", desc: "Complete documentation, adjuster coordination, and direct billing for USAA and all major carriers.", href: "/water-damage-insurance-claim-clarksville-tn" },
 ];
 
+const toc = [
+  ["Who We Are", "#who-heading"],
+  ["By the Numbers", "#stats-heading"],
+  ["Our Services", "#services-heading"],
+  ["Certifications", "#creds-heading"],
+  ["Our Process", "#process-heading"],
+  ["Our Values", "#values-heading"],
+  ["Service Area", "#area-heading"],
+  ["FAQ", "#faq-heading"],
+];
+
 export default function AboutPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <PageHero
         eyebrow="Locally Based & IICRC-Certified"
@@ -92,7 +136,6 @@ export default function AboutPage() {
         breadcrumbs={[{ label: "About Us" }]}
         stat1="IICRC" stat1Sub="Certified Team"
         stat2="24/7" stat2Sub="Emergency Response"
-        
       />
 
       <style>{`
@@ -110,8 +153,6 @@ export default function AboutPage() {
         .answer-box-label { font-family:var(--font-inter); font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#16A34A; margin-bottom:8px; display:block; }
         .answer-box-text { font-family:var(--font-inter); font-size:15px; line-height:1.7; color:#1a2e1a; }
         .two-col { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; margin-bottom:64px; }
-        .two-col-rev { direction:rtl; }
-        .two-col-rev > * { direction:ltr; }
         .about-img { width:100%; height:420px; object-fit:cover; border-radius:10px; display:block; }
         .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin:36px 0; }
         .stat-card { background:#09090B; border-radius:8px; padding:24px 20px; text-align:center; }
@@ -133,7 +174,6 @@ export default function AboutPage() {
         .nap-h { font-family:var(--font-cormorant); font-size:26px; font-weight:700; color:#fff; margin-bottom:20px; letter-spacing:-0.5px; }
         .nap-line { font-family:var(--font-inter); font-size:14px; color:rgba(255,255,255,.55); margin-bottom:12px; display:flex; align-items:flex-start; gap:10px; }
         .nap-line a { color:#4ADE80; font-weight:600; text-decoration:none; }
-        .nap-line a:hover { color:#22C55E; }
         .nap-links { display:flex; flex-direction:column; gap:10px; }
         .nap-link { font-family:var(--font-inter); font-size:14px; font-weight:500; color:rgba(255,255,255,.55); text-decoration:none; display:flex; align-items:center; gap:7px; transition:color .15s; }
         .nap-link::before { content:'→'; font-size:11px; color:#22C55E; flex-shrink:0; }
@@ -150,6 +190,19 @@ export default function AboutPage() {
         .svc-full-title { font-family:var(--font-inter); font-size:14.5px; font-weight:700; color:#09090B; margin-bottom:6px; }
         .svc-full-desc { font-family:var(--font-inter); font-size:13px; line-height:1.6; color:#52525B; margin-bottom:10px; }
         .svc-full-link { font-family:var(--font-inter); font-size:12.5px; font-weight:600; color:#16A34A; }
+        .toc-box { background:#F0FDF4; border:1px solid #BBF7D0; border-radius:10px; padding:18px 20px; margin-bottom:40px; }
+        .toc-label { font-family:var(--font-inter); font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#16A34A; margin-bottom:10px; }
+        .toc-links { display:flex; flex-wrap:wrap; gap:8px 18px; }
+        .toc-links a { font-family:var(--font-inter); font-size:13px; font-weight:500; color:#1a2e1a; text-decoration:none; }
+        .toc-links a:hover { color:#16A34A; text-decoration:underline; }
+        .svc-list { list-style:none; margin:0; padding:0; }
+        .faq-item { border-bottom:1px solid #E4E4E7; }
+        .faq-q { font-family:var(--font-inter); font-size:15px; font-weight:600; color:#09090B; padding:18px 0; cursor:pointer; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+        .faq-q::-webkit-details-marker { display:none; }
+        .faq-q::after { content:"+"; font-size:18px; font-weight:300; color:#9CA3AF; flex-shrink:0; transition:transform .2s; }
+        details[open] .faq-q::after { transform:rotate(45deg); }
+        .faq-a { font-family:var(--font-inter); font-size:14px; line-height:1.75; color:#52525B; padding-bottom:18px; }
+        .map-embed { height:320px; border-radius:8px; overflow:hidden; margin-top:16px; }
         @media(max-width:1024px) {
           .ab { padding:52px 20px; }
           .two-col { grid-template-columns:1fr; gap:32px; }
@@ -163,13 +216,19 @@ export default function AboutPage() {
         @media(max-width:640px) {
           .stats-grid { grid-template-columns:1fr 1fr; }
           .creds-grid { grid-template-columns:1fr; }
-          .two-col-rev { direction:ltr; }
           .svc-full-grid { grid-template-columns:1fr; }
         }
       `}</style>
 
       <div style={{ background: "#fff" }}>
         <div className="ab">
+
+          <nav className="toc-box" aria-label="Page contents">
+            <div className="toc-label">On This Page</div>
+            <div className="toc-links">
+              {toc.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
+            </div>
+          </nav>
 
           <div className="answer-box" role="note" aria-label="Quick answer about Clarksville Water Damage Restoration">
             <span className="answer-box-label">📍 Quick Answer — Who We Are</span>
@@ -236,7 +295,7 @@ export default function AboutPage() {
               <div>
                 <h3 className="ab-h3">Our Core Restoration Services</h3>
                 <p className="ab-p">Every service we provide follows IICRC industry standards with full documentation for your insurance carrier:</p>
-                <nav aria-label="Service links">
+                <ul className="svc-list" aria-label="Service links">
                   {[
                     ["🚨 Emergency Water Damage Restoration", "/emergency-water-damage-clarksville-tn"],
                     ["💧 Flood Cleanup & Water Extraction", "/flood-cleanup-clarksville-tn"],
@@ -249,11 +308,11 @@ export default function AboutPage() {
                     ["💨 Odor Removal", "/water-damage-odor-removal-clarksville-tn"],
                     ["📋 Insurance Claim Management", "/water-damage-insurance-claim-clarksville-tn"],
                   ].map(([l, h]) => (
-                    <div key={h} style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 0", borderBottom: "1px solid #F3F4F6" }}>
+                    <li key={h} style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 0", borderBottom: "1px solid #F3F4F6" }}>
                       <Link href={h} style={{ fontFamily: "var(--font-inter)", fontSize: 14, fontWeight: 500, color: "#16A34A", textDecoration: "none" }}>{l as string}</Link>
-                    </div>
+                    </li>
                   ))}
-                </nav>
+                </ul>
               </div>
             </div>
           </section>
@@ -286,15 +345,15 @@ export default function AboutPage() {
             <p className="ab-p">
               <strong>IICRC certification</strong> (Institute of Inspection Cleaning and Restoration Certification) is the global standard that verifies a restoration company's training, equipment, and adherence to industry protocols. Our team holds multiple IICRC certifications — and we follow the <strong>IICRC S500 Water Damage Restoration Standard</strong> on every single job. This is not optional for us. It protects you, your insurance claim, and your home.
             </p>
-            <div className="creds-grid" role="list" aria-label="Certifications and credentials">
+            <ul className="creds-grid" role="list" aria-label="Certifications and credentials" style={{ listStyle: "none", padding: 0 }}>
               {credentials.map(c => (
-                <div key={c.title} className="cred-card" role="listitem">
+                <li key={c.title} className="cred-card" role="listitem">
                   <div className="cred-icon" aria-hidden="true">{c.icon}</div>
                   <h3 className="cred-title">{c.title}</h3>
                   <p className="cred-desc">{c.desc}</p>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </section>
 
           <hr className="divider" />
@@ -384,6 +443,30 @@ export default function AboutPage() {
               ))}
             </div>
             <Link href="/service-areas" style={{ fontFamily: "var(--font-inter)", fontSize: 14, fontWeight: 600, color: "#16A34A", textDecoration: "none" }}>View All Service Area Locations →</Link>
+            <iframe
+              title="Clarksville Water Damage Restoration service area map"
+              src="https://www.google.com/maps?q=215+Legion+Street,+Clarksville,+TN+37040&output=embed"
+              width="100%"
+              className="map-embed"
+              style={{ border: 0, width: "100%" }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </section>
+
+          <hr className="divider" />
+
+          <section aria-labelledby="faq-heading">
+            <span className="ab-ey">Common Questions</span>
+            <h2 className="ab-h2" id="faq-heading">Frequently Asked Questions About Us</h2>
+            <div>
+              {faqs.map((faq, i) => (
+                <details key={i} className="faq-item">
+                  <summary className="faq-q">{faq.q}</summary>
+                  <p className="faq-a">{faq.a}</p>
+                </details>
+              ))}
+            </div>
           </section>
 
           <hr className="divider" />
@@ -393,9 +476,7 @@ export default function AboutPage() {
               <h2 className="nap-h">Contact Information</h2>
               <div className="nap-line">
                 <span>📍</span>
-                <span>
-                  215 Legion Street, Clarksville, TN 37040
-                </span>
+                <span>215 Legion Street, Clarksville, TN 37040</span>
               </div>
               <div className="nap-line">
                 <span>📞</span>

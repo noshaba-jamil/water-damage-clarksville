@@ -26,10 +26,6 @@ const serviceSchema = {
   },
 };
 
-// FAQ schema, tied to the FAQ section below. Kept flood/extraction-specific —
-// the "how fast do you respond" question already lives on the homepage, so
-// it's deliberately left out here to avoid three pages competing for the
-// same FAQ rich-result slot.
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -104,12 +100,12 @@ const steps = [
   {
     n: "01",
     t: "Emergency Call",
-    d: "Call (931) 271-2350 — we answer in under 60 seconds, 24/7/365. Tell us the extent of flooding and your address.",
+    d: "Call (931) 271-2350 — we answer quickly, 24/7/365. Tell us the extent of flooding and your address.",
   },
   {
     n: "02",
-    t: "60-Minute Arrival",
-    d: "Our fully-equipped truck arrives in under 60 minutes anywhere in Montgomery County, guaranteed.",
+    t: "Fast Arrival",
+    d: "Our fully-equipped truck aims to arrive within 60 minutes anywhere in Montgomery County.",
   },
   {
     n: "03",
@@ -143,7 +139,6 @@ const steps = [
   },
 ];
 
-// TOC
 const toc = [
   ["Common Flood Causes", "#causes"],
   ["Our 8-Step Process", "#process"],
@@ -153,7 +148,6 @@ const toc = [
   ["All Service Areas", "#all-areas"],
 ];
 
-// Full service list, linking every other service page
 const allServices: [string, string][] = [
   ["Emergency Water Damage", "/emergency-water-damage-clarksville-tn"],
   ["Mold Remediation", "/mold-remediation-clarksville-tn"],
@@ -179,7 +173,6 @@ const allServices: [string, string][] = [
   ["Water Damage Odor Removal", "/water-damage-odor-removal-clarksville-tn"],
 ];
 
-// Full service-area list, matching the homepage's location set
 const allAreas: [string, string][] = [
   ["Fort Campbell, TN", "/locations/fort-campbell-tn"],
   ["Sango, TN", "/locations/sango-tn"],
@@ -218,15 +211,15 @@ export default function FloodCleanupPage() {
       <PageHero
         eyebrow="Flood Cleanup & Water Extraction"
         title="Flood Cleanup & Water Extraction in Clarksville TN"
-        subtitle="Industrial truck-mounted pumps. 60-minute guaranteed arrival. IICRC S500 certified. All insurance accepted including USAA."
+        subtitle="Industrial truck-mounted pumps. Fast on-site response. IICRC S500 certified. All insurance accepted including USAA."
         image="https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=1800&q=80"
         imageFocus="center 40%"
         breadcrumbs={[
           { label: "Services", href: "/" },
           { label: "Flood Cleanup" },
         ]}
-        stat1="60min"
-        stat1Sub="Guaranteed Arrival"
+        stat1="S500"
+        stat1Sub="IICRC Certified"
         stat2="24/7"
         stat2Sub="Emergency Response"
       />
@@ -303,8 +296,8 @@ export default function FloodCleanupPage() {
             <p className="sp-p">
               We serve all of Clarksville TN, Fort Campbell, Montgomery County,
               and surrounding areas — including Oak Grove KY and Hopkinsville
-              KY. All insurance claims handled directly. USAA specialists for
-              Fort Campbell military families.
+              KY. All insurance claims handled directly, with experience
+              handling USAA claims for Fort Campbell military families.
             </p>
 
             <span id="causes" className="sp-ey" style={{ marginTop: 32 }}>
@@ -354,7 +347,7 @@ export default function FloodCleanupPage() {
                 "Complete moisture log documentation for insurance",
                 "Direct insurance billing — you pay only your deductible",
                 "Certificate of dryness at project completion",
-                "USAA-preferred contractor for Fort Campbell families",
+                "Experience with USAA claims for Fort Campbell families",
                 "24/7 monitoring of drying equipment",
               ].map((i) => (
                 <li key={i}>{i}</li>
@@ -394,7 +387,7 @@ export default function FloodCleanupPage() {
                 }}
               >
                 Don&apos;t wait. Water damage doubles every hour. Our team is
-                ready 24/7 and arrives in 60 minutes or less.
+                ready 24/7 and aims to arrive within 60 minutes.
               </p>
               <a
                 href="tel:+19312712350"
@@ -466,7 +459,7 @@ export default function FloodCleanupPage() {
             <div className="sp-sb-cta">
               <div className="sp-sb-ey">24/7 Emergency Line</div>
               <div className="sp-sb-n">(931) 271-2350</div>
-              <div className="sp-sb-s">Answered in 60 seconds · 24/7/365</div>
+              <div className="sp-sb-s">We answer quickly · 24/7/365</div>
               <a href="tel:+19312712350" className="sp-sb-b1">
                 📞 Call Now — We Answer 24/7
               </a>
@@ -478,10 +471,10 @@ export default function FloodCleanupPage() {
               <h3>Why Choose Us</h3>
               {[
                 "✅ IICRC S500 Certified",
-                "✅ 60-min guaranteed arrival",
+                "✅ Fast on-site response",
                 "✅ All insurance accepted",
-                "✅ USAA specialists",
-                "✅ Serving Clarksville since 2014",
+                "✅ USAA claims experience",
+                "✅ Locally based team",
                 "✅ Direct insurance billing",
                 "✅ Free assessment",
               ].map((t) => (
@@ -571,8 +564,7 @@ export default function FloodCleanupPage() {
             lineHeight: 1.7,
           }}
         >
-          60-minute response guaranteed. All insurance accepted. Free
-          inspection.
+          Fast 24/7 response. All insurance accepted. Free inspection.
         </p>
         <div
           style={{

@@ -12,14 +12,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
 };
 
-// This page does NOT redeclare a full LocalBusiness entity. The canonical
-// business record (name, address, geo, hours, @id) lives on the homepage
-// as https://water-damage-clarksville.com/#localbusiness — every other
-// page references it via that @id. The previous version of this schema
-// declared a second, unlinked "HomeAndConstructionBusiness" entity on the
-// wrong domain (waterdamageclarksville.com, no hyphens), which told Google
-// this page belongs to a different business than the rest of the site.
-// ContactPage + a reference to the canonical @id avoids that entirely.
 const CONTACT_PAGE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
@@ -60,7 +52,7 @@ const FAQ_SCHEMA = {
     {
       "@type": "Question",
       "name": "Do you work with insurance?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. We accept all insurance, file claims on your behalf, and bill directly so you only pay your deductible. We also have USAA specialists for Fort Campbell families." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. We accept all insurance, file claims on your behalf, and bill directly so you only pay your deductible. We also have experience handling USAA claims for Fort Campbell families." }
     }
   ]
 };
@@ -101,7 +93,7 @@ export default function ContactPage() {
           <div className="ci-card">
             <div className="ci-card-i" aria-hidden="true">✅</div>
             <h2 className="ci-card-h">What to Expect</h2>
-            {["Real expert answers every call — no voicemail","60-minute guaranteed on-site arrival","Free inspection and damage assessment","All insurance accepted — we file for you","USAA specialists for Fort Campbell families","Direct billing — you pay only your deductible"].map(item=>(
+            {["Real expert answers every call — no voicemail","We aim to arrive on-site within 60 minutes","Free inspection and damage assessment","All insurance accepted — we file for you","Experience with USAA claims for Fort Campbell families","Direct billing — you pay only your deductible"].map(item=>(
               <div key={item} className="ci-check">
                 <span className="ci-check-m" aria-hidden="true">✓</span>
                 <span className="ci-check-t">{item}</span>
