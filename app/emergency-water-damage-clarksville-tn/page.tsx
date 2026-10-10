@@ -3,15 +3,15 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
-  title: "Emergency Water Damage Restoration Clarksville TN | 60-Min",
+  title: "Emergency Water Damage Restoration Clarksville TN | Fast 24/7 Response",
   description:
-    "24/7 emergency water damage restoration in Clarksville TN. IICRC-certified, 60-min arrival. Burst pipes, flooding, sewage. Insurance accepted.",
+    "24/7 emergency water damage restoration in Clarksville TN. IICRC-certified, fast on-site response. Burst pipes, flooding, sewage. Insurance accepted.",
   alternates: { canonical: "/emergency-water-damage-clarksville-tn" },
   openGraph: {
     title:
-      "Emergency Water Damage Restoration Clarksville TN | 60-Min Response",
+      "Emergency Water Damage Restoration Clarksville TN | Fast 24/7 Response",
     description:
-      "24/7 emergency water damage restoration in Clarksville TN. 60-min guaranteed arrival. IICRC-certified. All insurance including USAA. Call (931) 271-2350.",
+      "24/7 emergency water damage restoration in Clarksville TN. Fast on-site response. IICRC-certified. All insurance including USAA. Call (931) 271-2350.",
     url: "https://water-damage-clarksville.com/emergency-water-damage-clarksville-tn",
     type: "website",
   },
@@ -135,11 +135,11 @@ export default function EmergencyPage() {
         eyebrow="24/7 Emergency Response — Clarksville TN"
         title="Emergency Water Damage Restoration"
         accent="in Clarksville TN"
-        subtitle="IICRC-certified team on-site within 60 minutes. Burst pipes, flooding, sewage backup, storm damage — we respond to every water emergency 24 hours a day. All insurance accepted including USAA."
+        subtitle="IICRC-certified team that aims to arrive on-site within 60 minutes. Burst pipes, flooding, sewage backup, storm damage — we respond to every water emergency 24 hours a day. All insurance accepted including USAA."
         image="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=80"
         breadcrumbs={[{ label: "Emergency Water Damage Clarksville TN" }]}
-        stat1="60min"
-        stat1Sub="Guaranteed Arrival"
+        stat1="IICRC"
+        stat1Sub="Certified Team"
         stat2="24/7"
         stat2Sub="Always Available"
         stat3="All"
@@ -190,6 +190,7 @@ export default function EmergencyPage() {
         .int-link { font-family:var(--font-inter); font-size:14px; font-weight:500; color:#16A34A; text-decoration:none; display:flex; align-items:center; gap:6px; }
         .int-link::before { content:'→'; font-size:11px; flex-shrink:0; }
         .int-link:hover { color:#09090B; }
+        .map-embed { height:300px; border-radius:8px; overflow:hidden; margin-top:16px; }
         /* Sidebar */
         .sidebar { display:flex; flex-direction:column; gap:18px; position:sticky; top:130px; }
         .sb-cta { background:#09090B; border-radius:10px; padding:26px; }
@@ -260,7 +261,7 @@ export default function EmergencyPage() {
                 movers, thermal imaging cameras), and documented protocols that
                 satisfy insurance adjuster requirements. When you call{" "}
                 <strong>(931) 271-2350</strong>, our IICRC-certified team
-                arrives within 60 minutes — fully equipped to begin immediate
+                aims to arrive within 60 minutes — fully equipped to begin immediate
                 mitigation.
               </p>
             </section>
@@ -318,8 +319,8 @@ export default function EmergencyPage() {
               </h2>
               <p className="ep-p">
                 Understanding what happens to your Clarksville home after water
-                damage explains why our 60-minute response guarantee exists.
-                Every hour matters:
+                damage explains why our fast response time matters so much.
+                Every hour counts:
               </p>
               <div
                 className="timeline"
@@ -367,7 +368,7 @@ export default function EmergencyPage() {
                 className="mc-btn"
                 aria-label="Call for emergency water damage restoration"
               >
-                📞 Call (931) 271-2350 — 60-Min Response
+                📞 Call (931) 271-2350 — Fast Response
               </a>
             </div>
 
@@ -398,8 +399,8 @@ export default function EmergencyPage() {
                   },
                   {
                     n: "02",
-                    title: "We Arrive Within 60 Minutes — Guaranteed",
-                    body: "Our fully equipped truck arrives on-site within 60 minutes anywhere in Clarksville TN and Montgomery County. Equipment on every truck: truck-mounted extractors, thermal imaging cameras, professional moisture meters, LGR dehumidifiers, air movers, HEPA air scrubbers, and Category 3 PPE.",
+                    title: "We Aim to Arrive Within 60 Minutes",
+                    body: "Our fully equipped truck aims to arrive on-site within 60 minutes anywhere in Clarksville TN and Montgomery County. Equipment on every truck: truck-mounted extractors, thermal imaging cameras, professional moisture meters, LGR dehumidifiers, air movers, HEPA air scrubbers, and Category 3 PPE.",
                   },
                   {
                     n: "03",
@@ -468,7 +469,7 @@ export default function EmergencyPage() {
                 verifiable industry standards.
               </p>
 
-              <h3 className="ep-h3">USAA Preferred Vendor for Fort Campbell</h3>
+              <h3 className="ep-h3">USAA Claims Experience for Fort Campbell</h3>
               <p className="ep-p">
                 <Link
                   href="/locations/fort-campbell-tn"
@@ -476,10 +477,9 @@ export default function EmergencyPage() {
                 >
                   Fort Campbell military families
                 </Link>{" "}
-                carrying USAA insurance receive the fastest possible claims
-                processing when working with an experienced USAA preferred
-                vendor. We understand USAA's specific documentation requirements
-                and submit complete Xactimate packages that minimize adjuster
+                carrying USAA insurance work with a team experienced in
+                USAA's specific documentation requirements, submitting
+                complete Xactimate packages that help minimize adjuster
                 review delays.
               </p>
 
@@ -514,7 +514,7 @@ export default function EmergencyPage() {
               >
                 {[
                   [
-                    "Fort Campbell TN — USAA preferred vendor, military specialists",
+                    "Fort Campbell TN — USAA claims experience, military specialists",
                     "/locations/fort-campbell-tn",
                   ],
                   [
@@ -567,6 +567,15 @@ export default function EmergencyPage() {
               >
                 → View All 32 Service Area Locations
               </Link>
+              <iframe
+                title="Clarksville Water Damage Restoration service area map"
+                src="https://www.google.com/maps?q=215+Legion+Street,+Clarksville,+TN+37040&output=embed"
+                width="100%"
+                className="map-embed"
+                style={{ border: 0, width: "100%" }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </section>
 
             <section
@@ -784,7 +793,7 @@ export default function EmergencyPage() {
         </h2>
         <p className="ec-p">
           Call (931) 271-2350 right now. A real expert answers in under 60
-          seconds. Your 60-minute response clock starts the moment you dial.
+          seconds. We aim to arrive within 60 minutes of your call.
           Serving Clarksville TN, Fort Campbell, and all of Montgomery County
           24/7/365.
         </p>

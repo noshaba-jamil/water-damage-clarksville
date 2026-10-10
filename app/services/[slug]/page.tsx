@@ -189,6 +189,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     ...(causes ? ([["What Causes This", "#causes"]] as [string, string][]) : []),
     ...(service.bullets ? ([["What's Included", "#included"]] as [string, string][]) : []),
     ["FAQ", "#faq"],
+    ["Service Area Map", "#map"],
     ["All Services", "#all-services"],
     ["All Service Areas", "#all-areas"],
   ];
@@ -214,8 +215,8 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
         subtitle={service.intro.substring(0, 180) + "..."}
         image={img}
         breadcrumbs={[{ label: "Services", href: "/" }, { label: service.title }]}
-        stat1="60min"
-        stat1Sub="Guaranteed Arrival"
+        stat1="IICRC"
+        stat1Sub="Certified Team"
         stat2="24/7"
         stat2Sub="Always Available"
       />
@@ -269,6 +270,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
         .link-chips{display:flex;flex-wrap:wrap;gap:8px}
         .link-chip{font-family:var(--font-inter);font-size:13px;font-weight:500;color:#16A34A;text-decoration:none;background:#F0FDF4;border:1px solid #BBF7D0;padding:6px 14px;border-radius:100}
         .link-chip:hover{background:#22C55E;color:#09090B;border-color:#22C55E}
+        .map-embed{height:300px;border-radius:8px;overflow:hidden;margin-top:16px}
         @media(max-width:1024px){.sp{grid-template-columns:1fr;padding:52px 20px}.sb{position:static}.causes-grid{grid-template-columns:1fr}}
       `}</style>
       <div style={{ background: "#fff" }}>
@@ -291,7 +293,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
                   <div className="sp-cta">
                     <div className="sp-cta-h">Need Help in Clarksville?</div>
                     <div className="sp-cta-p">
-                      We respond in 60 minutes — every time, any time of day.
+                      We aim to respond within 60 minutes — any time of day.
                     </div>
                     <a href="tel:+19312712350" className="sp-cta-btn">
                       📞 Call (931) 271-2350 Now
@@ -363,6 +365,22 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
               ))}
             </section>
 
+            <section id="map" aria-labelledby="map-h" style={{ marginTop: 40 }}>
+              <span className="sp-ey">Service Area Map</span>
+              <h2 className="sp-h2" id="map-h">
+                {service.title} Service Area
+              </h2>
+              <iframe
+                title="Clarksville Water Damage Restoration service area map"
+                src="https://www.google.com/maps?q=215+Legion+Street,+Clarksville,+TN+37040&output=embed"
+                width="100%"
+                className="map-embed"
+                style={{ border: 0, width: "100%" }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </section>
+
             <section id="all-services" style={{ marginTop: 40 }}>
               <span className="sp-ey">All Water Damage Services in Clarksville TN</span>
               <div className="link-chips">
@@ -401,7 +419,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
             <div className="sb-cta">
               <div className="sb-ey">Emergency Line</div>
               <div className="sb-num">(931) 271-2350</div>
-              <div className="sb-sub">Answered in 60 seconds · 24/7</div>
+              <div className="sb-sub">Answered quickly · 24/7</div>
               <a href="tel:+19312712350" className="sb-b1">
                 📞 Call Now
               </a>
@@ -455,7 +473,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
             lineHeight: 1.7,
           }}
         >
-          60-minute response guaranteed. All insurance accepted. Free inspection
+          Fast 24/7 response. All insurance accepted. Free inspection
           and assessment.
         </p>
         <div
