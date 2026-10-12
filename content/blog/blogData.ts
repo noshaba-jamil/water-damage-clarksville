@@ -110,7 +110,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         heading: "USAA Water Damage Coverage for Fort Campbell Families",
-        body: "USAA provides some of the most comprehensive water damage coverage available for military homeowners and renters. USAA policies cover the same sudden, accidental water events as standard homeowners policies, and USAA is consistently rated highest for claims satisfaction. As experienced USAA preferred vendors, we handle all documentation and adjuster communication directly for Fort Campbell families.",
+        body: "USAA provides some of the most comprehensive water damage coverage available for military homeowners and renters. USAA policies cover the same sudden, accidental water events as standard homeowners policies, and USAA is consistently rated highest for claims satisfaction. We have experience handling USAA claims and documentation and adjuster communication directly for Fort Campbell families.",
       },
       {
         heading: "How to Maximize Your Tennessee Water Damage Insurance Claim",
@@ -293,7 +293,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading:
           "USAA Insurance Claims for Water Damage: What Military Families Need to Know",
-        body: "USAA provides excellent water damage coverage for both homeowners and renters among military families. USAA claims are typically processed faster than standard carriers and with superior customer service ratings. As experienced USAA preferred vendors, our team understands USAA's specific documentation requirements — moisture reports, photo documentation, scope of work using Xactimate software — that streamline the claims process for Fort Campbell families. We handle direct billing to USAA so military families pay only their deductible.",
+        body: "USAA provides excellent water damage coverage for both homeowners and renters among military families. USAA claims are typically processed faster than standard carriers and with superior customer service ratings. We have experience handling USAA claims and understand USAA's specific documentation requirements — moisture reports, photo documentation, scope of work using Xactimate software — that streamline the claims process for Fort Campbell families. We handle direct billing to USAA so military families pay only their deductible.",
       },
       {
         heading: "Handling Water Damage During Military Deployment",
@@ -512,7 +512,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         heading: "Responding to Tenant Water Damage Calls at 2am",
-        body: "The most important protocol for property managers is having a pre-established relationship with a 24/7 restoration company before an emergency occurs. When a tenant calls at 2am about water flooding from a burst pipe, you need one call to (931) 271-2350 to dispatch a professional team — not a frantic search for a contractor. Our team responds to property managers and landlords throughout Clarksville with the same 60-minute guaranteed arrival as residential calls, 24 hours a day.",
+        body: "The most important protocol for property managers is having a pre-established relationship with a 24/7 restoration company before an emergency occurs. When a tenant calls at 2am about water flooding from a burst pipe, you need one call to (931) 271-2350 to dispatch a professional team — not a frantic search for a contractor. Our team aims to respond to property managers and landlords throughout Clarksville with the same fast response as residential calls, 24 hours a day.",
       },
       {
         heading: "Landlord Insurance and Water Damage Claims in Tennessee",

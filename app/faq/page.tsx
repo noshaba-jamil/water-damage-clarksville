@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: "Water Damage FAQ — Clarksville TN | Expert Answers",
     description: "Answers to the most common water damage restoration questions for Clarksville TN homeowners. Costs, insurance, mold, timeline, and more.",
     url: "https://water-damage-clarksville.com/faq",
+    images: [{ url: "https://water-damage-clarksville.com/og-image.jpg", width: 1200, height: 630, alt: "Clarksville Water Damage Restoration" }],
   },
 };
 
@@ -22,6 +23,17 @@ const breadcrumbSchema = {
     { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
     { "@type": "ListItem", position: 2, name: "FAQ", item: `${SITE_URL}/faq` },
   ],
+};
+
+// Lets this page's FAQ content also be found as a Service entity, matching
+// the AEO pattern used on every service page across the site.
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Water Damage Restoration — Clarksville TN FAQ",
+  provider: { "@id": `${SITE_URL}/#localbusiness` },
+  areaServed: { "@type": "AdministrativeArea", name: "Montgomery County, Tennessee" },
+  description: "Answers to common water damage restoration questions for Clarksville TN homeowners covering response time, process, mold, insurance, and prevention.",
 };
 
 // Full services list for the entity/topical map and directory section
@@ -70,10 +82,10 @@ const categories = [
   {
     title: "Response & Service",
     faqs: [
-      { q: "How quickly can you respond to water damage emergencies in Clarksville TN?", a: "We guarantee 60-minute on-site arrival anywhere in Clarksville TN and Montgomery County, 24 hours a day, 7 days a week, 365 days a year. A real expert answers your call in under 60 seconds — no voicemail, no call center. We dispatch your team immediately while you are still on the phone." },
+      { q: "How quickly can you respond to water damage emergencies in Clarksville TN?", a: "We aim to arrive on-site within 60 minutes anywhere in Clarksville TN and Montgomery County, 24 hours a day, 7 days a week, 365 days a year. A real expert answers your call quickly — no voicemail, no call center. We dispatch your team immediately while you are still on the phone." },
       { q: "What areas do you serve around Clarksville TN?", a: "We serve a 50-mile radius from our Clarksville base, including all of Montgomery County TN, and portions of Robertson, Cheatham, Stewart, Dickson, and Houston counties in Tennessee, and Christian and Todd counties in Kentucky. Key communities include Fort Campbell, Sango, St. Bethlehem, Oak Grove KY, Hopkinsville KY, Woodlawn, Springfield, Ashland City, Dover, Dickson, Cunningham, Southside, and all surrounding areas." },
       { q: "Do you serve Kentucky as well as Tennessee?", a: "Yes. The Tennessee-Kentucky state line is no barrier to our service. We regularly serve Oak Grove KY, Hopkinsville KY, Pembroke KY, Guthrie KY, and other communities in Christian and Todd counties in Kentucky within our 50-mile service radius." },
-      { q: "Are you available on weekends and holidays?", a: "Yes. Water damage emergencies don't respect business hours. Our team is available 24 hours a day, every day of the year — including all weekends, Thanksgiving, Christmas, New Year's Day, and all other holidays. When you call (931) 271-2350, a real professional answers immediately." },
+      { q: "Are you available on weekends and holidays?", a: "Yes. Water damage emergencies don't respect business hours. Our team is available 24 hours a day, every day of the year — including all weekends, Thanksgiving, Christmas, New Year's Day, and all other holidays. When you call (931) 271-2350, a real professional answers quickly." },
     ],
   },
   {
@@ -101,7 +113,7 @@ const categories = [
       { q: "Does homeowners insurance cover water damage in Tennessee?", a: "Yes — standard Tennessee homeowners insurance covers sudden, accidental water damage from internal sources: burst pipes, appliance failures, plumbing leaks, and roof leaks from covered weather events. It does NOT cover: flooding from external sources (requires NFIP flood insurance), gradual leaks, sewer backup without endorsement, or neglect-related damage." },
       { q: "Do you work directly with insurance companies?", a: "Yes. We work directly with USAA, State Farm, Allstate, Farmers, Liberty Mutual, Nationwide, Progressive, Travelers, American Family, GEICO, and all other major carriers. We open your claim, provide complete Xactimate documentation, communicate with your adjuster, and bill directly to your carrier. You pay only your deductible." },
       { q: "How much does water damage restoration cost in Clarksville TN?", a: "Minor events (small area, Category 1): $1,300–$5,400. Moderate events (multiple rooms): $5,000–$12,000. Severe events (full structural damage): $15,000–$40,000+. The average Tennessee insurance claim is approximately $13,200. We provide free inspections and detailed estimates. Most costs are covered by homeowners insurance for qualifying events." },
-      { q: "What does USAA cover for Fort Campbell military families?", a: "USAA homeowners and renters insurance covers the same sudden, accidental water damage events as standard policies — burst pipes, appliance failures, plumbing leaks, and roof damage from covered storms. USAA is typically excluded from flood coverage (requires NFIP) like all standard carriers. As USAA preferred vendors, we handle all documentation to USAA's specific requirements." },
+      { q: "What does USAA cover for Fort Campbell military families?", a: "USAA homeowners and renters insurance covers the same sudden, accidental water damage events as standard policies — burst pipes, appliance failures, plumbing leaks, and roof damage from covered storms. USAA is typically excluded from flood coverage (requires NFIP) like all standard carriers. We have experience handling USAA claims and document to USAA's specific requirements." },
       { q: "Will my rates go up if I file a water damage insurance claim?", a: "We cannot predict your specific premium changes as they depend on your carrier, claim history, and policy terms. Generally, a single water damage claim for a significant event is unlikely to dramatically affect rates, and the financial protection from a covered loss often outweighs premium concerns. Speak with your insurance agent about your specific policy's claims history impact." },
     ],
   },
@@ -132,11 +144,12 @@ export default function FaqPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 
       <PageHero
         eyebrow="Expert Answers — Clarksville TN"
-        title="Water Damage"
-        accent="Frequently Asked Questions"
+        title="Water Damage FAQ"
+        accent="Clarksville TN"
         subtitle="Answers to the most common questions about water damage restoration in Clarksville TN — from costs and insurance to mold, process, and prevention."
         image="https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&w=1800&q=80"
         imageFocus="center 40%"
@@ -173,8 +186,8 @@ export default function FaqPage() {
         .topic-map strong { color:#09090B; }
         .directory-sec { margin-bottom:48px; }
         .directory-h { font-family:var(--font-cormorant); font-size:clamp(20px,2.4vw,26px); font-weight:700; color:#09090B; margin-bottom:14px; letter-spacing:-0.4px; }
-        .link-chips { display:flex; flex-wrap:wrap; gap:8px; }
-        .link-chip { font-family:var(--font-inter); font-size:13px; font-weight:500; color:#16A34A; text-decoration:none; background:#F0FDF4; border:1px solid #BBF7D0; padding:6px 14px; border-radius:100px; }
+        .link-chips { display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0; margin:0; }
+        .link-chip { font-family:var(--font-inter); font-size:13px; font-weight:500; color:#16A34A; text-decoration:none; background:#F0FDF4; border:1px solid #BBF7D0; padding:6px 14px; border-radius:100px; display:inline-block; }
         .link-chip:hover { background:#22C55E; color:#09090B; border-color:#22C55E; }
         .lead-cta { background:#22C55E; border-radius:12px; padding:36px 32px; margin:48px 0; text-align:center; }
         .lead-cta-h { font-family:var(--font-cormorant); font-size:clamp(22px,3vw,30px); font-weight:700; color:#09090B; margin-bottom:8px; letter-spacing:-0.5px; }
@@ -182,6 +195,7 @@ export default function FaqPage() {
         .lead-cta-btns { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
         .lead-cta-btn1 { display:inline-flex; align-items:center; gap:8px; background:#09090B; color:#fff; padding:13px 26px; border-radius:6px; text-decoration:none; font-family:var(--font-inter); font-weight:700; font-size:14px; }
         .lead-cta-btn2 { display:inline-flex; align-items:center; gap:8px; background:transparent; color:#09090B; padding:12px 22px; border-radius:6px; text-decoration:none; font-family:var(--font-inter); font-weight:600; font-size:14px; border:1.5px solid rgba(9,9,11,.3); }
+        .map-embed { height:300px; border-radius:8px; overflow:hidden; margin-top:16px; }
         @media(max-width:1024px) { .faq-pg { padding:52px 20px; } }
       `}</style>
 
@@ -189,14 +203,14 @@ export default function FaqPage() {
         <main className="faq-pg">
           <div className="faq-intro">
             <div className="faq-intro-h">Have a water damage emergency right now?</div>
-            <p className="faq-intro-p">Don't read — call. Our IICRC-certified team responds in 60 minutes, 24 hours a day, 7 days a week, 365 days a year. A real expert answers in under 60 seconds.</p>
+            <p className="faq-intro-p">Don't read — call. Our IICRC-certified team aims to respond within 60 minutes, 24 hours a day, 7 days a week, 365 days a year. A real expert answers quickly.</p>
             <a href="tel:+19312712350" className="faq-intro-cta" aria-label="Call for emergency water damage restoration">📞 Call (931) 271-2350 Now</a>
           </div>
 
           <div className="topic-map" role="note" aria-label="Topic and entity summary">
             <span className="topic-map-label">📖 What This Page Covers</span>
             <p>
-              This FAQ page is published by <strong>Clarksville Water Damage Restoration</strong>, a locally owned, IICRC-certified restoration company based in Clarksville, Tennessee (215 Legion Street, Clarksville, TN 37040 · (931) 271-2350). It answers common questions about <strong>water damage restoration, flood cleanup, structural drying, mold remediation, sewage backup cleanup, burst pipe damage, basement flooding, storm damage restoration, commercial water damage, odor removal, and insurance claim management</strong>, organized into five topic categories: Response &amp; Service, the Restoration Process, Mold, Insurance &amp; Costs, and Prevention. The company serves <strong>Clarksville TN and Montgomery County</strong> within a 50-mile radius, including Fort Campbell, Sango, St. Bethlehem, Oak Grove KY, Hopkinsville KY, Springfield TN, Ashland City TN, Dover TN, Dickson TN, Woodlawn TN, Palmyra TN, Pembroke KY, Cunningham TN, and Southside TN, and is a USAA preferred vendor for Fort Campbell military families.
+              This FAQ page is published by <strong>Clarksville Water Damage Restoration</strong>, a locally owned, IICRC-certified restoration company based in Clarksville, Tennessee (215 Legion Street, Clarksville, TN 37040 · (931) 271-2350). It answers common questions about <strong>water damage restoration, flood cleanup, structural drying, mold remediation, sewage backup cleanup, burst pipe damage, basement flooding, storm damage restoration, commercial water damage, odor removal, and insurance claim management</strong>, organized into five topic categories: Response &amp; Service, the Restoration Process, Mold, Insurance &amp; Costs, and Prevention. The company serves <strong>Clarksville TN and Montgomery County</strong> within a 50-mile radius, including Fort Campbell, Sango, St. Bethlehem, Oak Grove KY, Hopkinsville KY, Springfield TN, Ashland City TN, Dover TN, Dickson TN, Woodlawn TN, Palmyra TN, Pembroke KY, Cunningham TN, and Southside TN, and has experience handling USAA claims for Fort Campbell military families.
             </p>
           </div>
 
@@ -208,23 +222,23 @@ export default function FaqPage() {
 
           <section className="directory-sec" aria-labelledby="all-services-heading">
             <h2 className="directory-h" id="all-services-heading">All Services We Answer Questions About</h2>
-            <div className="link-chips">
+            <ul className="link-chips">
               {allServices.map(([l, h]) => (
-                <Link key={h} href={h} className="link-chip">{l}</Link>
+                <li key={h}><Link href={h} className="link-chip">{l}</Link></li>
               ))}
-            </div>
+            </ul>
           </section>
 
           <section className="directory-sec" aria-labelledby="all-areas-heading">
             <h2 className="directory-h" id="all-areas-heading">All Areas We Serve</h2>
-            <div className="link-chips">
+            <ul className="link-chips">
               {allAreas.map(([l, h]) => (
-                <Link key={h} href={h} className="link-chip">{l}</Link>
+                <li key={h}><Link href={h} className="link-chip">{l}</Link></li>
               ))}
-              <Link href="/service-areas" className="link-chip" style={{ background: "#09090B", color: "#fff", borderColor: "#09090B" }}>
+              <li><Link href="/service-areas" className="link-chip" style={{ background: "#09090B", color: "#fff", borderColor: "#09090B" }}>
                 View All Areas →
-              </Link>
-            </div>
+              </Link></li>
+            </ul>
           </section>
 
           {categories.map((cat, idx) => (
@@ -263,6 +277,21 @@ export default function FaqPage() {
             </div>
           ))}
 
+          <section aria-labelledby="map-heading" style={{ marginTop: 48, paddingTop: 40, borderTop: "1px solid #E4E4E7" }}>
+            <h2 style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(20px,2.4vw,26px)", fontWeight: 700, color: "#09090B", marginBottom: 14, letterSpacing: "-0.4px" }} id="map-heading">
+              Clarksville TN Service Area Map
+            </h2>
+            <iframe
+              title="Clarksville Water Damage Restoration service area map"
+              src="https://www.google.com/maps?q=215+Legion+Street,+Clarksville,+TN+37040&output=embed"
+              width="100%"
+              className="map-embed"
+              style={{ border: 0, width: "100%" }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </section>
+
           <section aria-labelledby="resources-heading" style={{ marginTop: 48, paddingTop: 40, borderTop: "1px solid #E4E4E7" }}>
             <h2 style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(22px,2.5vw,30px)", fontWeight: 700, color: "#09090B", marginBottom: 20, letterSpacing: "-0.4px" }} id="resources-heading">
               Related Resources
@@ -289,7 +318,7 @@ export default function FaqPage() {
 
           <div className="faq-cta-box">
             <h2 className="faq-cta-h">Still Have Questions? Call Now.</h2>
-            <p className="faq-cta-p">Our team answers in under 60 seconds — any question, any time, 24/7.</p>
+            <p className="faq-cta-p">Our team answers quickly — any question, any time, 24/7.</p>
             <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
               <a href="tel:+19312712350" style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#22C55E", color: "#09090B", padding: "14px 32px", borderRadius: 6, textDecoration: "none", fontFamily: "var(--font-inter)", fontSize: 16, fontWeight: 700 }} aria-label="Call for water damage help">📞 (931) 271-2350</a>
               <Link href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", color: "rgba(255,255,255,.7)", padding: "13px 24px", borderRadius: 6, textDecoration: "none", fontFamily: "var(--font-inter)", fontSize: 15, fontWeight: 500, border: "1px solid rgba(255,255,255,.18)" }} aria-label="Send us a message">Send a Message →</Link>
