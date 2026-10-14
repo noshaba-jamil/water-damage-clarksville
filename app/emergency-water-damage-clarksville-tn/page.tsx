@@ -3,13 +3,13 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
-  title: "Emergency Water Damage Restoration Clarksville TN | Fast 24/7 Response",
+ title: "Emergency Water Damage Restoration Clarksville TN",
   description:
     "24/7 emergency water damage restoration in Clarksville TN. IICRC-certified, fast on-site response. Burst pipes, flooding, sewage. Insurance accepted.",
   alternates: { canonical: "/emergency-water-damage-clarksville-tn" },
   openGraph: {
-    title:
-      "Emergency Water Damage Restoration Clarksville TN | Fast 24/7 Response",
+     title:
+      "Emergency Water Damage Restoration Clarksville TN",
     description:
       "24/7 emergency water damage restoration in Clarksville TN. Fast on-site response. IICRC-certified. All insurance including USAA. Call (931) 271-2350.",
     url: "https://water-damage-clarksville.com/emergency-water-damage-clarksville-tn",
