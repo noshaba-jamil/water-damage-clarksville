@@ -21,7 +21,7 @@ export const locationsData: LocationContent[] = [
     city: "Fort Campbell",
     state: "TN",
     county: "Montgomery County",
-    metaTitle: "Water Damage Restoration Fort Campbell, TN | 24/7 Response",
+    metaTitle: "Fort Campbell Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Water damage restoration serving Fort Campbell TN military families. Fast response, 24/7. Free assessment. Call (931) 271-2350.",
     intro:
@@ -65,7 +65,7 @@ export const locationsData: LocationContent[] = [
     city: "Sango",
     state: "TN",
     county: "Montgomery County",
-    metaTitle: "Water Damage Restoration Sango, TN | 24/7 Response",
+    metaTitle: "Sango Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Professional water damage restoration in Sango TN. 60-minute response, 24/7. Flood cleanup, mold remediation, structural drying. All insurance. Call (931) 271-2350.",
     intro:
@@ -105,7 +105,7 @@ export const locationsData: LocationContent[] = [
     city: "St. Bethlehem",
     state: "TN",
     county: "Montgomery County",
-    metaTitle: "Water Damage Restoration St. Bethlehem, TN | 24/7 Response",
+    metaTitle: "St. Bethlehem Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Water damage restoration in St. Bethlehem TN. 60-min response, 24/7. Flood cleanup, mold remediation. All insurance. Free assessment. Call (931) 271-2350.",
     intro:
@@ -144,7 +144,7 @@ export const locationsData: LocationContent[] = [
     city: "Oak Grove",
     state: "KY",
     county: "Christian County",
-    metaTitle: "Water Damage Restoration Oak Grove, KY | 24/7 Response",
+    metaTitle: "Oak Grove Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Water damage restoration in Oak Grove KY. Serving Fort Campbell corridor. Fast 24/7 response. Free assessment. Call (931) 271-2350.",
     intro:
@@ -183,7 +183,7 @@ export const locationsData: LocationContent[] = [
     city: "Hopkinsville",
     state: "KY",
     county: "Christian County",
-    metaTitle: "Water Damage Restoration Hopkinsville, KY | 24/7 Response",
+    metaTitle: "Hopkinsville Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Water damage restoration in Hopkinsville KY. 60-min response, 24/7. Flood cleanup, mold remediation, structural drying. All insurance. Call (931) 271-2350.",
     intro:
@@ -222,7 +222,7 @@ export const locationsData: LocationContent[] = [
     city: "Woodlawn",
     state: "TN",
     county: "Montgomery County",
-    metaTitle: "Water Damage Restoration Woodlawn, TN | 24/7 Response",
+    metaTitle: "Woodlawn Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Water damage restoration in Woodlawn TN. 60-min response, 24/7. All insurance accepted. Free assessment. Call (931) 271-2350.",
     intro:
@@ -261,7 +261,7 @@ export const locationsData: LocationContent[] = [
     city: "Springfield",
     state: "TN",
     county: "Robertson County",
-    metaTitle: "Water Damage Restoration Springfield, TN | 24/7 Response",
+    metaTitle: "Springfield Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Water damage restoration in Springfield TN and Robertson County. 60-min response, 24/7. Free assessment. Call (931) 271-2350.",
     intro:
@@ -299,7 +299,7 @@ export const locationsData: LocationContent[] = [
     city: "Ashland City",
     state: "TN",
     county: "Cheatham County",
-    metaTitle: "Water Damage Restoration Ashland City, TN | 24/7 Response",
+    metaTitle: "Ashland City Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Water damage restoration in Ashland City TN. Cumberland River flooding specialists. 60-min response, 24/7. Call (931) 271-2350.",
     intro:
@@ -338,7 +338,7 @@ export const locationsData: LocationContent[] = [
     city: "Dover",
     state: "TN",
     county: "Stewart County",
-    metaTitle: "Water Damage Restoration Dover, TN | 24/7 Response",
+    metaTitle: "Dover Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Water damage restoration in Dover TN and Stewart County. 60-min response, 24/7. All insurance. Free assessment. Call (931) 271-2350.",
     intro:
@@ -376,7 +376,7 @@ export const locationsData: LocationContent[] = [
     city: "Dickson",
     state: "TN",
     county: "Dickson County",
-    metaTitle: "Water Damage Restoration Dickson, TN | 24/7 Response",
+    metaTitle: "Dickson Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Water damage restoration in Dickson TN. 60-min response, 24/7. Flood cleanup, mold remediation. All insurance. Call (931) 271-2350.",
     intro:
@@ -414,7 +414,7 @@ export const locationsData: LocationContent[] = [
     city: "Palmyra",
     state: "TN",
     county: "Montgomery County",
-    metaTitle: "Water Damage Restoration Palmyra, TN | 24/7 Response",
+    metaTitle: "Palmyra Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Water damage restoration in Palmyra TN. 60-min response, 24/7. All insurance. Free assessment. Call (931) 271-2350.",
     intro:
@@ -452,7 +452,7 @@ export const locationsData: LocationContent[] = [
     city: "Pembroke",
     state: "KY",
     county: "Christian County",
-    metaTitle: "Water Damage Restoration Pembroke, KY | 24/7 Response",
+    metaTitle: "Pembroke Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Water damage restoration in Pembroke KY. 60-min response, 24/7. All insurance. Free assessment. Call (931) 271-2350.",
     intro:
@@ -490,7 +490,7 @@ export const locationsData: LocationContent[] = [
     city: "Cunningham",
     state: "TN",
     county: "Montgomery County",
-    metaTitle: "Water Damage Restoration Cunningham, TN | 24/7 Response",
+    metaTitle: "Cunningham Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Water damage restoration in Cunningham TN. IICRC-certified team, 60-min response, 24/7. Flood cleanup, mold remediation & structural drying. All insurance. Call (931) 271-2350.",
     intro:
@@ -537,7 +537,7 @@ export const locationsData: LocationContent[] = [
     city: "Southside",
     state: "TN",
     county: "Montgomery County",
-    metaTitle: "Water Damage Restoration Southside, TN | 24/7 Response",
+    metaTitle: "Southside Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Water damage restoration in Southside TN. 60-min emergency response, 24/7. Expert flood cleanup, mold remediation & drying. All insurance. Call (931) 271-2350.",
     intro:
@@ -584,7 +584,7 @@ export const locationsData: LocationContent[] = [
     city: "Dotsonville",
     state: "TN",
     county: "Montgomery County",
-    metaTitle: "Water Damage Restoration Dotsonville, TN | 24/7 Response",
+    metaTitle: "Dotsonville Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Water damage restoration in Dotsonville TN. IICRC-certified, 60-min response, 24/7. Flood cleanup, mold remediation & structural drying. Call (931) 271-2350.",
     intro:
@@ -631,7 +631,7 @@ export const locationsData: LocationContent[] = [
     city: "Adams",
     state: "TN",
     county: "Robertson County",
-    metaTitle: "Water Damage Restoration Adams, TN | 24/7 Response",
+    metaTitle: "Adams Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Water damage restoration in Adams TN. 60-min emergency response, 24/7. Flood cleanup, mold remediation & structural drying. All insurance. Call (931) 271-2350.",
     intro:
@@ -678,7 +678,7 @@ export const locationsData: LocationContent[] = [
   city: "Cedar Hill",
   state: "TN",
   county: "Robertson County",
-  metaTitle: "Water Damage Restoration Cedar Hill, TN | 24/7 Response",
+  metaTitle: "Cedar Hill Water Damage Restoration | Clarksville TN",
   metaDesc:
     "Water damage restoration in Cedar Hill TN. 60-min response, 24/7. Flood cleanup, mold remediation & structural drying. All insurance. Call (931) 271-2350.",
   intro:
@@ -712,7 +712,7 @@ export const locationsData: LocationContent[] = [
     city: "Guthrie",
     state: "KY",
     county: "Todd County",
-    metaTitle: "Water Damage Restoration Guthrie, KY | 24/7 Response",
+    metaTitle: "Guthrie Water Damage Restoration | Clarksville TN",
     metaDesc:
       "Water damage restoration in Guthrie KY. 60-min response, 24/7. Flood cleanup, mold remediation & structural drying. All insurance. Call (931) 271-2350.",
     intro:
